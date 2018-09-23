@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>signup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+	
+<div class="signUpBox">
+  <h1 id="title">Sign up</h1>
+
+  <form action="">
+      <hr>
+    <div class="accountType">
+      <input type="radio" checked name="account" id="radio_Parent"/>
+      <label for="radio_Parent" class="radio" >Parent</label>
+      <input type="radio" name="account" id="radio_Teacher"  />
+      <label for="radio_Teacher" class="radio">Teacher</label>
+    </div>
+  <hr>
+
+	<div class="accountInfo">
+	  <label for="firstName" class="inputLabel">Your First Name:</label>
+	  <input type="text" id="firstName" placeholder="e.g: 'Micheal'" required/>
+		<label for="firstName" class="inputLabel">Your Last name:</label>
+	  	<input type="text" id="lastName" placeholder="e.g: 'Subban'" required/>
+		<label for="firstName" class="inputLabel">Your Childs Student ID:</label>
+		<input type="text" id="childID" placeholder="xxxxxxx" required/>
+		<label for="firstName" class="inputLabel">Email Address:</label>
+	
+		<input type="text" id="email" placeholder="example@hotmail.com" required/>
+		<label for="firstName" class="inputLabel">Password:</label>
+ 		<input type="password" id="password" placeholder="must be 'x' chars long" required/>
+  	</div>
+	  
+	 
+	  <button type="button" id="button_SignUp">Sign Up</button>	
+	  <p id="redirect_LogIn">Already have an account ? <a href=>Log in</a></p>
+
+  </form>
+	
+</div>
+	
+	
+</body>
+</html>
