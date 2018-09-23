@@ -23,3 +23,7 @@ http.createServer(function (req, res) {//creates the server
     return res.end();
   });
 }).listen(8080);//adds server to your computer's 8080 port
+
+
+//Taken from https://www.w3schools.com/nodejs/nodejs_url.asp
+//on September 22nd 2018
