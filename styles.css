@@ -1,0 +1,98 @@
+
+#title{
+ 	font-size: 40px;
+	font-family:  "Courier New";
+	text-align: center;
+	margin: auto;
+	
+}
+
+.accountType{
+	
+	font-size: 20px;
+	padding-bottom: 3px;
+	font-family:Consolas;
+	
+	
+}
+
+.accountInfo{
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.signUpBox {
+ 	margin: auto;
+	width: 350px;
+	height: 500px;
+	overflow: hidden;
+ 	padding: 10px;
+  	text-align: center;  
+ 	border: solid 1px #e0e0e0;
+	position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	display: flex;
+	flex-wrap: wrap;
+	
+
+
+}
+
+.inputLabel{
+	
+	position: absolute;
+	display: block;
+	text-align: left;
+	margin-left: 68px;
+	font-family: "Lucida Sans", "sans-serif";
+	font-size: 10px;
+	padding-top: 7px;
+	color:blue
+
+
+	
+}
+
+
+#button_SignUp{
+	width: 100px; 
+ 	height: 25px;  
+  	margin-top: 15px; 
+ 	padding-left: 10px;	
+	
+}
+
+#redirect_LogIn{
+	
+	text-align: center;
+	font-size: 12px;
+	font-family:Consolas;
+	padding-top: 10px;
+		
+}
+
+hr{
+	
+	opacity: 0.4;
+}
+
+input[type=text]{
+  width: 200px; 
+  height: 25px;  
+  margin-top: 20px; 
+  padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+
+input[type=password]{
+  width: 200px; 
+  height: 25px;  
+  margin-top: 20px; 
+  padding-left: 10px;
+}
+
