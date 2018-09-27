@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>signup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="loginBox">
+  <h1 id="title">Login</h1>
+
+  <form action="/" method="post" id="loginForm">
+      <hr>
+    <div class="accountType">
+      <input type="radio" checked name="account" id="radio_Parent"/>
+      <label for="radio_Parent" class="radio" >Parent</label>
+      <input type="radio" name="account" id="radio_Teacher"  />
+      <label for="radio_Teacher" class="radio">Teacher</label>
+    </div>
+  <hr>
+
+	<div class="accountInfo">
+		
+	  	<label for="email" class="inputLabel">Email:</label>
+	  	<input type="text" id="Email" name="Email" placeholder="Email Address" required/>
+
+		<label for="password" class="inputLabel">Password:</label>
+ 		<input type="password" id="password" name="password" placeholder="must be 'x' chars long" required/>
+  	</div>
+
+
+	  <button type="submit" id="button_Login">Login</button>
+	  <p id="redirect_Login">Don't have an account ? <a href=>Sign up</a></p>
+
+  </form>
+
+</div>
+
+
+</body>
+</html>
