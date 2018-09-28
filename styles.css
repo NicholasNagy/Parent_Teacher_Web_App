@@ -1,9 +1,17 @@
 /*signup page styling */
+
+body{
+	background-image: url(res/marble.jpg);
+	
+}
+
+
 #title{
  	font-size: 40px;
 	font-family:  "Courier New";
 	text-align: center;
 	margin: auto;
+	color:#FFF;
 	
 }
 
@@ -12,6 +20,7 @@
 	font-size: 20px;
 	padding-bottom: 3px;
 	font-family:Consolas;
+	color:#FFF;
 	
 	
 }
@@ -24,12 +33,12 @@
 
 .signUpBox {
  	margin: auto;
-	width: 350px;
-	height: 520px;
+	width: 400px;
+	height: 550px;
 	overflow: hidden;
  	padding: 10px;
   	text-align: center;  
- 	border: solid 1px #e0e0e0;
+ 	border: solid 1px #9E9E9E;
 	position: absolute;
     top:0;
     bottom: 0;
@@ -37,7 +46,7 @@
     right: 0;
 	display: flex;
 	flex-wrap: wrap;
-	
+	background-color: #172443;
 
 
 }
@@ -47,13 +56,58 @@
 	position: absolute;
 	display: block;
 	text-align: left;
-	margin-left: 68px;
+	margin-left: 90px;
 	font-family: "Lucida Sans", "sans-serif";
 	font-size: 10px;
 	padding-top: 7px;
-	color:blue
+	color:white;
+
+}
+
+.logIn{
+	
+	float: right;
+	margin-right:60px;
+	
+	
+	
+}
 
 
+
+#logInForm{
+	
+	color:white;
+	
+
+}
+
+#button_LogIn{
+	
+	
+	margin-right: 110px;
+	
+	
+}
+
+
+#password_logIn, #email_logIn{
+	
+	
+	padding-right:10px;
+	width: 200px; 
+	height: 25px;  
+	margin-top:15px;
+	padding-left: 10px;
+	
+}
+
+
+
+.label_logIn{
+	
+	font-family:  "Courier New";
+	
 	
 }
 
@@ -89,53 +143,16 @@ input[type=text]{
 }
 
 
-input[type=password]{
+.input_SignIn{
   width: 200px; 
   height: 25px;  
   margin-top: 20px; 
   padding-left: 10px;
 }
 
-/*Login page styling*/
-
-.loginBox {
- 	margin: auto;
-	width: 350px;
-	height: 520px;
-	overflow: hidden;
- 	padding: 10px;
-  	text-align: center;  
- 	border: solid 1px #e0e0e0;
-	position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-	display: flex;
-	flex-wrap: wrap;
-}
 
 
 
 
-/*Parent Homepage styling*/
-.sidebar {
-	width: 10%;
-	margin-right: 2%;
-	float: left;
-	border-style: solid;
-}
 
-.sidebar iframe {
-	width:100%;
-}
 
-.post {
-	width: 60%;
-	float: left;
-	border-style: solid;
-}
-
-.clearfix{
-	clear: both
-}
