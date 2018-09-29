@@ -31,7 +31,7 @@ exports.splitFunction = function splitter(myString){
         //print(parsedarray[i-1]+"\n");
         i++;
     }
-    parsedarray[4] = myString.substring(equals[i]+1,myString.length);
+    parsedarray[4] = myString.substring(equals[i]+1,myString.length-1);
 
     //console.log(parsedarray);
     return (parsedarray);
