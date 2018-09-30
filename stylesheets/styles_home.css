@@ -1,0 +1,191 @@
+body {
+    margin: 0;
+}
+
+.nav_bar {
+    overflow: hidden;
+    background-image: url(res/header-blueBurst.jpg);
+    height: 60px;
+}
+
+a.title {
+
+    color: #FFFFFF;
+    text-align: center;
+    padding: 15px;
+    font-size: 27px;
+    text-decoration: none;
+    float: left;
+    padding-left: 10px;
+    width: 245px;
+    font-family: Monaco, "Courier New", "monospace";
+    font-weight: 500;
+}
+
+.quickAccess_title {
+
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 27px;
+    text-decoration: none;
+    margin-right: 50px;
+    float: right;
+    width: 300px;
+    font-family: Monaco, "Courier New", "monospace";
+    font-weight: 00;
+
+}
+
+.quickAccess{
+
+    float: right;
+}
+
+.quickAccess_title:hover{
+
+    background-color: #172443;
+}
+
+
+
+.quickAccess_list{
+
+    position: absolute;
+    margin-top: 60px;
+    z-index: 1;
+    background-color: #7195B7;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 330px;
+
+
+}
+
+.quickAccess_list a{
+
+    color: #FFFFFF;
+    font-size: 25px;
+    text-decoration: none;
+    padding-left: 20px;
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+
+}
+
+.quickAccess_list a:hover{
+
+    background-color: #84A5C5;
+}
+
+
+.title:hover {
+    background-color: #172443;
+
+}
+
+.title a:hover{
+    background-color: #172443;
+
+}
+
+
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 270px;
+    background: #0D1730;
+
+
+
+}
+
+.sidebar_body {
+
+    margin-top: 20px;
+
+
+}
+
+.sidebar_menu {
+
+    padding: 0;
+    list-style: none;
+
+}
+
+
+.sidebar_menu_item a:hover{
+
+    background-color: #172443;
+
+
+
+}
+
+.sidebar_menu_item a{
+
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    padding: 20px;
+    font-family: Cambria;
+    font-size: 17px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+}
+
+.sidebar_menu_item_sub a{
+
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    padding: 20px;
+    font-family: Cambria;
+    font-size: 17px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+}
+
+
+.sidebar_menu_item_sub a{
+
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    padding: 20px;
+    font-family: Cambria;
+    font-size: 17px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+
+
+}
+
+
+.sidebar_studentInfo_dropDownMenu{
+
+    list-style: none;
+
+}
+
+.page_content{
+
+    margin-left: 285px;
+    margin-top: 15px;
+    height: 100%;
+
+
+}
+
+
+.post {
+    width: 90%;
+    font-size: 20px;
+
+
+}
