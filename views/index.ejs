@@ -1,0 +1,69 @@
+<% include headers/header %>
+<div class="nav_bar">
+    <a class="title" href="homepage.html">School App</a>
+
+    <div class="logIn" >
+
+        <form action="" method="post" id="logInForm" >
+
+            <label for="Email" class="label_logIn">Email:</label>
+            <input type="email" name="email_logIn" id="email_logIn" required/>
+
+            <label for="password"class="label_logIn">Password:</label>
+            <input type="password" id="password_logIn" name="password_logIn"  required/>
+
+
+            <button type="submit" id="button_LogIn">Log In</button>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+<div class="signUpBox">
+    <h1 id="title">Sign up</h1>
+
+
+    <form action="" method="post" id="signUpForm">
+        <hr>
+        <div class="accountType">
+            <input type="radio" checked name="account" id="radio_Parent"/>
+            <label for="radio_Parent" class="radio" >Parent</label>
+            <input type="radio" name="account" id="radio_Teacher"  />
+            <label for="radio_Teacher" class="radio">Teacher</label>
+        </div>
+        <hr>
+
+        <div class="accountInfo">
+
+            <label for="firstName" class="inputLabel">Your First Name:</label>
+            <input type="text" class="input_SignIn" id="firstName" name="firstName" placeholder="e.g: 'Micheal'" required/>
+
+            <label for="lastName" class="inputLabel">Your Last name:</label>
+            <input type="text" class="input_SignIn" id="lastName" name="lastName" placeholder="e.g: 'Subban'" required/>
+
+            <label for="childID" class="inputLabel">Your Childs Student ID:</label>
+            <input type="text" class="input_SignIn" id="childID" name="childID" placeholder="xxxxxxx" required/>
+
+            <label for="email" class="inputLabel">Email Address:</label>
+            <input type="email" class="input_SignIn" id="email" name="email" placeholder="example@hotmail.com" required/>
+
+            <label for="password" class="inputLabel">Password:</label>
+            <input type="password" class="input_SignIn" id="password" name="password" placeholder="must be 'x' chars long" required/>
+        </div>
+
+
+        <button type="submit" id="button_SignUp">Sign Up</button>
+
+
+    </form>
+
+</div>
+
+
+</body>
+</html>
+
+<% include headers/footer %>
