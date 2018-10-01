@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
 
 //signup for parents
 router.post('/signup', function(req,res){
+  //console.log(req.body.account);
   //initializing variables
   var fName=req.body.firstName;
   var lName=req.body.lastName;
@@ -107,10 +108,7 @@ router.post('/signup', function(req,res){
 
 
 });
-//signup for teachers
-router.post('',function(req,res){
 
-})
 
 router.post('/login', function(req,res){
   //initializing the variables
@@ -131,21 +129,26 @@ router.post('/login', function(req,res){
     connection.query(sql, function (err, result){
       if (err) throw err;
       //underneath is the boolean for it
-      if(result[0].Email==email&&result[0].Pass==pass){
-        console.log("Login Successful");
-        //if successful, renders homepage
-        res.render('parenthomepage', {title: 'Express'});
+      if(result.length>0){
+        if(result[0].Email==email&&result[0].Pass==pass){
+          console.log("Login Successful");
+          //if successful, renders homepage
+          res.render('parenthomepage', {title: 'Express'});
+        }
       }
+      else{console.log("unsuccessful login")};
 
     });
     //below checks the query for the same email and password
     connection.query(thesql, function (err, result){
       if(err) throw err;
       //underneath is the boolean for it
-      if(result[0].Email==email&&result[0].Pass==pass){
-        console.log("Login Successful");
-        //if successful, renders homepage
-        res.render('parenthomepage', {title: 'Express'});
+      if(result.length>0){
+        if(result[0].Email==email&&result[0].Pass==pass){
+          console.log("Login Successful");
+          //if successful, renders homepage
+          res.render('parenthomepage', {title: 'Express'});
+        }
       }
     });
   });
