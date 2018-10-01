@@ -31,7 +31,7 @@ router.post('/signup', function(req,res){
   var Email=req.body.email;
   var pass = req.body.password;
 
-  
+
 //creating queries, first one checks to see if there are any emails that
 //are the same the second inserts the data into the database
   var query = "SELECT Email FROM Parents where Email='"+ Email+"';";
@@ -46,7 +46,8 @@ router.post('/signup', function(req,res){
     //if they do, the method ends
     connection.query(query, function(err, result){
       if(err) throw err;
-    if(Email==result[0].Email){//checks to see if any results with the same email
+
+    if(result.length>0){//checks to see if any results with the same email
                               //turned up
       console.log("email is already in use");
       res.end();
@@ -138,7 +139,7 @@ router.post('/login', function(req,res){
 
     });
     //below checks the query for the same email and password
-    connection.query(thesql, function err, result){
+    connection.query(thesql, function (err, result){
       if(err) throw err;
       //underneath is the boolean for it
       if(result[0].Email==email&&result[0].Pass==pass){
@@ -146,7 +147,7 @@ router.post('/login', function(req,res){
         //if successful, renders homepage
         res.render('parenthomepage', {title: 'Express'});
       }
-    }
+    });
   });
 
 })
