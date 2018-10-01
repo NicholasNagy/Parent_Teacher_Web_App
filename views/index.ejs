@@ -4,7 +4,7 @@
 
     <div class="logIn" >
 
-        <form action="" method="post" id="logInForm" >
+        <form action="/login" method="post" id="logInForm" >
 
             <label for="Email" class="label_logIn">Email:</label>
             <input type="email" name="email_logIn" id="email_logIn" required/>
@@ -24,30 +24,30 @@
 
 
 <div class="signUpBox">
-	
+
 	<div class="boxHeader">
     <h1 id="title">SIGN UP AS A:</h1>
-		
+
 	</div>
 
-    <form action="" method="post" id="signUpForm" name="signUpForm">
-      
-		
-	
+    <form action="/signup" method="post" id="signUpForm" name="signUpForm">
+
+
+
       <div class="accountType">
         <input type="radio" checked name="account" id="radio_Parent" class="radioSwitch" value="parent"  />
         <label for="radio_Parent" class="radioLabel" >Parent</label>
             <input type="radio"  name="account" id="radio_Teacher" class="radioSwitch"  value="teacher"/>
             <label for="radio_Teacher" class="radioLabel switch">Teacher</label>
 			 <span class="select"></span>
-			
+
         </div>
-	
-    
+
+
 
         <div class="accountInfo">
-			
-			
+
+
 
             <label for="firstName" class="inputLabel">Your First Name:</label>
             <input type="text" class="input_SignIn" id="firstName" name="firstName" placeholder="e.g: 'Micheal'" required/>
@@ -57,7 +57,7 @@
 
             <label for="childID" id="childIDLabel" class="inputLabel" style="display:block">Your Childs Student ID:</label>
             <input type="text" class="input_SignIn" id="childID" name="childID" placeholder="x Digit Student ID" style="display:block"  required/>
-			
+
 			<label for="classID" id="classIDLabel" class="inputLabel" style="display: none">Your Class ID:</label>
             <input type="text" class="input_SignIn" id="classID" name="classID" placeholder="x Digit Class ID" style="display: none" required/>
 
@@ -67,7 +67,7 @@
             <label for="password" class="inputLabel">Password:</label>
             <input type="password" class="input_SignIn" id="password" name="password" placeholder="must be 'x' chars long" required/>
         </div>
-		
+
 		 <p id="identifier">You are registering as a parent.</p>
 <button type="submit" id="button_SignUp">Sign Up</button>
 
@@ -75,23 +75,22 @@
     </form>
 
 </div>
-	
-	
-<script> 
-	
 
-	
+
+<script>
+
+
 	var childInput = document.getElementById("childID");
 	var classInput = document.getElementById("classID");
-	
+
 	var childLabel = document.getElementById("childIDLabel");
 	var classLabel = document.getElementById("classIDLabel");
 	var identifier = document.getElementById("identifier").innerHTML;
-	
-	
+
+
 // Function to change the view of the form. Part of this code if taken from https://stackoverflow.com/questions/8838648/onchange-event-handler-for-radio-button-input-type-radio-doesnt-work-as-one
-	
-	
+
+
 	var account = document.signUpForm.account;
     var prev = null;
     for(var i = 0; i < account.length; i++) {
@@ -99,33 +98,32 @@
             if(this !== prev) {
                 prev = this;
             }
-            
+
 			if(this.value == 'parent'){
-				
+
 			childInput.style.display='block';
 			classInput.style.display='none';
 			childLabel.style.display='block';
 			classLabel.style.display='none';
-			document.getElementById("identifier").innerHTML = "You are registering as a parent."	
-					
+			document.getElementById("identifier").innerHTML = "You are registering as a parent."
+
 			}
-			
+
 			if(this.value == 'teacher'){
-				
+
 			classInput.style.display='block';
 			childInput.style.display='none';
 			childLabel.style.display='none';
 			classLabel.style.display='block';
-			document.getElementById("identifier").innerHTML = "You are registering as a teacher."					
-				
+			document.getElementById("identifier").innerHTML = "You are registering as a teacher."
+
 			}
-					
+
         };
     };
-    
-	
-	
 
-	</script>	
-		
+
+
+	</script>
+
 <% include headers/footer %>
