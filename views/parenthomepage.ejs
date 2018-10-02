@@ -5,7 +5,8 @@
 
     <div class="quickAccess">
 
-        <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em>Your_Name<em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+        <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><p>Khaled</p>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+
 
 
         <div class="quickAccess_list" id="quickAccess_list" style="display: none;">
@@ -57,7 +58,21 @@
 <div class="page_content">
 
     <div class="post">
-        <p>This is post one</p>
+        <form action="/posting" method="POST">
+            Enter your post here:
+            <br>
+            <textarea name="parentPost"></textarea>
+            <br>
+            <button name="submitPost">Submit</button>
+        </form>
+
+        <ul>
+            <% posts.forEach(function(u){ %>
+                <li> <%= u.Content %> </li>
+                <% }) %>
+        </ul>
+
+
     </div>
 </div>
 
