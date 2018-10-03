@@ -1,0 +1,270 @@
+/*signup page styling */
+
+body{
+    background-image: url(res/marble2.jpg);
+
+}
+
+
+#title{
+    font-size: 33px;
+    font-family: "Franklin Gothic Bold", "Arial Black", "sans-serif";
+    text-align: center;
+    color:#FFF;
+	margin-top: 180px;
+
+}
+
+.accountType{
+
+	
+	position: absolute;
+	margin-left: -316px;
+	margin-top: 250px;
+ 	height: 45px;
+  	width: 300px;
+  	background: rgba(0, 0, 0, 0.45);
+  	border-radius: 5px;
+
+}
+
+
+.signUpBox {
+    margin: auto;
+    width: 800px;
+    height: 550px;
+    border: none;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background-color: #E1E0E0;
+	border-radius: 8px;
+	
+
+}
+
+.accountInfo{
+	
+	margin: 50px;
+	margin-left: 110px;
+	margin-right: 90px;
+	padding-top: 50px;
+	
+}
+
+.boxHeader{
+	
+	background-color: #182641;
+	height: 550px;
+	width: 800px;
+	border-right-width: thick;
+	border-bottom-style: outset;
+
+		
+}
+
+
+#firstName,#lastName,#password, #childID{
+	
+ 	display: block;
+
+  	
+	
+}
+
+
+
+
+input[type=text],input[type=password], input[type=email] {
+	
+   
+    border: 1px solid #ccc;
+    border-radius: 5px;
+	width:265px;
+	height: 35px
+	
+   
+}
+
+
+
+
+
+.inputLabel{
+
+    position: absolute;
+    display: block;
+    text-align: left;
+    font-family: "Lucida Sans", "sans-serif";
+    font-size: 10px;
+    padding-top: 5px;
+    color:blue;
+	
+	
+
+}
+
+
+.radioLabel {
+	
+	 width: 150px;
+  line-height: 45px;
+  font-size: 25px;
+  position: relative;
+  float: left;
+  z-index: 2;
+  text-align: center;
+  cursor: pointer;
+	color:#9C9C9C;
+}
+
+
+.select {
+  position: absolute;
+  z-index: 1;  
+  left: 0px;
+  width: 150px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #AE323C;
+  transition: left 0.10s ease-out;
+}
+
+
+
+.radioLabel:hover {
+	color:#D5D4D4;
+  
+}
+
+.radioSwitch{
+  display: none;
+}
+
+.radioSwitch:checked + .radioLabel {
+  font-weight: bold;
+	color: #DDDCDC;
+	
+ 
+}
+.radioSwitch:checked + .switch ~ .select {
+  left: 150px;
+
+
+}
+
+
+
+
+.logIn{
+
+    float: right;
+    margin-right:50px;
+
+
+
+}
+
+
+
+#logInForm{
+
+    color:white;
+
+
+}
+
+#button_LogIn{
+
+
+    margin-right: 110px;
+	margin-left:10px;
+	cursor: pointer;
+	border-radius: 3px;
+	border: none;
+	
+
+
+}
+
+#button_LogIn:hover{
+
+
+ background-color: #BFBEBE;
+	
+
+
+}
+
+
+#password_logIn, #email_logIn{
+
+
+    padding-right:10px;
+    width: 200px;
+    height: 25px;
+    margin-top:15px;
+    padding-left: 10px;
+
+}
+
+#identifier{
+	
+	
+	text-align: center;
+	margin-top: -10px;
+}
+
+
+.label_logIn{
+
+    font-family:  "Courier New";
+
+
+}
+
+
+#button_SignUp{
+    width: 150px;
+    height: 45px;
+	margin-left: 160px;
+	cursor: pointer;
+	background-color: #182641;
+	color: #FFF;
+	font-weight: 700;
+	border-radius: 3px;
+	border: none;
+	
+}
+
+
+#button_SignUp:hover {
+    background-color: #181E34;
+}
+
+
+
+
+#redirect_LogIn{
+
+    text-align: center;
+    font-size: 12px;
+    font-family:Consolas;
+    padding-top: 10px;
+
+}
+
+hr{
+
+  
+}
+
+.input_SignIn{
+    width: 200px;
+    height: 25px;
+    margin-top: 20px;
+    padding-left: 10px;
+}
