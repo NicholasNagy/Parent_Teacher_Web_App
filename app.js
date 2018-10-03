@@ -62,4 +62,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//hosting the webpage on port 3000 of the local host
+app.listen(3000, function(){
+console.log("Started on port 3000");
+});
+
 module.exports = app;
