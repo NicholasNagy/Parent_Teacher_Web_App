@@ -6,6 +6,9 @@ body {
     overflow: hidden;
     background-image: url(res/header-blueBurst.jpg);
     height: 60px;
+ 	position: fixed;
+  	top: 0;
+  	width: 100%;
 }
 
 a.title {
@@ -37,8 +40,9 @@ a.title {
 }
 
 .quickAccess{
-
+    position: relative;
     float: right;
+    z-index: 1;
 }
 
 .quickAccess_title:hover{
@@ -50,7 +54,7 @@ a.title {
 
 .quickAccess_list{
 
-    position: absolute;
+    position: fixed;
     margin-top: 60px;
     z-index: 1;
     background-color: #7195B7;
@@ -70,6 +74,7 @@ a.title {
     padding-top: 10px;
     padding-bottom: 10px;
     font-weight: bold;
+
 
 }
 
@@ -93,6 +98,7 @@ a.title {
 
 .sidebar {
     position: fixed;
+	margin-top: -15px;
     height: 100%;
     width: 270px;
     background: #0D1730;
@@ -175,17 +181,213 @@ a.title {
 
 .page_content{
 
+	width: 1300px;
+	border-right-color: black;
     margin-left: 285px;
-    margin-top: 15px;
+    margin-top: 75px;
     height: 100%;
+
 
 
 }
 
 
-.post {
-    width: 90%;
+#button_newPost{
+    width: 100px;
+    height: 40px;
+	text-align: center;
+	cursor: pointer;
+	background-color: #3A4E81;
+	color: #FFF;
+	border-radius: 5px;
+	font-size: 15px;
+
+
+}
+
+#button_newPost:hover{
+
+	background-color: #172443;
+
+
+}
+
+
+.textArea{
+
+	padding: 10px;
+
+}
+
+#textPost{
+
+	padding: 5px 5px;
+	resize: none;
+	border-radius: 4px;
+	font-size: 20px;
+	color: #7C7C7C;
+	border-width: thin;
+	border-style: hidden;
+	border-color: #F3F3F3;
+	text-align: left;
+	background: #F3F3F3;
+
+
+
+}
+#textPost:focus {
+    background: #FFF;
+   border-color: #000000;
+	border-style: solid;
+}
+
+#submitPost{
+
+	width: 120px;
+    height: 40px;
+	font-size: 20px;
+	color: #FFF;
+	margin-left: 1000px;
+	cursor: pointer;
+	background-color: gold;
+
+	border-radius: 5px;
+	border: none;
+
+
+}
+
+#submitPost:hover{
+
+	background-color: #DCB900;
+
+
+}
+
+#tableTitle{
+
+	margin-top: 30px;
     font-size: 20px;
+    font-weight: bold;
+
+}
+.postingsTable{
+
+
+	margin-top: 30px;
+	width: 1220px;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+
+
+
+}
+
+.commentsTable{
+
+    margin-top: 30px;
+	width: 1220px;
+	font-size: 15px;
+
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+
+}
+
+#tableWrap {
+  position:relative;
+  padding-top: 10px;
+  z-index: 0;
+}
+#tableScroll {
+  height:800px;
+  overflow:auto;
+
+
+}
+
+
+
+ td, tr{
+
+
+
+	 border-top: 1px solid rgba(192, 192, 192, 0.993);
+     padding: 5px;
+
+
+}
+
+
+.postAuthor{
+
+	color: #3a3a3a;
+	display: block;
+	font-family:Verdana;
+
+
+}
+
+.postContent{
+
+	height: wrap;
+	width: 800px;
+	margin-top: 10px ;
+	margin-bottom: 10px;
+	margin-left: 30px;
+
+
+
+
+}
+.postText{
+	font-size: 25px;
+	font-family: "Times New Roman";
+}
+
+.commentAuthor{
+
+    color: #575656;
+	display: block;
+
+}
+
+.linkedPost{
+
+height: wrap;
+border:solid;
+padding: 10px;
+margin-bottom: 10px;
+
+}
+
+#commentTitle{
+
+font-weight: 600;
+margin-bottom: -20px;
+font-weight: 20px;
+
+}
+
+textarea{
+
+    resize: none;
+
+}
+
+#replyBox{
+
+    margin-left: 30px;
+
+}
+
+#submitComment{
+
+    width: 70px;
+    height:30px;
+    margin-bottom: 10px;
+    display: block;
+
 
 
 }
