@@ -1,113 +1,169 @@
 <% include headers/header %>
 
 <div class="nav_bar">
-    <a class="title" href="homepage.html">School App</a>
+        <a class="title" href="homepage.html">School App</a>
 
-    <div class="quickAccess">
+        <div class="quickAccess">
 
-        <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><p>Khaled</p>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span>Teacher</span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
-        <div class="quickAccess_list" id="quickAccess_list" style="display: none;">
-            <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px;">inbox</i>Inbox</a>
+            <div class="quickAccess_list" id="quickAccess_list" style="display: none;">
+                <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px;">inbox</i>Inbox</a>
+    <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px; color: red">exit_to_app</i><span style="color: red">Log Out</span></a>
 
+            </div>
+
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar_body">
+            <div>
+                <ul class="sidebar_menu">
+
+                    <li class="sidebar_menu_item">
+                        <a href="#"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</a>
+                    </li>
+
+                    <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
+                        <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
+                            <li class="sidebar_menu_item">
+                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">stars</i>Grades</a>
+                            </li>
+                            <li class="sidebar_menu_item">
+                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">date_range</i>Schedule</a>
+                            </li>
+                            <li class="sidebar_menu_item">
+                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li class="sidebar_menu_item">
+                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
+                    </li>
+
+                    <li class="sidebar_menu_item">
+                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">help</i>Help</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_content">
+
+        <div name="teacherPost" id="teacherPost">
+            <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
 
         </div>
 
-    </div>
-</div>
 
-<div class="sidebar">
-    <div class="sidebar_body">
-        <div>
-            <ul class="sidebar_menu">
+        <div id="post" style="display: none">
+            <form action="/posting" method="POST">
 
-                <li class="sidebar_menu_item">
-                    <a href="#"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</a>
-                </li>
 
-                <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
-                    <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
-                        <li class="sidebar_menu_item">
-                            <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">stars</i>Grades</a>
-                        </li>
-                        <li class="sidebar_menu_item">
-                            <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">date_range</i>Schedule</a>
-                        </li>
-                        <li class="sidebar_menu_item">
-                            <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
-                        </li>
-                    </ul>
 
-                </li>
+            <div class="textArea" >
+             <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
 
-                <li class="sidebar_menu_item">
-                    <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
-                </li>
+            </div>
 
-                <li class="sidebar_menu_item">
-                    <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">help</i>Help</a>
-                </li>
-
-            </ul>
+            <button name="submitPost" id="submitPost">Post</button>
+          </form>
         </div>
+        <hr>
+        <div id="tableWrap">
+            <div id="tableScroll">
+
+
+        <!-- This table will show all the posts -->
+
+                    <p id="tableTitle">Public Posts</p>
+                <table class="postingsTable">
+
+
+
+                    <!-- <% posts.forEach(function(u){ %> -->
+                        <tr class="posts">
+
+                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
+                        <div class="postContent">
+
+
+                            <!--ADD POST Content here-->
+
+                            <span class="postText"> <%= u.Content %> </span>
+
+                            <form action="/commentPage" method="POST">
+
+                                <span name="postID" style="display:none">u.postID</span> </td>
+
+                            <td> <button name="toCommentPage" id="toCommentPage">View Comments for this Post</button> </td>
+                                </form>
+                        </div>
+                           </tr>
+                            <!-- <% }) %> -->
+
+
+
+                </table>
+
     </div>
-</div>
+    </div>
 
-<div class="page_content">
-
-    <div class="post">
-        <form action="/posting" method="POST">
-            Enter your post here:
-            <br>
-            <textarea name="parentPost"></textarea>
-            <br>
-            <button name="submitPost">Submit</button>
-        </form>
-
-        <ul>
-            <% posts.forEach(function(u){ %>
-                <li> <%= u.Content %> </li>
-                <% }) %>
-        </ul>
 
 
     </div>
-</div>
 
 
 
 
 
 
-<!-- Show/hide drop down menu -->
-<script>
+    <!-- Show/hide drop down menu -->
+    <script>
 
 
-    function dropDownTop() {
+        function dropDownTop() {
 
-        var dropDownList = document.getElementById("quickAccess_list");
-
-
-        if(dropDownList.style.display === "block")
-            dropDownList.style.display = "none";
-        else
-            dropDownList.style.display = "block";
-    }
+            var dropDownList = document.getElementById("quickAccess_list");
 
 
-    function dropDownSide() {
+            if(dropDownList.style.display === "block")
+                dropDownList.style.display = "none";
+            else
+                dropDownList.style.display = "block";
+        }
 
-        var dropDownList = document.getElementById("dropDownList");
+
+        function dropDownSide() {
+
+            var dropDownList = document.getElementById("dropDownList");
 
 
-        if(dropDownList.style.display === "block")
-            dropDownList.style.display = "none";
-        else
-            dropDownList.style.display = "block";
-    }
+            if(dropDownList.style.display === "block")
+                dropDownList.style.display = "none";
+            else
+                dropDownList.style.display = "block";
+        }
 
-</script>
+
+          function showNewPostFromBox() {
+
+            var newPostTextForm = document.getElementById("post");
+
+
+            if(newPostTextForm.style.display === "block")
+                newPostTextForm.style.display = "none";
+            else
+                newPostTextForm.style.display = "block";
+        }
+
+    </script>
 
 <% include headers/footer %>
