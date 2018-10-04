@@ -5,7 +5,7 @@
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span>Teacher</span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -57,16 +57,17 @@
 
     <div class="page_content">
 
-        <div name="teacherPost" id="teacherPost">
-            <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
+      <div name="teacherPost" id="teacherPost">
+          <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
 
-        </div>
-
+      </div>
 
         <div id="post" style="display: none">
             <form action="/posting" method="POST">
 
-
+              <input type="text" id="classID" name = "classID" style="display:none" value = "<%= classID%>">
+              <input type="text" id="teacherID" name = "teacherID" style="display:none" value = "<%= teacherID%>">
+              <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
 
             <div class="textArea" >
              <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
@@ -76,7 +77,7 @@
             <button name="submitPost" id="submitPost">Post</button>
           </form>
         </div>
-        <hr>
+
         <div id="tableWrap">
             <div id="tableScroll">
 
@@ -101,9 +102,10 @@
 
                             <form action="/commentPage" method="POST">
 
-                                <span name="postID" style="display:none">u.postID</span> </td>
+                                <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
 
-                            <td> <button name="toCommentPage" id="toCommentPage">View Comments for this Post</button> </td>
+
+                            <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
                                 </form>
                         </div>
                            </tr>

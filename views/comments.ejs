@@ -58,15 +58,15 @@
 <div class="page_content">
 
                     <div class="linkedPost">
-                        
+
                        <span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
                     <div class="postContent">
-                
+
                         <!-- change from posts.forEach to comments.forEach -->
-                    <% posts.forEach(function(u){ %>   
-                        <span class="Text"> <%= u.Content %> </span><% }) %>
-                
-                    </div>                         
+
+                        <span class="Text"> <%= post%> </span>
+
+                    </div>
                 </div>
 
                 <form action="/comment" method="POST" name="comment">
@@ -84,33 +84,33 @@
 
                 </div>
 
-                
+
 
 
    <p id="commentTitle">Comments</p>
 
-                  
+
                 <table class="commentsTable">
-				
-				
-			
-				<!-- <% posts.forEach(function(u){ %> -->
+
+
+
+
                     <tr class="posts">
-                        
+
                         <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:20px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
                     <div class="postContent">
-                                       
+
                         <!--ADD POST Content here-->
-                        
-                        <span class="commentText"> <%= u.Content %> </span>
 
-                    </div>                     
+                        <span class="commentText">  </span>
+
+                    </div>
                        </tr>
-                        <!-- <% }) %> -->
 
-                       	
+
+
             </table>
-	
+
     </div>
 </div>
 
