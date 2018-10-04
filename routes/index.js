@@ -188,15 +188,16 @@ router.post('/login', function(req,res){
 
         });
 
-        if(x==1){//below checks the query for the same email and password
+        //below checks the query for the same email and password
         connection.query(thesql, function (err, result){
             if(err) throw err;
             //underneath is the boolean for it
-            var ClassID = result[0].ClassID;
-            var TeacherID = result[0].TeacherID;
-            console.log(ClassID);
+
             if(result.length>0){
                 if(result[0].Email==email&&result[0].Pass==pass){
+                  var ClassID = result[0].ClassID;
+                  var TeacherID = result[0].TeacherID;
+                  console.log(ClassID);
                     console.log("Login Successful");
                     //if successful, renders homepage
                     //HANDLE BEING SENT TO HOMEPAGE HERE
@@ -255,7 +256,7 @@ router.post('/login', function(req,res){
                 x++;
             }
         });
-}
+
         if(x==2){
             /*HANDLE INCORRECT EMAIL AND PASSWORD LOGIN HERE*/
         }
