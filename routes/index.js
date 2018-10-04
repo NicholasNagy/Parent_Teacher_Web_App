@@ -53,7 +53,8 @@ router.post('/signup', function(req,res){
                     //turned up
                     console.log("email is already in use");
                     //HANDLE EMAIL ALREADY IN USE CASE HERE
-                    res.end();
+                    res.send("email is already in use");
+                    //res.render('index',{title:'express'});
                 }
                 else{
                     //if none were found, data is inserted into database
@@ -62,12 +63,8 @@ router.post('/signup', function(req,res){
                         console.log("Result: " + result);
                         //below the homepage is rendered
                         //HANDLE BEING SENT TO HOMEPAGE HERE
-                        var posts = "SELECT Content FROM posts";
-                        connection.query(posts, function (error, results) {
-                            if (error)
-                                throw error;
-                            res.render('parenthomepage', {posts: results});
-                        });
+                        res.send("signup successful");
+
 
                     });
                 }
@@ -101,7 +98,7 @@ router.post('/signup', function(req,res){
                     //had any results
                     console.log("email is already in use");//if it did, email is in use
                     //HANDLE EMAIL ALREADY IN USE HERE
-                    res.end();
+                    res.send("email is already in use");
                 }
                 else{
                     //else the insertion query is performed, and homepage rendered
@@ -109,7 +106,7 @@ router.post('/signup', function(req,res){
                         if (err) throw err;
                         console.log("Result: " + result);
                         //HANDLE BEING SENT TO HOMEPAGE HERE
-                        res.render('parenthomepage', { title: 'Express' });
+                        res.send("successful signup");
                     });
                 }
             })
@@ -128,7 +125,9 @@ router.post('/login', function(req,res){
     //make querying statements, first one searches through the Parents table for
     //the same email and password, while the other searches through the teachers table
     var sql = "SELECT Email, Pass, Fname from Parents where Email='"+email+"' and Pass='"+pass+"';";
-    var thesql= "SELECT Email, Pass from Teachers where Email='"+email+"' and Pass='"+pass+"';";
+    var thesql= "SELECT Email, Pass, TeacherID, ClassID from Teachers where Email='"+email+"' and Pass='"+pass+"';";
+
+
 
     //connecting to mysql database for querying
     connection.connect(function(err){
@@ -142,27 +141,37 @@ router.post('/login', function(req,res){
             if(result.length>0){
                 if(result[0].Email==email&&result[0].Pass==pass){
                     console.log("Login Successful");
-                    var posts = "SELECT Content FROM posts";
+                    var posts = "SELECT Content, PostID FROM posts";
                     connection.query(posts, function (error, results) {
                         if (error)
                             throw error;
-                        res.render('parenthomepage', {posts: results, name: result});
+                        res.render('homepage', {posts: results});
+                        router.post('/commentPage',function(req,res){
+                          res.render('comments', {posts: results})
+
+                          //handle comment page
+                        });
                     });
                     //if successful, renders homepage
                     //HANDE BEING SENT TO HOMEPAGE HERE
                     //res.render('parenthomepage', {title: 'Express'}); //this handles posting comments
                     router.post('/posting', function (req,res) {
-                        var post = req.body.parentPost;
-                        var postSQL = "INSERT INTO posts (content) VALUES ('"+post+"')";
+                        var post = req.body.textPost;
+                        //var postSQL = "INSERT INTO posts (content, ClassID, TeacherID, TheDate) VALUES ('"+post+"');";
                         connection.query(postSQL, function (err, result) {
                             if (err)
                                 throw err;
                             console.log("Post is added to DB");
-                            var posts = "SELECT Content FROM posts";
+                            var posts = "SELECT Content, PostID FROM posts";
                             connection.query(posts, function (error, results) {
                                 if (error)
                                     throw error;
-                                res.render('parenthomepage', {posts: results});
+                                res.render('homepage', {posts: results});
+                                router.post('/commentPage',function(req,res){
+                                  res.render('comments', {posts: results})
+
+                                  //handle comment page
+                                });
                             });
 
 
@@ -178,16 +187,68 @@ router.post('/login', function(req,res){
             };
 
         });
+
         //below checks the query for the same email and password
         connection.query(thesql, function (err, result){
             if(err) throw err;
             //underneath is the boolean for it
+
             if(result.length>0){
                 if(result[0].Email==email&&result[0].Pass==pass){
+                  var ClassID = result[0].ClassID;
+                  var TeacherID = result[0].TeacherID;
+                  console.log(ClassID);
                     console.log("Login Successful");
                     //if successful, renders homepage
                     //HANDLE BEING SENT TO HOMEPAGE HERE
-                    res.render('parenthomepage', {title: 'Express'});
+                    console.log("Login Successful");
+                    var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
+                    connection.query(posts, function (error, results) {
+                        if (error)
+                            throw error;
+                        if(results==0){
+                          var allposts = "SELECT Content, PostID FROM posts";
+                          connection.query(allposts, function (error, results) {
+                              if (error)
+                                  throw error;
+                              res.render('parenthomepage', {posts: results});
+                              router.post('/commentPage',function(req,res){
+                                res.render('comments', {posts: results})
+                                //handle comment page
+                              });
+                          });
+                        }
+                        else{
+                          res.render('parenthomepage', {posts: results});
+                          router.post('/commentPage',function(req,res){
+                            res.render('comments', {posts: results})
+
+                            //handle comment page
+                          });
+                        }
+                    });
+
+                    //if successful, renders homepage
+                    //HANDE BEING SENT TO HOMEPAGE HERE
+                    //res.render('parenthomepage', {title: 'Express'}); //this handles posting comments
+                    router.post('/posting', function (req,res) {
+                        var post = req.body.textPost;
+                        var postSQL = "INSERT INTO posts (content, ClassID, TeacherID, TheDate) VALUES ('"+post+"', '"+ClassID +"', '"+TeacherID+"', NOW());";
+                        connection.query(postSQL, function (err, result) {
+                            if (err)
+                                throw err;
+                            console.log("Post is added to DB");
+                            var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
+                            connection.query(posts, function (error, results) {
+                                if (error)
+                                    throw error;
+                                res.render('parenthomepage', {posts: results});
+                            });
+
+
+                        });
+                    });
+
                 }
             }
             else{
