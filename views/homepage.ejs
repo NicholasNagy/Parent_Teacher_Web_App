@@ -5,7 +5,7 @@
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span>Parent</span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -97,9 +97,10 @@
 
                             <form action="/commentPage" method="POST">
 
-                                <span name="postID" style="display:none">u.postID</span> </td>
+                                <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
 
-                            <td> <button name="toCommentPage" id="toCommentPage">View Comments for this Post</button> </td>
+
+                            <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
                                 </form>
                         </div>
                            </tr>
