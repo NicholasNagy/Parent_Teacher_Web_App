@@ -7,14 +7,37 @@ var mysql = require('mysql');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//connects to heroku online database
-var connection = mysql.createConnection({
+var db_config = {
+    host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
+   user: 'makchamp',
+   password: 'Khanman69',
+   database: 'heroku_1f20bf2d1e8055d'
+};
 
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'b2af4a2e0e0550',
-    password: '6424a2d3',
-    database: 'heroku_1f20bf2d1e8055d'
-});
+var connection;
+
+function handleDisconnect() {
+ connection = mysql.createConnection(db_config); 
+                                                 
+
+ connection.connect(function(err) {              
+   if(err) {                                     
+     console.log('error when connecting to db:', err);
+     setTimeout(handleDisconnect, 2000);             
+   }                                                   
+ });                                               
+                                                  
+ connection.on('error', function(err) {
+   console.log('db error', err);
+   if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+     handleDisconnect();                         
+   } else {                                      
+     throw err;                                  
+   }
+ });
+}
+
+handleDisconnect();
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -36,8 +59,8 @@ router.post('/signup', function(req,res){
 
         //creating queries, first one checks to see if there are any emails that
         //are the same the second inserts the data into the database
-        var query = "SELECT Email FROM Parents where Email='"+ Email+"';";
-        var sql = "INSERT INTO  Parents (Fname, Lname, Email, ChildID, Pass) VALUES ('"+fName+"','"+lName+"', '"+Email+"', '"+ChildID+"', '"+pass+"')";
+        var query = "SELECT Email FROM parents where Email='"+ Email+"';";
+        var sql = "INSERT INTO  parents (Fname, Lname, Email, ChildID, Pass) VALUES ('"+fName+"','"+lName+"', '"+Email+"', '"+ChildID+"', '"+pass+"')";
 
         //connecting to sql database to use the query
         connection.connect(function(err){
@@ -82,8 +105,8 @@ router.post('/signup', function(req,res){
 
         //making sql queries, the first one is used for checking emails, the second
         //for signup
-        var query = "SELECT Email FROM Teachers where Email='"+ Email+"';";
-        var sql = "INSERT INTO  Teachers (Fname, Lname, Email, ClassID, Pass) VALUES ('"+fName+"','"+lName+"', '"+Email+"', '"+ClassID+"', '"+pass+"')";
+        var query = "SELECT Email FROM teachers where Email='"+ Email+"';";
+        var sql = "INSERT INTO  teachers (Fname, Lname, Email, ClassID, Pass) VALUES ('"+fName+"','"+lName+"', '"+Email+"', '"+ClassID+"', '"+pass+"')";
 
         //connection for sql querying
         connection.connect(function(err){

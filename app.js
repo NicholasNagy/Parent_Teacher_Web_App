@@ -5,26 +5,39 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'b2af4a2e0e0550',
-    password: '6424a2d3',
+var db_config = {
+     host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
+    user: 'makchamp',
+    password: 'Khanman69',
     database: 'heroku_1f20bf2d1e8055d'
-});
+};
 
-//Accessing mysql DataBase
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    // var sql = "INSERT INTO login (username, password) VALUES ('Jaihon', '123456')";
-    // connection.query(sql, function (err, result) {
-    //     if (err) throw err;
-    //     console.log("1 record inserted");
-    // });
-});
+var connection;
 
+//code to stop disconnecting is from https://stackoverflow.com/questions/20210522/nodejs-mysql-error-connection-lost-the-server-closed-the-connection
 
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since the old one cannot be reused.
+                                                  
+
+  connection.connect(function(err) {              // The server is either down or restarting.
+    if(err) {                                     
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000);             // We introduce a delay before attempting to reconnect,to avoid a hot loop, and to allow our node script to
+    }                                                   
+  });                                               // process asynchronous requests in the meantime.
+                                                    // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually lost due to either server restart, or a connnection idle timeout (the wait_timeout server variable configures this)
+      handleDisconnect();                         
+    } else {                                      
+      throw err;                                  
+    }
+  });
+}
+
+handleDisconnect();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var parentRouter = require('./routes/parenthomepage');

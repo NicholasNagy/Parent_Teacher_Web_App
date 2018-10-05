@@ -7,13 +7,37 @@ var mysql = require('mysql');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var connection = mysql.createConnection({
+var db_config = {
+  host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
+ user: 'makchamp',
+ password: 'Khanman69',
+ database: 'heroku_1f20bf2d1e8055d'
+};
 
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'b2af4a2e0e0550',
-    password: '6424a2d3',
-    database: 'heroku_1f20bf2d1e8055d'
+var connection;
+
+function handleDisconnect() {
+connection = mysql.createConnection(db_config); 
+                                               
+
+connection.connect(function(err) {              
+ if(err) {                                     
+   console.log('error when connecting to db:', err);
+   setTimeout(handleDisconnect, 2000);             
+ }                                                   
+});                                               
+                                                
+connection.on('error', function(err) {
+ console.log('db error', err);
+ if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+   handleDisconnect();                         
+ } else {                                      
+   throw err;                                  
+ }
 });
+}
+
+handleDisconnect();
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -26,7 +50,7 @@ router.post('/', function(req,res,next){
   console.log(thepost);
 //CREATING SQL STATEMENTS
   var sql = "SELECT Content FROM posts where PostID='"+thepost+"';";
-  var commentsql= "SELECT Content FROM Comments where PostID='"+thepost+"';";
+  var commentsql= "SELECT Content FROM comments where PostID='"+thepost+"';";
   //SQL QUERY HERE
   connection.query(sql, function (err, result){
     if (err) throw err;
