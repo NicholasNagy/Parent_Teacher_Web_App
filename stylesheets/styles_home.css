@@ -358,6 +358,7 @@ height: wrap;
 border:solid;
 padding: 10px;
 margin-bottom: 10px;
+background-color: rgb(240, 240, 240);
 
 }
 
@@ -390,4 +391,14 @@ textarea{
 
 
 
+}
+
+#replayArea{
+ 
+    text-align: left;
+
+}#replayArea:focus{
+   text-align: left;
+   border-color: #000000;
+	border-style: solid;
 }
