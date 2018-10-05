@@ -41,7 +41,8 @@ handleDisconnect();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var parentRouter = require('./routes/parenthomepage');
-var commentRouter = require('./routes/comments');
+var toCommentPageRouter = require('./routes/toCommentPage');
+var replyRouter = require('./routes/reply')
 var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
 
@@ -64,8 +65,9 @@ app.use('/', indexRouter);
 //app.use('/login',indexRouter);
 app.use('/users', usersRouter);
 app.use('/parenthomepage',parentRouter);
-app.use('/commentPage', commentRouter);
-app.use('/login',loginRouter);
+app.use('/commentPage', toCommentPageRouter);
+app.use('/reply', replyRouter);
+app.use('/login', loginRouter);
 app.use('/posting',postRouter);
 
 
