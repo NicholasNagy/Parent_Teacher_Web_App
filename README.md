@@ -10,3 +10,12 @@ Group:
 * Makram Adaime 40033315
 
 * Khalid Baraka 26498159
+
+
+To run: 
+
+In node.js command prompt console 
+
+1. npm install mysql
+2. npm install ejs
+3. node app.js
