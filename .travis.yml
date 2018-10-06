@@ -4,8 +4,9 @@ node_js:
 install: 
   - npm install mysql
 before_script:
-  - node app.js
-  - sleep 3
-  - firefox localhost:3000
-script:
-  - npm test
+jobs:
+  include:
+    - script: node app.js
+    - script: firefox localhost:3000
+
+
