@@ -4,6 +4,6 @@ node_js:
 install: 
   - npm install mysql
 before_script:
-  - app.js
+  - node app.js
 script:
   - npm test
