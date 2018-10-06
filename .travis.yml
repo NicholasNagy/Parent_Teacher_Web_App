@@ -4,9 +4,15 @@ node_js:
 install: 
   - npm install mysql
 
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - node app.js  # start a Web server
+  - sleep 3 # give Web server some time to bind to sockets, etc
+
 jobs:
   include:
-    - script: node app.js
     - script: 
       - sleep 30
       - firefox localhost:3000
