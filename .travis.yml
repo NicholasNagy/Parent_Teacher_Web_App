@@ -3,6 +3,7 @@ node_js:
   - "node"
 install: 
   - npm install mysql
+  - npm install ejs
 
 before_script:
   - "export DISPLAY=:99.0"
