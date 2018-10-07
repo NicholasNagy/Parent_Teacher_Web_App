@@ -13,7 +13,7 @@ before_script:
 jobs:
   include:
     - script:
-        - node app.js & firefox localhost:3000 # start a Web server
+        - python ./ptwebapptests/test1.py & node test.js # start a Web server
         # give Web server some time to bind to sockets, etc
 
 
