@@ -36,7 +36,11 @@ function handleDisconnect() {
    console.log('db error', err);
    if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
      handleDisconnect();                         
-   } else {                                      
+   }
+   else if(err.code === 'ETIMEDOUT'){
+    handleDisconnect();
+  } 
+  else {                                      
      throw err;                                  
    }
  });
@@ -55,11 +59,6 @@ router.post('/', function(req,res){
     var thesql= "SELECT Email, Pass, teacherID, ClassID, Fname from teachers where Email='"+email+"' and Pass='"+pass+"';";
 
     var x =0;
-
-    //connecting to mysql database for querying
-    connection.connect(function(err){
-        if(err) console.log(err.stack);
-        console.log("Connected!");
 
         //below checks the query for the same email and password
         connection.query(sql, function (err, result){
@@ -133,7 +132,7 @@ router.post('/', function(req,res){
 
             }
     });
-  });
+ 
 });
 
 

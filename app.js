@@ -31,7 +31,11 @@ function handleDisconnect() {
     console.log('db error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually lost due to either server restart, or a connnection idle timeout (the wait_timeout server variable configures this)
       handleDisconnect();                         
-    } else {                                      
+    }
+    else if(err.code === 'ETIMEDOUT'){
+      handleDisconnect();
+    }
+    else {                                      
       throw err;                                  
     }
   });
