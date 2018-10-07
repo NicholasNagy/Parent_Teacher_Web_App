@@ -12,13 +12,41 @@ router.use(function timeLog (req, res, next) {
   next()
 });
 
-var connection = mysql.createConnection({
+var db_config = {
+    host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
+   user: 'makchamp',
+   password: 'Khanman69',
+   database: 'heroku_1f20bf2d1e8055d'
+};
 
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'b2af4a2e0e0550',
-    password: '6424a2d3',
-    database: 'heroku_1f20bf2d1e8055d'
-});
+var connection;
+
+function handleDisconnect() {
+ connection = mysql.createConnection(db_config); 
+                                                 
+
+ connection.connect(function(err) {              
+   if(err) {                                     
+     console.log('error when connecting to db:', err);
+     setTimeout(handleDisconnect, 2000);             
+   }                                                   
+ });                                               
+                                                  
+ connection.on('error', function(err) {
+   console.log('db error', err);
+   if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+     handleDisconnect();                         
+   }
+   else if(err.code === 'ETIMEDOUT'){
+    handleDisconnect();
+  } 
+  else {                                      
+     throw err;                                  
+   }
+ });
+}
+
+handleDisconnect();
 
 router.post('/', function(req,res){
     //initializing the variables
@@ -27,15 +55,10 @@ router.post('/', function(req,res){
 
     //make querying statements, first one searches through the Parents table for
     //the same email and password, while the other searches through the teachers table
-    var sql = "SELECT Email, Pass, Fname from Parents where Email='"+email+"' and Pass='"+pass+"';";
-    var thesql= "SELECT Email, Pass, TeacherID, ClassID, Fname from Teachers where Email='"+email+"' and Pass='"+pass+"';";
+    var sql = "SELECT Email, Pass, Fname from parents where Email='"+email+"' and Pass='"+pass+"';";
+    var thesql= "SELECT Email, Pass, teacherID, ClassID, Fname from teachers where Email='"+email+"' and Pass='"+pass+"';";
 
     var x =0;
-
-    //connecting to mysql database for querying
-    connection.connect(function(err){
-        if(err) console.log(err.stack);
-        console.log("Connected!");
 
         //below checks the query for the same email and password
         connection.query(sql, function (err, result){
@@ -109,7 +132,7 @@ router.post('/', function(req,res){
 
             }
     });
-  });
+ 
 });
 
 

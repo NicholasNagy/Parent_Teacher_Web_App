@@ -47,32 +47,44 @@ router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()
 });
-//HANDLING POSTING COMMENTS HERE
+
+//Handeling comments
 router.post('/', function(req,res,next){
   //GETTING POSTID HERE
-  var thepost = req.body.postID;
-  console.log(thepost);
-//CREATING SQL STATEMENTS
-  var sql = "SELECT Content FROM posts where PostID='"+thepost+"';";
-  var commentsql= "SELECT Content FROM comments where PostID='"+thepost+"';";
-  //SQL QUERY HERE
-  connection.query(sql, function (err, result){
-    if (err) throw err;
-    //ANOTHER SQL QUERY HERE
-    connection.query(commentsql, function(error,results){
-      if(error) throw error;
-      //console.log(result[0].Content);
-      //RENDERING THE PAGE WITH THE CONTENT
-      res.render('comments', {post: result[0].Content, comments: results});
+  var comment = req.body.replayArea;
+  var postID = req.body.postID;
+  console.log(postID);
+  var postSQL = "INSERT INTO comments (Content, PostID) VALUES ('"+comment+"', '"+postID +"');";// !Should add fields for unique IDs !
+  connection.query(postSQL, function (err, result) {
+    if (err)
+        throw err;
+    console.log("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
 
+    //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
+    // ! Should select from unique ID !
+    var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
+    var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+    //EXECUTION OF QUERY
+    connection.query(post, function (error, resultP) {
+    connection.query(comments, function (error, results) {
+        if (error)
+            throw error;
+          //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
+        res.render('comments', {post: resultP[0].Content, comments: results, postID});
     })
   });
 
-
-
-
-
-
 });
+});
+
+
+
+
+
+
+
+
+
+
 
 module.exports=router;

@@ -7,14 +7,41 @@ var mysql = require('mysql');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var connection = mysql.createConnection({
-
-    host: 'us-cdbr-iron-east-01.cleardb.net',
-    user: 'b2af4a2e0e0550',
-    password: '6424a2d3',
+var db_config = {
+    host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
+    user: 'makchamp',
+    password: 'Khanman69',
     database: 'heroku_1f20bf2d1e8055d'
-});
+};
 
+var connection;
+
+function handleDisconnect() {
+ connection = mysql.createConnection(db_config); 
+                                                 
+
+ connection.connect(function(err) {              
+   if(err) {                                     
+     console.log('error when connecting to db:', err);
+     setTimeout(handleDisconnect, 2000);             
+   }                                                   
+ });                                               
+                                                  
+ connection.on('error', function(err) {
+   console.log('db error', err);
+   if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+     handleDisconnect();                         
+   }
+   else if(err.code === 'ETIMEDOUT'){
+    handleDisconnect();
+  }
+   else {                                      
+     throw err;                                  
+   }
+ });
+}
+
+handleDisconnect();
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()

@@ -47,32 +47,40 @@ router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()
 });
-//HANDLING POSTING COMMENTS HERE
+
+
+//Getting the Post and rendering comment screen
 router.post('/', function(req,res,next){
   //GETTING POSTID HERE
-  var thepost = req.body.postID;
-  console.log(thepost);
+  var postID = req.body.postID;
+
+  console.log(postID);
 //CREATING SQL STATEMENTS
-  var sql = "SELECT Content FROM posts where PostID='"+thepost+"';";
-  var commentsql= "SELECT Content FROM comments where PostID='"+thepost+"';";
+  var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+  var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
+  
   //SQL QUERY HERE
-  connection.query(sql, function (err, result){
+
+  connection.query(post, function (err, resultP){
     if (err) throw err;
-    //ANOTHER SQL QUERY HERE
-    connection.query(commentsql, function(error,results){
-      if(error) throw error;
-      //console.log(result[0].Content);
+  connection.query(comments, function (err, result){
+    if (err) throw err;
+    
       //RENDERING THE PAGE WITH THE CONTENT
-      res.render('comments', {post: result[0].Content, comments: results});
+      res.render('comments', {comments : result, postID, post: resultP[0].Content});
 
-    })
-  });
-
-
-
-
-
-
+  })
 });
+});
+
+
+
+
+
+
+
+
+
+
 
 module.exports=router;

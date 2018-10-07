@@ -57,26 +57,30 @@
 
 <div class="page_content">
 
+                  
+                <form action="/reply" method="POST">
                     <div class="linkedPost">
 
                        <span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
                     <div class="postContent">
 
-                        <!-- change from posts.forEach to comments.forEach -->
+                    
+                        <input type="text"name = "postContent" style="display:none" value = "<%= post%>">
+                        <input type="text" name = "postID" style="display:none" value = "<%= postID%>"> 
 
-                        <span class="Text"> <%= post%> </span>
+                        <span class="Text"><%= post %></span>
 
                     </div>
                 </div>
 
-                <form action="/comment" method="POST" name="comment">
-
                 <div name="replyBox" id="replyBox">
 
-                    <textarea id="replayArea"  rows="4" cols="120"  placeholder="Post a reply.">
+                
 
-                    </textarea>
+                    <textarea id="replayArea" name="replayArea"  rows="4" cols="120"  placeholder="Post a reply."></textarea>
 
+
+                    
                     <button name="submitComment" id="submitComment">Reply</button>
 
                 </form>
@@ -92,22 +96,21 @@
 
                 <table class="commentsTable">
 
-
-
-
+        <% if(typeof comments !== 'undefined'){ %>
+       <% comments.forEach(function(u){ %> 
                     <tr class="posts">
 
                         <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:20px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
-                    <div class="postContent">
+                    <div class="commentContent">
 
-                        <!--ADD POST Content here-->
+                        <!--COmment Content here-->
 
-                        <span class="commentText">  </span>
+                        <span class="commentText"><%= u.Content %></span>
 
                     </div>
                        </tr>
-
-
+      <% }) %> 
+      <% } %>
 
             </table>
 
