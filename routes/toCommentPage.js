@@ -3,18 +3,14 @@ var router = express.Router();
 var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
+var DBconnect = require('./dbConfig');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var db_config = {
-  host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
- user: 'makchamp',
- password: 'Khanman69',
- database: 'heroku_1f20bf2d1e8055d'
-};
+var pool = new DBconnect();
 
-var connection;
+/*var connection;
 
 function handleDisconnect() {
 connection = mysql.createConnection(db_config); 
@@ -41,7 +37,7 @@ connection.on('error', function(err) {
 });
 }
 
-handleDisconnect();
+handleDisconnect(); */
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -61,9 +57,9 @@ router.post('/', function(req,res,next){
   
   //SQL QUERY HERE
 
-  connection.query(post, function (err, resultP){
+  pool.connection.query(post, function (err, resultP){
     if (err) throw err;
-  connection.query(comments, function (err, result){
+  pool.connection.query(comments, function (err, result){
     if (err) throw err;
     
       //RENDERING THE PAGE WITH THE CONTENT

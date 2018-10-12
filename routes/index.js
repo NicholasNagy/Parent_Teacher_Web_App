@@ -3,18 +3,14 @@ var router = express.Router();
 var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
+var DBconnect = require('./dbConfig');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var db_config = {
-    host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
-   user: 'makchamp',
-   password: 'Khanman69',
-   database: 'heroku_1f20bf2d1e8055d'
-};
+var pool = new DBconnect();
 
-var connection;
+/*var connection;
 
 function handleDisconnect() {
  connection = mysql.createConnection(db_config); 
@@ -41,7 +37,7 @@ function handleDisconnect() {
  });
 }
 
-handleDisconnect();
+handleDisconnect(); */
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -71,7 +67,7 @@ router.post('/signup', function(req,res){
 
             //below the query checks to see if any of the same emails exist
             //if they do, the method ends
-            connection.query(query, function(err, result){
+            pool.connection.query(query, function(err, result){
                 if(err) throw err;
 
                 if(result.length>0){//checks to see if any results with the same email
@@ -83,7 +79,7 @@ router.post('/signup', function(req,res){
                 }
                 else{
                     //if none were found, data is inserted into database
-                    connection.query(sql, function (err, result){
+                    pool.connection.query(sql, function (err, result){
                         if (err) throw err;
                         console.log("Result: " + result);
                         //below the homepage is rendered
@@ -111,7 +107,7 @@ router.post('/signup', function(req,res){
 
             //making the first sql query to check for any of the same email in the
             //database
-            connection.query(query, function(err, result){
+            pool.connection.query(query, function(err, result){
                 if(err) throw err;
                 if(result.length>0){//checks to see if the result of the query
                     //had any results
@@ -121,7 +117,7 @@ router.post('/signup', function(req,res){
                 }
                 else{
                     //else the insertion query is performed, and homepage rendered
-                    connection.query(sql, function (err, result){
+                    pool.connection.query(sql, function (err, result){
                         if (err) throw err;
                         console.log("Result: " + result);
                         //HANDLE BEING SENT TO HOMEPAGE HERE

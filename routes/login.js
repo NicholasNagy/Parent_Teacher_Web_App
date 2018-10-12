@@ -3,21 +3,18 @@ var router = express.Router();
 var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
+var DBconnect = require ('./dbConfig');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-router.use(function timeLog (req, res, next) {
+var pool = new DBconnect();
+
+/* router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()
 });
 
-var db_config = {
-    host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
-   user: 'makchamp',
-   password: 'Khanman69',
-   database: 'heroku_1f20bf2d1e8055d'
-};
 
 var connection;
 
@@ -46,7 +43,7 @@ function handleDisconnect() {
  });
 }
 
-handleDisconnect();
+handleDisconnect(); */
 
 router.post('/', function(req,res){
     //initializing the variables
@@ -61,14 +58,14 @@ router.post('/', function(req,res){
     var x =0;
 
         //below checks the query for the same email and password
-        connection.query(sql, function (err, result){
+        pool.connection.query(sql, function (err, result){
             if (err) throw err;
             //underneath is the boolean for it
             if(result.length>0){
                 if(result[0].Email==email&&result[0].Pass==pass){
                     console.log("Login Successful");
                     var posts = "SELECT Content, PostID FROM posts";
-                    connection.query(posts, function (error, results) {
+                    pool.connection.query(posts, function (error, results) {
                         if (error)
                             throw error;
 
@@ -92,7 +89,7 @@ router.post('/', function(req,res){
         });
 
         //below checks the query for the same email and password
-        connection.query(thesql, function (err, result){
+        pool.connection.query(thesql, function (err, result){
             if(err) throw err;
             //underneath is the boolean for it
 
@@ -106,12 +103,12 @@ router.post('/', function(req,res){
                     //if successful, renders homepage
                     //HANDLE BEING SENT TO HOMEPAGE HERE
                     var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
-                    connection.query(posts, function (error, results) {
+                    pool.connection.query(posts, function (error, results) {
                         if (error)
                             throw error;
                         if(results==0){//handles case where teacher hasn't posted anything yet
                           var allposts = "SELECT Content, PostID FROM posts";
-                          connection.query(allposts, function (error, results) {
+                          pool.connection.query(allposts, function (error, results) {
                               if (error)
                                   throw error;
                               res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});

@@ -3,18 +3,14 @@ var router = express.Router();
 var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
+var DBconnect = require('./dbConfig');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var db_config = {
-  host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
- user: 'makchamp',
- password: 'Khanman69',
- database: 'heroku_1f20bf2d1e8055d'
-};
+var pool = new DBconnect();
 
-var connection;
+/*var connection;
 
 function handleDisconnect() {
 connection = mysql.createConnection(db_config); 
@@ -41,7 +37,7 @@ connection.on('error', function(err) {
 });
 }
 
-handleDisconnect();
+handleDisconnect();*/
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -55,7 +51,7 @@ router.post('/', function(req,res,next){
   var postID = req.body.postID;
   console.log(postID);
   var postSQL = "INSERT INTO comments (Content, PostID) VALUES ('"+comment+"', '"+postID +"');";// !Should add fields for unique IDs !
-  connection.query(postSQL, function (err, result) {
+  pool.connection.query(postSQL, function (err, result) {
     if (err)
         throw err;
     console.log("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
@@ -65,8 +61,8 @@ router.post('/', function(req,res,next){
     var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
     var post = "SELECT Content FROM posts where PostID='"+postID+"';";
     //EXECUTION OF QUERY
-    connection.query(post, function (error, resultP) {
-    connection.query(comments, function (error, results) {
+    pool.connection.query(post, function (error, resultP) {
+    pool.connection.query(comments, function (error, results) {
         if (error)
             throw error;
           //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE

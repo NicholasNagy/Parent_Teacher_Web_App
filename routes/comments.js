@@ -3,18 +3,14 @@ var router = express.Router();
 var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
+var DBconnect = require('./dbConfig');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var db_config = {
-  host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
- user: 'makchamp',
- password: 'Khanman69',
- database: 'heroku_1f20bf2d1e8055d'
-};
+var pool = new DBconnect();
 
-var connection;
+/*var connection;
 
 function handleDisconnect() {
 connection = mysql.createConnection(db_config); 
@@ -41,7 +37,7 @@ connection.on('error', function(err) {
 });
 }
 
-handleDisconnect();
+handleDisconnect(); */
 
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -56,10 +52,10 @@ router.post('/', function(req,res,next){
   var sql = "SELECT Content FROM posts where PostID='"+thepost+"';";
   var commentsql= "SELECT Content FROM comments where PostID='"+thepost+"';";
   //SQL QUERY HERE
-  connection.query(sql, function (err, result){
+  pool.connection.query(sql, function (err, result){
     if (err) throw err;
     //ANOTHER SQL QUERY HERE
-    connection.query(commentsql, function(error,results){
+    pool.connection.query(commentsql, function(error,results){
       if(error) throw error;
       //console.log(result[0].Content);
       //RENDERING THE PAGE WITH THE CONTENT

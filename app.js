@@ -6,9 +6,9 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var db_config = {
-     host: 'mysql-pnt-db.clokmnut66x8.us-east-1.rds.amazonaws.com',
-    user: 'makchamp',
-    password: 'Khanman69',
+    host: 'us-cdbr-iron-east-01.cleardb.net',
+    user: 'b2af4a2e0e0550',
+    password: '6424a2d3',
     database: 'heroku_1f20bf2d1e8055d'
 };
 
@@ -93,7 +93,7 @@ app.use(function(err, req, res, next) {
 });
 
 //hosting the webpage on port 3000 of the local host
-app.listen(3000, function(){
+app.listen(3001, function(){
 console.log("Started on port 3000");
 });
 
