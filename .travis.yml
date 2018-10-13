@@ -7,6 +7,7 @@ node_js:
 install: 
   - npm install mysql
   - npm install ejs
+  - pip install selenium
 
 before_script:
   - "export DISPLAY=:99.0"
