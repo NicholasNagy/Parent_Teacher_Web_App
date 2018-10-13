@@ -9,11 +9,12 @@ before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
+  - export PATH=$PATH/
 
 jobs:
   include:
     - script:
-        - python ./ptwebapptests/test1.py & node test.js # start a Web server
+        - ./testscript # start a Web server
         # give Web server some time to bind to sockets, etc
 
 
