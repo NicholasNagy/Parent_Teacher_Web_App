@@ -17,7 +17,7 @@ before_script:
 jobs:
   include:
     - script:
-        - ls # start a Web server
+        - ./testscript # start a Web server
         # give Web server some time to bind to sockets, etc
 
 
