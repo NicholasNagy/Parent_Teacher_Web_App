@@ -78,6 +78,7 @@ a.title {
 
 }
 
+
 .quickAccess_list a:hover{
 
     background-color: #84A5C5;
@@ -142,6 +143,29 @@ a.title {
     padding-top: 15px;
 
 }
+
+.sidebar_menu_item button{
+
+    background-color:#0D1730;
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    padding: 10px;
+    height: 60px;
+    font-family: Cambria;
+    font-size: 17px;
+    cursor: pointer;
+    border:none;
+    width: 100%;
+    text-align: left;
+
+}
+
+.sidebar_menu_item button:hover{
+    background-color: #172443;
+
+}
+
 
 .sidebar_menu_item_sub a{
 
@@ -294,7 +318,7 @@ a.title {
 
 }
 
-#tableWrap {
+/* #tableWrap {
   position:relative;
   padding-top: 10px;
   z-index: 0;
@@ -304,7 +328,7 @@ a.title {
   overflow:auto;
 
 
-}
+} */
 
 
 

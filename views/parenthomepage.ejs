@@ -24,7 +24,12 @@
                 <ul class="sidebar_menu">
 
                     <li class="sidebar_menu_item">
-                        <a href="#"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</a>
+                        <!--- change to /teacherProfile-->
+                            <form action="/parentProfile" method="POST">
+
+                                <input type="text" name="userID" style="display:none" value = "">
+                                <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
+                                    </form>
                     </li>
 
                     <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
