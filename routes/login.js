@@ -52,8 +52,8 @@ router.post('/', function(req,res){
 
     //make querying statements, first one searches through the Parents table for
     //the same email and password, while the other searches through the teachers table
-    var sql = "SELECT Email, Pass, Fname from parents where Email='"+email+"' and Pass='"+pass+"';";
-    var thesql= "SELECT Email, Pass, teacherID, ClassID, Fname from teachers where Email='"+email+"' and Pass='"+pass+"';";
+    var sql = "SELECT Email, Pass, Fname, ParentID from parents where Email='"+email+"' and Pass='"+pass+"';";
+    var thesql= "SELECT Email, Pass, TeacherID, ClassID, Fname from teachers where Email='"+email+"' and Pass='"+pass+"';";
 
     var x =0;
 
@@ -70,7 +70,12 @@ router.post('/', function(req,res){
                             throw error;
 
                         var thename=result[0].Fname;
-                        res.render('homepage', {posts: results, name:thename});
+
+                        // this variable is hidden in the homepage and will be used later to 
+                        // collect data when routing to other pages
+                        var ParentUserID=result[0].ParentID;
+
+                        res.render('homepage', {posts: results, name:thename, userID:ParentUserID});
                         // router.post('/commentPage',function(req,res){
                         //   res.render('comments', {posts: results})
 
@@ -95,6 +100,7 @@ router.post('/', function(req,res){
 
 
             if(result.length>0){
+
               var ClassID = result[0].ClassID;
               var TeacherID = result[0].TeacherID;
               var theName= result[0].Fname;
@@ -111,11 +117,11 @@ router.post('/', function(req,res){
                           pool.connection.query(allposts, function (error, results) {
                               if (error)
                                   throw error;
-                              res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});
+                              res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID, userID:TeacherID});
                           });
                         }
                         else{
-                          res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});
+                          res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID,  userID:TeacherID});
 
                         }
                     });
