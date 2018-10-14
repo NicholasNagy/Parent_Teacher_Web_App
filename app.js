@@ -49,7 +49,8 @@ var toCommentPageRouter = require('./routes/toCommentPage');
 var replyRouter = require('./routes/reply')
 var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
-
+var parentProfileRouter=require('./routes/parentProfile');
+var teacherProfileRouter=require('./routes/teacherProfile');
 
 
 var app = express();
@@ -73,6 +74,9 @@ app.use('/commentPage', toCommentPageRouter);
 app.use('/reply', replyRouter);
 app.use('/login', loginRouter);
 app.use('/posting',postRouter);
+app.use('/parentProfile',parentProfileRouter);
+app.use('/teacherProfile',teacherProfileRouter);
+
 
 
 
@@ -94,7 +98,7 @@ app.use(function(err, req, res, next) {
 
 //hosting the webpage on port 3000 of the local host
 app.listen(3001, function(){
-console.log("Started on port 3000");
+console.log("Started on port 3001");
 });
 
 module.exports = app;
