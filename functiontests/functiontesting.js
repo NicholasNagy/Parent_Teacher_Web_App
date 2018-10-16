@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var DBconnect = require('./dbConfig');
+var DBconnect = require('../routes/dbConfig');
 var pool = new DBconnect();
 
 var functions = require('./functions');
