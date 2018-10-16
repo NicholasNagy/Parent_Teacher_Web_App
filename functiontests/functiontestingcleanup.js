@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var DBconnect = require('../routes/dbConfig');
 var pool = new DBconnect();
 
-var functions = require('./functions');
+var functions = require('../routes/functions');
 
 var pool = new DBconnect();
 
