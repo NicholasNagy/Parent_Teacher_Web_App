@@ -18,25 +18,25 @@ var connection;
 
 function handleDisconnect() {
   connection = mysql.createConnection(db_config); // Recreate the connection, since the old one cannot be reused.
-                                                  
+
 
   connection.connect(function(err) {              // The server is either down or restarting.
-    if(err) {                                     
+    if(err) {
       console.log('error when connecting to db:', err);
       setTimeout(handleDisconnect, 2000);             // We introduce a delay before attempting to reconnect,to avoid a hot loop, and to allow our node script to
-    }                                                   
+    }
   });                                               // process asynchronous requests in the meantime.
                                                     // If you're also serving http, display a 503 error.
   connection.on('error', function(err) {
     console.log('db error', err);
     if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually lost due to either server restart, or a connnection idle timeout (the wait_timeout server variable configures this)
-      handleDisconnect();                         
+      handleDisconnect();
     }
     else if(err.code === 'ETIMEDOUT'){
       handleDisconnect();
     }
-    else {                                      
-      throw err;                                  
+    else {
+      throw err;
     }
   });
 }
@@ -49,7 +49,9 @@ var toCommentPageRouter = require('./routes/toCommentPage');
 var replyRouter = require('./routes/reply')
 var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
-
+var parentProfileRouter=require('./routes/parentProfile');
+var teacherProfileRouter=require('./routes/teacherProfile');
+var editParentProfileInfoRouter = require('./routes/editParentProfileInfo')
 
 
 var app = express();
@@ -73,6 +75,9 @@ app.use('/commentPage', toCommentPageRouter);
 app.use('/reply', replyRouter);
 app.use('/login', loginRouter);
 app.use('/posting',postRouter);
+app.use('/parentProfile',parentProfileRouter);
+app.use('/teacherProfile',teacherProfileRouter);
+app.use('/editParentProfileInfo', editParentProfileInfoRouter);
 
 
 
@@ -94,7 +99,7 @@ app.use(function(err, req, res, next) {
 
 //hosting the webpage on port 3000 of the local host
 app.listen(3001, function(){
-console.log("Started on port 3000");
+console.log("Started on port 3001");
 });
 
 module.exports = app;
