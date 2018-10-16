@@ -6,22 +6,23 @@ body{
 
 .profileBox{
 
-    width: 1300px;
+    width: 70%;
     height: 600px;
     background-color: white;
     position: fixed;
-    
+    z-index: -1;
+
 
 }
 
 .ProfileBoxHeader{
 
-    width: 1300px;
+   
     height:100px;
     background-color: #e0e0e0;
-    z-index: 0;
+   
     border-bottom: solid;
-    border-bottom-color: #757575; 
+    border-bottom-color: #757575;
     border-bottom-width: 1px;
 
 }
@@ -29,13 +30,13 @@ body{
 
 .userName{
 
-    
+
     font-size: 40px;
     float: left;
     margin-left: 320px;
     margin-top: -280px;
-    
-    
+
+
 
 }
 
@@ -50,7 +51,7 @@ width: 1300px;
 
     padding: 20px;
     border-width: 1px;
-    
+
 
 
 }
@@ -58,7 +59,7 @@ width: 1300px;
 .Profile_Picture{
 
     width: 500px;
-    
+
 
 }
 
@@ -76,7 +77,7 @@ width: 1300px;
 
 height: 850px;
 margin-left: 320px;
-margin-top: 20px; 
+margin-top: 20px;
 position: fixed;
 
 
@@ -97,7 +98,7 @@ color: #616161;
     color: black;
     margin-left: 150px;
 
-    
+
 
 
 
@@ -125,7 +126,7 @@ color: #616161;
 .editProfileInfo{
 
 float:right;
-margin-top: 20px; 
+margin-top: 20px;
 
 
 }
@@ -146,8 +147,8 @@ border-bottom: 1px solid rgba(192, 192, 192, 0.993);
 .editInfoTxt{
 
     color: rgb(177, 67, 67);
-    
- 
+
+
 
 }
 
@@ -160,8 +161,10 @@ border-bottom: 1px solid rgba(192, 192, 192, 0.993);
     margin: 10px;
     margin-left: 130px;
     color: #E3F2FD;
-
-    
-  
-   
 }
+
+  .editUserInfo{
+text-align: center;
+
+
+  }

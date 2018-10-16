@@ -40,7 +40,6 @@ router.post('/', function(req, res, next) {
         }
         else{
             console.log("unsuccessful parent search");
-           
         };
     });
 

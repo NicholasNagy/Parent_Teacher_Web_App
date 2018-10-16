@@ -42,7 +42,7 @@ a.title {
 .quickAccess{
     position: relative;
     float: right;
-    z-index: 1;
+  
 }
 
 .quickAccess_title:hover{
@@ -56,11 +56,10 @@ a.title {
 
     position: fixed;
     margin-top: 60px;
-    z-index: 1;
     background-color: #7195B7;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     width: 330px;
-
+    z-index: 1;
 
 }
 
