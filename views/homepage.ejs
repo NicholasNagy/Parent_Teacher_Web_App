@@ -1,18 +1,18 @@
 <% include headers/header %>
 
 <div class="nav_bar">
-        <a class="title" href="homepage.html">School App</a>
+        <a class="title" href="/homepage">School App</a>
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
             <div class="quickAccess_list" id="quickAccess_list" style="display: none;">
 
                 <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px;">inbox</i>Inbox</a>
-    <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px; color: red">exit_to_app</i><span style="color: red">Log Out</span></a>
+    <a href="/logout"><i class="material-icons" style="font-size:20px;padding-right: 10px; color: red">exit_to_app</i><span style="color: red">Log Out</span></a>
 
             </div>
 
@@ -65,6 +65,10 @@
     <div class="page_content">
 
 
+        <form action="/parentMessenger" method="POST">
+            <input type="hidden" name="ffnam" value="<%= name%>">
+            <input type="submit" messenger>
+        </form>
 
         <div id="post" style="display: none">
             <form action="/posting" method="POST">
@@ -103,21 +107,21 @@
 
                             <form action="/commentPage" method="POST">
 
-                                <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
+                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
 
 
                             <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
                                 </form>
-                        </div>
-                           </tr>
-                            <!-- <% }) %> -->
 
+                           </tr>
+
+                            <!-- <% }) %> -->
 
 
                 </table>
 
     </div>
-    </div>
+        </div>
 
 
 
