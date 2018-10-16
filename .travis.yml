@@ -1,27 +1,20 @@
-dist: trusty
-sudo: required
-
 language: node_js
 node_js:
   - "node"
 install: 
   - npm install mysql
   - npm install ejs
-  - sudo easy_install pip
-  - pip install -U selenium
 
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - export PATH=$PATH:./
 
 jobs:
   include:
     - script:
-        - sudo chmod 755 testscript
-        - ./testscript # start a Web server
-        # give Web server some time to bind to sockets, etc
+        - python ./ptwebapptests/test1.py & node test.js # start a Web server
+# give Web server some time to bind to sockets, etc
 
 
 
