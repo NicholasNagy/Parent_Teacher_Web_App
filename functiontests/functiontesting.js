@@ -32,11 +32,13 @@ pool.connection.query(checkPost, function(err, results){
         process.exit(0);
       }
       else{
+        console.log("commenting failed");
         process.exit(1);
       }
     });
   }
   else{
+    console.log("posting failed");
     process.exit(1);
   }
 });
