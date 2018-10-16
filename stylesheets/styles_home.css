@@ -42,7 +42,7 @@ a.title {
 .quickAccess{
     position: relative;
     float: right;
-    z-index: 1;
+  
 }
 
 .quickAccess_title:hover{
@@ -56,11 +56,10 @@ a.title {
 
     position: fixed;
     margin-top: 60px;
-    z-index: 1;
     background-color: #7195B7;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     width: 330px;
-
+    z-index: 1;
 
 }
 
@@ -77,6 +76,7 @@ a.title {
 
 
 }
+
 
 .quickAccess_list a:hover{
 
@@ -142,6 +142,29 @@ a.title {
     padding-top: 15px;
 
 }
+
+.sidebar_menu_item button{
+
+    background-color:#0D1730;
+    text-decoration: none;
+    color: aliceblue;
+    display: block;
+    padding: 10px;
+    height: 60px;
+    font-family: Cambria;
+    font-size: 17px;
+    cursor: pointer;
+    border:none;
+    width: 100%;
+    text-align: left;
+
+}
+
+.sidebar_menu_item button:hover{
+    background-color: #172443;
+
+}
+
 
 .sidebar_menu_item_sub a{
 
@@ -294,7 +317,7 @@ a.title {
 
 }
 
-#tableWrap {
+/* #tableWrap {
   position:relative;
   padding-top: 10px;
   z-index: 0;
@@ -304,7 +327,7 @@ a.title {
   overflow:auto;
 
 
-}
+} */
 
 
 

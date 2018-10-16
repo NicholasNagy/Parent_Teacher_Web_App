@@ -11,43 +11,17 @@ app.use(bodyParser.json());
 
 var pool = new DBconnect();
 
-/*var connection;
-
-function handleDisconnect() {
-connection = mysql.createConnection(db_config);
-
-
-connection.connect(function(err) {
- if(err) {
-   console.log('error when connecting to db:', err);
-   setTimeout(handleDisconnect, 2000);
- }
-});
-
-connection.on('error', function(err) {
- console.log('db error', err);
- if(err.code === 'PROTOCOL_CONNECTION_LOST') {
-   handleDisconnect();
- }
- else if(err.code === 'ETIMEDOUT'){
-  handleDisconnect();
-}
- else {
-   throw err;
- }
-});
-}
-
-handleDisconnect();*/
 
 router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
+  //datee = Date.now();
+    console.log('Time: ', Date.now())
   next()
 });
 
-//Handeling comments
+//Handling comments
 router.post('/', function(req,res,next){
   //GETTING POSTID HERE
+    datee= Date.now();
   var comment = req.body.replayArea;
   var postID = req.body.postID;
   console.log(postID);
@@ -56,8 +30,17 @@ router.post('/', function(req,res,next){
   // ! Should select from unique ID !
   var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
   var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+  //adding comment to database
+  functions.comment(comment, postID);
+  //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
+  // ! Should select from unique ID !
+  var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
+  var post = "SELECT Content FROM posts where PostID='"+postID+"';";
   //EXECUTION OF QUERY
-  pool.connection.query(post, function (error, resultP) {
+  //EXECUTION OF QUERY
+  pool.connection.query(post, function (err, resultP) {
+    if (err)
+        throw err;
     pool.connection.query(comments, function (error, results) {
       if (error)
           throw error;
@@ -66,15 +49,5 @@ router.post('/', function(req,res,next){
     });
   });
 });
-
-
-
-
-
-
-
-
-
-
 
 module.exports=router;

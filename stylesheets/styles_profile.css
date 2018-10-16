@@ -1,0 +1,170 @@
+body{
+    background-image: url(res/marble2.jpg);
+
+}
+
+
+.profileBox{
+
+    width: 70%;
+    height: 600px;
+    background-color: white;
+    position: fixed;
+    z-index: -1;
+
+
+}
+
+.ProfileBoxHeader{
+
+   
+    height:100px;
+    background-color: #e0e0e0;
+   
+    border-bottom: solid;
+    border-bottom-color: #757575;
+    border-bottom-width: 1px;
+
+}
+
+
+.userName{
+
+
+    font-size: 40px;
+    float: left;
+    margin-left: 320px;
+    margin-top: -280px;
+
+
+
+}
+
+.headerName{
+
+display: inline-block;
+width: 1300px;
+
+}
+
+.profilePicture{
+
+    padding: 20px;
+    border-width: 1px;
+
+
+
+}
+
+.Profile_Picture{
+
+    width: 500px;
+
+
+}
+
+.accountTp{
+
+   margin-left: 85px;
+   font-size: 20px;
+   padding-top: -100px
+
+
+}
+
+.ProfileInfo{
+
+
+height: 850px;
+margin-left: 320px;
+margin-top: 20px;
+position: fixed;
+
+
+}
+
+.info{
+
+font-size: 20px;
+font-weight: bold;
+color: #616161;
+
+
+
+}
+
+.userInfo{
+
+    color: black;
+    margin-left: 150px;
+
+
+
+
+
+}
+
+.editInfo{
+
+    float: right;
+    width: 100px;
+    height: 50px;
+    margin-right: 60px;
+    margin-top: 25px;
+    color:#E3F2FD;
+    background-color: #172443;
+    cursor: pointer;
+}
+
+.profileInfoTable{
+
+    border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+
+
+}
+
+.editProfileInfo{
+
+float:right;
+margin-top: 20px;
+
+
+}
+
+.editProfileInfoTable{
+
+width: wrap;
+
+border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+
+}
+
+#accountType{
+
+ text-align: center;
+}
+
+.editInfoTxt{
+
+    color: rgb(177, 67, 67);
+
+
+
+}
+
+#submitEditInfo{
+
+    cursor: pointer;
+    padding: 5px;
+    background-color: red;
+    font-weight: bold;
+    margin: 10px;
+    margin-left: 130px;
+    color: #E3F2FD;
+}
+
+  .editUserInfo{
+text-align: center;
+
+
+  }
