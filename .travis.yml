@@ -16,7 +16,7 @@ jobs:
         - node test.js # start a Web server
     - script:
         - node ./functiontests/functiontesting.js
-        - node ./functiontests/functioncleanup.js
+        - node ./functiontests/functiontestingcleanup.js
 
 
 
