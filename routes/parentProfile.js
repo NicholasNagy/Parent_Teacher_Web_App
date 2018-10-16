@@ -10,9 +10,6 @@ app.use(bodyParser.json());
 
 var pool = new DBconnect();
 
-
-
-
 router.post('/', function(req, res, next) {
     var userID = req.body.userID;
 

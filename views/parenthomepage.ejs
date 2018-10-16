@@ -1,7 +1,7 @@
 <% include headers/header %>
 
 <div class="nav_bar">
-        <a class="title" href="homepage.html">School App</a>
+        <a class="title" href="/homepage">School App</a>
 
         <div class="quickAccess">
 
@@ -62,6 +62,12 @@
 
     <div class="page_content">
 
+
+        <form action="/parentMessenger" method="POST">
+            <input type="hidden" name="ffnam" value="<%= name%>">
+            <input type="submit" messenger>
+        </form>
+
       <div name="teacherPost" id="teacherPost">
           <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
 
@@ -107,13 +113,15 @@
 
                             <form action="/commentPage" method="POST">
 
-                                <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
+                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
 
 
                             <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
                                 </form>
-                        </div>
-                           </tr>
+
+                        </tr>
+
+
                             <!-- <% }) %> -->
 
 

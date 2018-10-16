@@ -10,47 +10,20 @@ app.use(bodyParser.json());
 
 var pool = new DBconnect();
 
-/*var connection;
-
-function handleDisconnect() {
-connection = mysql.createConnection(db_config); 
-                                               
-
-connection.connect(function(err) {              
- if(err) {                                     
-   console.log('error when connecting to db:', err);
-   setTimeout(handleDisconnect, 2000);             
- }                                                   
-});                                               
-                                                
-connection.on('error', function(err) {
- console.log('db error', err);
- if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-   handleDisconnect();                         
- }
- else if(err.code === 'ETIMEDOUT'){
-  handleDisconnect();
-}
- else {                                      
-   throw err;                                  
- }
-});
-}
-
-handleDisconnect();*/
-
 router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
+  //datee = Date.now();
+    console.log('Time: ', Date.now())
   next()
 });
 
-//Handeling comments
+//Handling comments
 router.post('/', function(req,res,next){
   //GETTING POSTID HERE
+    datee= Date.now();
   var comment = req.body.replayArea;
   var postID = req.body.postID;
   console.log(postID);
-  var postSQL = "INSERT INTO comments (Content, PostID) VALUES ('"+comment+"', '"+postID +"');";// !Should add fields for unique IDs !
+  var postSQL = "INSERT INTO comments (Content, PostID, TheDate) VALUES ('"+comment+"', '"+postID +"','"+datee+"');";// !Should add fields for unique IDs !
   pool.connection.query(postSQL, function (err, result) {
     if (err)
         throw err;
@@ -72,15 +45,5 @@ router.post('/', function(req,res,next){
 
 });
 });
-
-
-
-
-
-
-
-
-
-
 
 module.exports=router;
