@@ -13,15 +13,13 @@ var pool = new DBconnect();
 
 
 router.use(function timeLog (req, res, next) {
-  //datee = Date.now();
-    console.log('Time: ', Date.now())
+  console.log('Time: ', Date.now())
   next()
 });
 
-//Handling comments
+//Handeling comments
 router.post('/', function(req,res,next){
   //GETTING POSTID HERE
-    datee= Date.now();
   var comment = req.body.replayArea;
   var postID = req.body.postID;
   console.log(postID);
@@ -30,17 +28,8 @@ router.post('/', function(req,res,next){
   // ! Should select from unique ID !
   var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
   var post = "SELECT Content FROM posts where PostID='"+postID+"';";
-  //adding comment to database
-  functions.comment(comment, postID);
-  //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-  // ! Should select from unique ID !
-  var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
-  var post = "SELECT Content FROM posts where PostID='"+postID+"';";
   //EXECUTION OF QUERY
-  //EXECUTION OF QUERY
-  pool.connection.query(post, function (err, resultP) {
-    if (err)
-        throw err;
+  pool.connection.query(post, function (error, resultP) {
     pool.connection.query(comments, function (error, results) {
       if (error)
           throw error;
@@ -49,5 +38,15 @@ router.post('/', function(req,res,next){
     });
   });
 });
+
+
+
+
+
+
+
+
+
+
 
 module.exports=router;

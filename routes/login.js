@@ -38,7 +38,7 @@ router.post('/', function(req,res){
 
                         var thename=result[0].Fname;
 
-                        // this variable is hidden in the homepage and will be used later to 
+                        // this variable is hidden in the homepage and will be used later to
                         // collect data when routing to other pages
                         var ParentUserID=result[0].ParentID;
 
@@ -102,7 +102,7 @@ router.post('/', function(req,res){
 
             }
     });
- 
+
 });
 
 

@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 
 var pool = new DBconnect();
 
+
+
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()
