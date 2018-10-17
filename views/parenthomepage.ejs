@@ -1,6 +1,6 @@
 <% include headers/header %>
 
-<div class="nav_bar">
+<div class="nav_bar" xmlns="http://www.w3.org/1999/html">
         <a class="title" href="/homepage">School App</a>
 
         <div class="quickAccess">
@@ -62,10 +62,10 @@
 
     <div class="page_content">
 
-
-        <form action="/parentMessenger" method="POST">
+        <form action="/viewParent" method="POST">
             <input type="hidden" name="ffnam" value="<%= name%>">
-            <input type="submit" messenger>
+
+            <input type="submit" value="message" >
         </form>
 
       <div name="teacherPost" id="teacherPost">
@@ -123,9 +123,6 @@
 
 
                             <!-- <% }) %> -->
-
-
-
                 </table>
 
     </div>
