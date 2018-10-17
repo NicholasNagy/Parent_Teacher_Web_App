@@ -9,12 +9,15 @@ var pool = new DBconnect();
 /* GET home page. */
 router.post('/', function(req, res, next) {
     var sql= "SELECT Fname,Lname FROM parents";
-    pool.connection.query(sql,(err,result)=> {
 
+    //sending the teacher's name from the teacher homepage
+    var teachername = req.body.ffnam;
+
+    pool.connection.query(sql,(err,result)=> {
         if (err) {
             throw err;
         }
-        res.render('viewParent', { parents: result });
+        res.render('viewParent', { parents: result, teacher: teachername });
     });
 
 });
