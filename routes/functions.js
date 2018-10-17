@@ -3,6 +3,7 @@ var DBconnect = require('./dbConfig');
 var pool = new DBconnect();
 
 var posting = function (post, ClassID, TeacherID){
+  console.log("Preparing to add post to DB");
   //CREATING SQL METHOD
   var postSQL = "INSERT INTO posts (content, ClassID, TeacherID, TheDate) VALUES ('"+post+"', '"+ClassID +"', '"+TeacherID+"', NOW());";
   //INSERTING THE NEW POST
@@ -16,6 +17,9 @@ var posting = function (post, ClassID, TeacherID){
 };
 
 var commenting = function(comment, postID){
+  
+  console.log("Preparing to add comment to DB");
+  
   var postSQL = "INSERT INTO comments (Content, PostID) VALUES ('"+comment+"', '"+postID +"');";// !Should add fields for unique IDs !
   pool.connection.query(postSQL, function (err, result) {
     if (err)
