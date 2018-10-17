@@ -15,8 +15,9 @@ var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
 var parentProfileRouter=require('./routes/parentProfile');
 var teacherProfileRouter=require('./routes/teacherProfile');
-var editParentProfileInfoRouter = require('./routes/editParentProfileInfo')
+var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
+var viewParent = require('./routes/viewParents');
 
 
 var app = express();
@@ -27,7 +28,7 @@ app.set('view engine', 'ejs');
 app.use('/stylesheets', express.static('stylesheets'));
 app.use('/routes',express.static(__dirname + '/routes'));
 app.use('/node_modules',express.static(__dirname + '/socket.io/socket.io.js'));
-app.use(express.static(path.join('public')))
+app.use(express.static(path.join('public')));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -49,7 +50,7 @@ app.use('/editParentProfileInfo', editParentProfileInfoRouter);
 app.use('/parentMessenger',messenger);
 app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
-
+app.use('/viewParent',viewParent);
 
 
 // catch 404 and forward to error handler
