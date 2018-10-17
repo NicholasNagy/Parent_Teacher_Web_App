@@ -1,4 +1,8 @@
 # Parent_Teacher_Web_App
+
+Build Status:
+[![Build Status](https://travis-ci.org/NicholasNagy/Parent_Teacher_Web_App.svg?branch=master)](https://travis-ci.org/NicholasNagy/Parent_Teacher_Web_App)
+
 Group: 
 
 * Nicholas Nagy 40059460

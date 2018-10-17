@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "node"
-install: 
+install:
   - npm install mysql
   - npm install ejs
 
@@ -13,8 +13,10 @@ before_script:
 jobs:
   include:
     - script:
-        - python ./ptwebapptests/test1.py & node test.js # start a Web server
-        # give Web server some time to bind to sockets, etc
+        - node test.js # start a Web server
+    - script:
+        - node ./functiontests/functiontesting.js
+        - node ./functiontests/functiontestingcleanup.js
 
 
 

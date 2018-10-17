@@ -1,0 +1,5 @@
+#!/bin/bash
+clear
+python ./ptwebapptests/test1.py & node test.js
+node ./ptwebapptests/test1.js
+node ./ptwebapptests/cleanup.js
