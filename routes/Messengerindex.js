@@ -9,9 +9,18 @@ var router = express.Router();
 app.use(express.static('public'));
 
 router.post('/', function(req, res) {
-    var naming = req.body.ffnam;
-    console.log(naming);
+   // var naming = req.body.parent_name[0];
+    //we test if the name is from a teacher name or a parent name
+
+    if (req.body.teacher_name == undefined)
+       var naming = req.body.ffnam + " -Parent";
+
+   else
+       var naming = req.body.teacher_name + " -Teacher";
+    //var naming = req.body.parent_name;
+
     res.render('messenger', {nm: naming});
+
     app.use(express.static('public'));
     var io = socket(serverr.servers);
     //server.listen(3001);
