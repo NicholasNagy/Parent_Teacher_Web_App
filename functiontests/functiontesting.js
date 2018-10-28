@@ -7,17 +7,26 @@ var functions = require('../routes/functions');
 var pool = new DBconnect();
 
 //TESTING POSTING && COMMENTING
+let myFirstPromise = new Promise((resolve, reject) => {
+  resolve(functions.post("This is a test post", "123", "5"));
+});
 
-functions.post("This is a test post", "123", "5");
-functions.comment("This is a test comment", 5);
 
+let mySecondPromise = new Promise(function(resolve, reject){
+  resolve(functions.comment("This is a test comment", 5));
+});
 var checkPost = "SELECT Content, ClassID, TeacherID FROM posts where ClassID='123' AND TeacherID='5' AND Content='This is a test post';";
 
+myFirstPromise.then((successMessage) => {
+  console.log(successMessage);
 
 pool.connection.query(checkPost, function(err, results){
   if(err) throw err;
 
   if(results.length>0){
+    mySecondPromise.then(function(successorMessage){
+      console.log(successorMessage);
+
     if(results[0].Content=="This is a test post" && results[0].TeacherID=="5" && results[0].ClassID=="123")
       console.log("post successfully inserted");
 
@@ -36,9 +45,12 @@ pool.connection.query(checkPost, function(err, results){
         process.exit(1);
       }
     });
+    });
   }
   else{
     console.log("posting failed");
     process.exit(1);
   }
+});
+
 });

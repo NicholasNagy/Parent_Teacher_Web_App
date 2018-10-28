@@ -26,16 +26,24 @@ router.post('/', function (req,res) {
     var TeacherID= req.body.teacherID;
     var theName= req.body.name;
 
-    functions.post(post, ClassID, TeacherID);
-    //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-    var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
-    //EXECUTION OF QUERY
-    pool.connection.query(posts, function (error, results) {
-        if (error)
-            throw error;
-          //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-        res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});
+    let thepost = new Promise(function(resolve, reject){
+      resolve(functions.post(post, ClassID, TeacherID));
     });
+
+    thepost.then(function(successMessage){
+      console.log(successMessage);
+      //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
+      var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
+      //EXECUTION OF QUERY
+      pool.connection.query(posts, function (error, results) {
+          if (error)
+              throw error;
+            //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
+          res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});
+      });
+    });
+
+
 });
 
 module.exports=router;

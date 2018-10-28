@@ -23,20 +23,26 @@ router.post('/', function(req,res,next){
   var comment = req.body.replayArea;
   var postID = req.body.postID;
   console.log(postID);
-  functions.comment(comment, postID);
-  //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-  // ! Should select from unique ID !
-  var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
-  var post = "SELECT Content FROM posts where PostID='"+postID+"';";
-  //EXECUTION OF QUERY
-  pool.connection.query(post, function (error, resultP) {
-    pool.connection.query(comments, function (error, results) {
-      if (error)
-          throw error;
-        //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-      res.render('comments', {post: resultP[0].Content, comments: results, postID});
+  let theComment = new Promise(function(resolve, reject){
+    resolve(functions.comment(comment, postID));
+  });
+  theComment.then(function(successMessage){
+    console.log(successMessage);
+    //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
+    // ! Should select from unique ID !
+    var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
+    var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+    //EXECUTION OF QUERY
+    pool.connection.query(post, function (error, resultP) {
+      pool.connection.query(comments, function (error, results) {
+        if (error)
+            throw error;
+          //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
+        res.render('comments', {post: resultP[0].Content, comments: results, postID});
+      });
     });
   });
+
 });
 
 
