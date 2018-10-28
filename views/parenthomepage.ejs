@@ -76,9 +76,9 @@
         <div id="post" style="display: none">
             <form action="/posting" method="POST">
 
-              <input type="text" id="classID" name = "classID" style="display:none" value = "<%= classID%>">
-              <input type="text" id="teacherID" name = "teacherID" style="display:none" value = "<%= teacherID%>">
-              <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
+              <input type="text" id="WallID" name = "WallID" style="display:none" value = "<%= WallID%>">
+              <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= PosterID%>">
+                <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
 
             <div class="textArea" >
              <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
@@ -103,7 +103,7 @@
                     <!-- <% posts.forEach(function(u){ %> -->
                         <tr class="posts">
 
-                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
+                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em><%= name%></span>
                         <div class="postContent">
 
 
@@ -113,7 +113,7 @@
 
                             <form action="/commentPage" method="POST">
 
-                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
+                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.postID%>"> </td>
 
 
                             <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>

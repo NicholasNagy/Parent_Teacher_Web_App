@@ -22,24 +22,24 @@ router.use(function timeLog (req, res, next) {
 router.post('/', function (req,res) {
   //GET ALL VARIABLE SUBMITTED
     var post = req.body.textPost;
-    var ClassID= req.body.classID;
-    var TeacherID= req.body.teacherID;
+    var WallID= req.body.WallID;
+    var PosterID= req.body.PosterID;
     var theName= req.body.name;
 
     let thepost = new Promise(function(resolve, reject){
-      resolve(functions.post(post, ClassID, TeacherID));
+      resolve(functions.post(post, WallID, PosterID));
     });
 
     thepost.then(function(successMessage){
       console.log(successMessage);
       //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-      var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
+      var posts = "SELECT Content, postID FROM post where WallID='"+WallID+"';";
       //EXECUTION OF QUERY
       pool.connection.query(posts, function (error, results) {
           if (error)
               throw error;
             //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-          res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID});
+          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, PosterID:PosterID});
       });
     });
 

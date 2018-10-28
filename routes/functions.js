@@ -2,10 +2,10 @@ var mysql = require('mysql');
 var DBconnect = require('./dbConfig');
 var pool = new DBconnect();
 
-var posting = function (post, ClassID, TeacherID){
+var posting = function (post, WallID, PosterID){
   console.log("Preparing to add post to DB");
   //CREATING SQL METHOD
-  var postSQL = "INSERT INTO posts (content, ClassID, TeacherID, TheDate) VALUES ('"+post+"', '"+ClassID +"', '"+TeacherID+"', NOW());";
+  var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW());";
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, result) {
