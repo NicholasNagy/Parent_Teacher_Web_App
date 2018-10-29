@@ -19,89 +19,51 @@ router.post('/', function(req,res){
 
     //make querying statements, first one searches through the Parents table for
     //the same email and password, while the other searches through the teachers table
-    var sql = "SELECT Email, Pass, Fname, ParentID from parents where Email='"+email+"' and Pass='"+pass+"';";
-    var thesql= "SELECT Email, Pass, TeacherID, ClassID, Fname from teachers where Email='"+email+"' and Pass='"+pass+"';";
+    var sql = "SELECT Email, Pass, Fname, Lname, isTeacher, ID from Users where Email='"+email+"' and Pass='"+pass+"';";
 
-    var x =0;
 
-        //below checks the query for the same email and password
-        pool.connection.query(sql, function (err, result){
-            if (err) throw err;
-            //underneath is the boolean for it
-            if(result.length>0){
-                if(result[0].Email==email&&result[0].Pass==pass){
-                    console.log("Login Successful");
-                    var posts = "SELECT Content, PostID FROM posts";
-                    pool.connection.query(posts, function (error, results) {
-                        if (error)
-                            throw error;
+    //below checks the query for the same email and password
+    pool.connection.query(sql, function (err, result){
+        if (err) throw err;
+        //underneath is the boolean for it
 
-                        var thename=result[0].Fname;
+        if(result.length>0){
 
-                        // this variable is hidden in the homepage and will be used later to
-                        // collect data when routing to other pages
-                        var ParentUserID=result[0].ParentID;
+            if(result[0].Email==email&&result[0].Pass==pass){
 
-                        res.render('homepage', {posts: results, name:thename, userID:ParentUserID});
-                        // router.post('/commentPage',function(req,res){
-                        //   res.render('comments', {posts: results})
+                console.log("Login Successful");
+                var posts = "SELECT Content, postID FROM post where WallID='"+result[0].ID+"';";
+                pool.connection.query(posts, function (error, results) {
 
-                          //handle comment page
-                        //});
-                        });
-                }
+                    if (error)
+                        throw error;
+
+                    var thename=result[0].Fname;
+                    // this variable is hidden in the homepage and will be used later to
+                    // collect data when routing to other pages
+                    var theID=result[0].ID;
+                    console.log(theID);
+
+
+                    if(result[0].isTeacher==0) {
+                        res.render('homepage', {posts: results, name: thename, userID: theID});
+                        console.log("parenthomepage");
+                    }
+                    else{
+                        res.render('parenthomepage', {posts: results, name:thename, WallID:theID, PosterID:theID});
+                        console.log("teacherhomepage");
+                    }
+                });
             }
+        }
 
-            else{
-                console.log("unsuccessful parent login");
-                x=x+1;
-                console.log(x);
-            };
+        else{
+            console.log("unsuccessful login");
+            res.send("unsuccessful login");
+        };
 
-        });
-
-        //below checks the query for the same email and password
-        pool.connection.query(thesql, function (err, result){
-            if(err) throw err;
-            //underneath is the boolean for it
-
-
-            if(result.length>0){
-
-              var ClassID = result[0].ClassID;
-              var TeacherID = result[0].TeacherID;
-              var theName= result[0].Fname;
-                if(result[0].Email==email&&result[0].Pass==pass){
-                    console.log("Teacher Login Successful");
-                    //if successful, renders homepage
-                    //HANDLE BEING SENT TO HOMEPAGE HERE
-                    var posts = "SELECT Content, PostID FROM posts where ClassID='"+ClassID+"';";
-                    pool.connection.query(posts, function (error, results) {
-                        if (error)
-                            throw error;
-                        if(results==0){//handles case where teacher hasn't posted anything yet
-                          var allposts = "SELECT Content, PostID FROM posts";
-                          pool.connection.query(allposts, function (error, results) {
-                              if (error)
-                                  throw error;
-                              res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID, userID:TeacherID});
-                          });
-                        }
-                        else{
-                          res.render('parenthomepage', {posts: results, name:theName, classID:ClassID, teacherID:TeacherID,  userID:TeacherID});
-
-                        }
-                    });
-
-
-                }
-            }
-            else{
-                console.log("unsuccessful teacher login");
-                //res.end("Incorrect login information, please try again");
-
-            }
     });
+
 
 });
 

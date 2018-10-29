@@ -8,14 +8,14 @@ var pool = new DBconnect();
 
 //TESTING POSTING && COMMENTING
 let myFirstPromise = new Promise((resolve, reject) => {
-  resolve(functions.post("This is a test post", "123", "5"));
+  resolve(functions.post("This is a test post", "2", "2"));
 });
 
 
 let mySecondPromise = new Promise(function(resolve, reject){
-  resolve(functions.comment("This is a test comment", 5));
+  resolve(functions.comment("This is a test comment", 2));
 });
-var checkPost = "SELECT Content, ClassID, TeacherID FROM posts where ClassID='123' AND TeacherID='5' AND Content='This is a test post';";
+var checkPost = "SELECT Content, WallID, PosterID FROM post where WallID='2' AND PosterID='2' AND Content='This is a test post';";
 
 myFirstPromise.then((successMessage) => {
   console.log(successMessage);
@@ -27,15 +27,15 @@ pool.connection.query(checkPost, function(err, results){
     mySecondPromise.then(function(successorMessage){
       console.log(successorMessage);
 
-    if(results[0].Content=="This is a test post" && results[0].TeacherID=="5" && results[0].ClassID=="123")
+    if(results[0].Content=="This is a test post" && results[0].WallID=="2" && results[0].PosterID=="2")
       console.log("post successfully inserted");
 
-    var checkComment = "Select Content, PostID FROM comments where Content='This is a test comment' AND PostID='5';"
+    var checkComment = "Select Content, PostID FROM comments where Content='This is a test comment' AND PostID='2';"
     pool.connection.query(checkComment, function(error, theresult){
       if(err) throw err;
 
       if(results.length>0){
-        if(theresult[0].Content=="This is a test comment" && theresult[0].PostID=="5")
+        if(theresult[0].Content=="This is a test comment" && theresult[0].PostID=="2")
           console.log("comment successfully inserted");
 
         process.exit(0);
