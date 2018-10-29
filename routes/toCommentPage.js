@@ -13,26 +13,26 @@ var pool = new DBconnect();
 /*var connection;
 
 function handleDisconnect() {
-connection = mysql.createConnection(db_config); 
-                                               
+connection = mysql.createConnection(db_config);
 
-connection.connect(function(err) {              
- if(err) {                                     
+
+connection.connect(function(err) {
+ if(err) {
    console.log('error when connecting to db:', err);
-   setTimeout(handleDisconnect, 2000);             
- }                                                   
-});                                               
-                                                
+   setTimeout(handleDisconnect, 2000);
+ }
+});
+
 connection.on('error', function(err) {
  console.log('db error', err);
- if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
-   handleDisconnect();                         
+ if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+   handleDisconnect();
  }
  else if(err.code === 'ETIMEDOUT'){
   handleDisconnect();
 }
- else {                                      
-   throw err;                                  
+ else {
+   throw err;
  }
 });
 }
@@ -52,16 +52,16 @@ router.post('/', function(req,res,next){
 
   console.log(postID);
 //CREATING SQL STATEMENTS
-  var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+  var post = "SELECT Content FROM post where PostID='"+postID+"';";
   var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
-  
+
   //SQL QUERY HERE
 
   pool.connection.query(post, function (err, resultP){
     if (err) throw err;
   pool.connection.query(comments, function (err, result){
     if (err) throw err;
-    
+
       //RENDERING THE PAGE WITH THE CONTENT
       res.render('comments', {comments : result, postID, post: resultP[0].Content});
 

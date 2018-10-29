@@ -31,7 +31,7 @@ router.post('/', function(req,res,next){
     //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
     // ! Should select from unique ID !
     var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
-    var post = "SELECT Content FROM posts where PostID='"+postID+"';";
+    var post = "SELECT Content FROM post where PostID='"+postID+"';";
     //EXECUTION OF QUERY
     pool.connection.query(post, function (error, resultP) {
       pool.connection.query(comments, function (error, results) {
