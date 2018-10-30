@@ -13,7 +13,8 @@ before_script:
 jobs:
   include:
     - script:
-        - node test.js # start a Web server
+        - node ./functiontests/loginsignuptesting.js
+        - node ./functiontests/signuplogintestingcleanup.js
     - script:
         - node ./functiontests/functiontesting.js
         - node ./functiontests/functiontestingcleanup.js
