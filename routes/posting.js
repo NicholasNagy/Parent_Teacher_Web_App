@@ -39,7 +39,7 @@ router.post('/', function (req,res) {
           if (error)
               throw error;
             //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, PosterID:PosterID});
+          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, userID:PosterID});
       });
     });
 

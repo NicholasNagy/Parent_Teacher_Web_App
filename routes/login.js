@@ -39,7 +39,7 @@ router.post('/', function(req,res){
             console.log("parenthomepage");
           }
           else{
-            res.render('parenthomepage', {posts: posts, name:user[0].Fname, WallID:user[0].ID, PosterID:user[0].ID});
+            res.render('parenthomepage', {posts: posts, name:user[0].Fname, WallID:user[0].ID, userID:user[0].ID});
             console.log("teacherhomepage");
           }
         });
