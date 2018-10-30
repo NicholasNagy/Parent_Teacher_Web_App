@@ -50,7 +50,7 @@ router.post('/', function(req,res){
                         console.log("parenthomepage");
                     }
                     else{
-                        res.render('parenthomepage', {posts: results, name:thename, WallID:theID, PosterID:theID});
+                        res.render('parenthomepage', {posts: results, name:thename, WallID:theID, PosterID:theID, userID: theID});
                         console.log("teacherhomepage");
                     }
                 });
