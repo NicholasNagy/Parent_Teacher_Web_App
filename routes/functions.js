@@ -31,9 +31,43 @@ var commenting = function(comment, postID){
         resolve("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
     });
   });
+};
+
+var getWallPosts = function(WallID){
+
+      return new Promise(function(resolve, reject){
+
+        var posts = "SELECT Content, postID FROM post where WallID='"+WallID+"';";
+
+        pool.connection.query(posts, function (error, results) {
+          if (error)
+              throw error;
+          resolve(results);  
+        });
+
+
+      });
+};
+
+
+
+var authenticate = function(email, pass){
+  return new Promise(function(resolve, reject){
+    //make querying statements, first one searches through the Parents table for
+    //the same email and password, while the other searches through the teachers table
+    var sql = "SELECT Email, Pass, Fname, Lname, isTeacher, ID from Users where Email='"+email+"' and Pass='"+pass+"';";
+
+    //below checks the query for the same email and password
+    pool.connection.query(sql, function (err, result){
+        if (err) throw err;
+        resolve(result);
+      });
+  });
 }
 
 module.exports= {
   post: posting,
-  comment: commenting
+  comment: commenting,
+  authenticate: authenticate,
+  getWallPosts: getWallPosts
 };
