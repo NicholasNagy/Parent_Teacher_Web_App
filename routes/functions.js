@@ -42,7 +42,7 @@ var getWallPosts = function(WallID){
         pool.connection.query(posts, function (error, results) {
           if (error)
               throw error;
-          resolve(results);  
+          resolve(results);
         });
 
 
@@ -65,9 +65,36 @@ var authenticate = function(email, pass){
   });
 }
 
+
+var editProfile = function(userFName, userLName, password, email, userID){
+  var updateUser = "UPDATE Users SET Fname = '"+userFName+"', Lname = '"+ userLName +"', Pass='"+password+"' WHERE ID='"+userID+"';";
+
+  return new Promise(function(resolve, reject){
+    pool.connection.query(updateUser, function(err, result){
+      if(err) throw err;
+      console.log("hello");
+
+      resolve(viewProfile(userID));
+    });
+  });
+};
+
+var viewProfile = function(userID){
+  return new Promise(function(resolve, reject){
+    var getUser = "Select * FROM Users where ID='"+userID+"';";
+    pool.connection.query(getUser, function(error, user){
+      if(error) throw error;
+      resolve(user[0]);
+    });
+  });
+}
+
+
 module.exports= {
   post: posting,
   comment: commenting,
   authenticate: authenticate,
-  getWallPosts: getWallPosts
+  getWallPosts: getWallPosts,
+  update: editProfile,
+  viewProfile: viewProfile
 };
