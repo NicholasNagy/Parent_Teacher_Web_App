@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
     var userID = req.body.userID;
 
     //connenect to database
-    var ParentSQL = "SELECT ParentID, Fname, Lname, Email, Pass from parents where ParentID='"+userID+"';";
+    var ParentSQL = "SELECT ID, Fname, Lname, Email, Pass from users where ID='"+userID+"';";
     //var TeacherSQL = "SELECT TeacherID, Fname, Lname, Email, Pass from teachers where TeacherID='"+userID+"';";
 
 

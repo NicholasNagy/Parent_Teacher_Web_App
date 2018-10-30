@@ -11,8 +11,6 @@ app.use(bodyParser.json());
 var pool = new DBconnect();
 
 
-
-
 router.post('/', function(req, res, next) {
 
 var userFName = req.body.userFNameEdit;
@@ -32,10 +30,6 @@ pool.connection.query(ParentSQL, function(err, result){
   console.log("hello");
 });
 res.render('profile', {userType:userType, userID:userID, userFname:userFName, userLname:userLName, userEmail:email, userPass:password});
-
-
-
-
 
 
 });

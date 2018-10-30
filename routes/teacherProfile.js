@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
 
     //connenect to database
     //var ParentSQL = "SELECT ParentID, Fname, Lname, Email, Pass from parents where ParentID='"+userID+"';";
-    var TeacherSQL = "SELECT TeacherID, Fname, Lname, Email, Pass from teachers where TeacherID='"+userID+"';";
+    var TeacherSQL = "SELECT ID, Fname, Lname, Email, Pass from users where ID='"+userID+"';";
 
 /*
     //look in the parents table and return the results. If the result is there, then its length would be > 0.
