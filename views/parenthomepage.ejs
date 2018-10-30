@@ -48,6 +48,16 @@
                     </li>
 
                     <li class="sidebar_menu_item">
+
+                            <form action="/friends" method="POST">
+        
+                            <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                            <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                </form>
+        
+                                </li> 
+
+                    <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
                     </li>
 
@@ -139,43 +149,27 @@
 
     <!-- Show/hide drop down menu -->
     <script>
-
-
         function dropDownTop() {
-
             var dropDownList = document.getElementById("quickAccess_list");
-
-
             if(dropDownList.style.display === "block")
                 dropDownList.style.display = "none";
             else
                 dropDownList.style.display = "block";
         }
-
-
         function dropDownSide() {
-
             var dropDownList = document.getElementById("dropDownList");
-
-
             if(dropDownList.style.display === "block")
                 dropDownList.style.display = "none";
             else
                 dropDownList.style.display = "block";
         }
-
-
           function showNewPostFromBox() {
-
             var newPostTextForm = document.getElementById("post");
-
-
             if(newPostTextForm.style.display === "block")
                 newPostTextForm.style.display = "none";
             else
                 newPostTextForm.style.display = "block";
         }
-
     </script>
 
 <% include headers/footer %>

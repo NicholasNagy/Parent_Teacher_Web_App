@@ -1,0 +1,152 @@
+body{
+    background-image: url(res/marble2.jpg);
+    height: 100%;
+
+}
+
+.friendsPage_content{
+
+    width: 100vh;
+	border-right-color: black;
+    margin-left: 285px;
+    margin-top: 70px;
+    height: 100%;
+    z-index: -1;
+    
+
+
+}
+
+.search{
+border-right: solid;
+width: 60%;
+height: 100vh;
+
+
+
+}
+
+.searchBar{
+
+    text-align: center;
+    height: 100px;
+    margin-right: 10px; 
+  
+}
+
+#searchTitle{
+
+    font-size: 20px;
+
+    
+}
+
+.searchField{
+
+    width: 250px;
+}
+
+.friends_List{
+
+  
+    margin-top: -100vh;
+    margin-left:400px;
+    width:100%;
+    text-align: center;
+   
+  
+
+
+
+}
+
+.list_Header{
+
+    text-align: center;
+
+
+}
+
+#fListTitle{
+
+    font-size: 20px;
+    
+}
+
+
+.searchResultsTable{
+
+    margin-top: 30px;
+	width: 100%;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+    text-align: left;
+
+
+}
+.friendRequestBtn{
+
+
+    float: right;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: aquamarine;
+}
+
+.friendRequestBtn:hover{
+
+     cursor: pointer;
+    background-color: rgb(67, 247, 187);
+
+}
+
+
+.searchFriendsBtn{
+
+    cursor: pointer;
+
+}
+
+
+.searchFriendsBtn:hover{
+
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+}
+
+.friendsListTable{
+
+    margin-top: 10px;
+	width: 65%;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+    text-align: left;
+    margin-left:20vh;
+    padding: 10px;
+
+
+}
+
+.friendName{
+color: blue;
+padding-left: 5px;
+}
+
+.viewFriendWall{
+
+    float: center;
+    font-size: 17px;
+    cursor: pointer;
+  
+
+
+}
+
+.viewFriendWall:hover{
+
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+
+}

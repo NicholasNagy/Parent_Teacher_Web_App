@@ -32,7 +32,7 @@
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
 
-                    </li>
+                                    </li>
 
                     <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
                         <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
@@ -48,6 +48,17 @@
                         </ul>
 
                     </li>
+
+            
+            <li class="sidebar_menu_item">
+
+                    <form action="/friends" method="POST">
+
+                    <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                    <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                        </form>
+
+                        </li> 
 
                     <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
