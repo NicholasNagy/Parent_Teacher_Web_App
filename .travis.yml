@@ -18,6 +18,8 @@ jobs:
     - script:
         - node ./functiontests/functiontesting.js
         - node ./functiontests/functiontestingcleanup.js
+    - script:
+        - node ./functiontests/checkEmailDuplicates.js
 
 
 
