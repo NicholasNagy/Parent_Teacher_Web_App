@@ -33,7 +33,7 @@ router.post('/', function (req,res) {
     thepost.then(function(successMessage){
       console.log(successMessage);
       //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-      var posts = "SELECT Content, postID FROM post where WallID='"+WallID+"';";
+      var posts = "SELECT * FROM post where WallID='"+WallID+"';";
       //EXECUTION OF QUERY
       pool.connection.query(posts, function (error, results) {
           if (error)

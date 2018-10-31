@@ -5,7 +5,7 @@ var pool = new DBconnect();
 var posting = function (post, WallID, PosterID){
   console.log("Preparing to add post to DB");
   //CREATING SQL METHOD
-  var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW());";
+  var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0);";
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, result) {
@@ -37,7 +37,7 @@ var getWallPosts = function(WallID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT Content, postID FROM post where WallID='"+WallID+"';";
+        var posts = "SELECT Content, postID, likes FROM post where WallID='"+WallID+"';";
 
         pool.connection.query(posts, function (error, results) {
           if (error)
