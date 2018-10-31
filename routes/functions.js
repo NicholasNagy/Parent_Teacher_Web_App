@@ -2,10 +2,12 @@ var mysql = require('mysql');
 var DBconnect = require('./dbConfig');
 var pool = new DBconnect();
 
-var posting = function (post, WallID, PosterID){
+var posting = function (post, WallID, PosterID, imageName){
   console.log("Preparing to add post to DB");
+  console.log(imageName);
   //CREATING SQL METHOD
-  var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0);";
+    var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
+
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, result) {
@@ -31,6 +33,7 @@ var commenting = function(comment, postID){
         resolve("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
     });
   });
+
 };
 
 var getWallPosts = function(WallID){
@@ -63,7 +66,8 @@ var authenticate = function(email, pass){
         resolve(result);
       });
   });
-}
+
+};
 
 
 var editProfile = function(userFName, userLName, password, email, userID){
