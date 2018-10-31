@@ -32,7 +32,7 @@ router.post('/', function(req,res){
             if(result[0].Email==email&&result[0].Pass==pass){
 
                 console.log("Login Successful");
-                var posts = "SELECT Content, postID, Image FROM post where WallID='"+result[0].ID+"';";
+                var posts = "SELECT * FROM post where WallID='"+result[0].ID+"';";
                 pool.connection.query(posts, function (error, results) {
 
                     if (error)

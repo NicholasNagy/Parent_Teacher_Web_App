@@ -29,6 +29,16 @@ var createGroupRouter = require('./routes/createGroups');
 var editGroupRouter = require('./routes/editGroup');
 var addtoGroupRouter = require('./routes/addToGroup');
 
+var wallRouter = require('./routes/goToWall');
+
+//viewing profile
+var viewProfile = require('./routes/viewProfile');
+
+//like/dislike routers
+
+var likeRouter = require('./routes/like');
+var dislikeRouter = require('./routes/dislike');
+
 
 var app = express();
 
@@ -66,11 +76,25 @@ app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
 app.use('/viewParent',viewParent);
 
+//friends
+
+
 app.use('/friends', friendsRouter);
 app.use('/searchFriends',searchFriendsRouter);
 app.use('/searchUsers',searchUsersRouter);
 app.use('/addFriends', addFriendsRouter);
 app.use('/viewProfile', viewProfile);
+app.use('/goToWall', wallRouter);
+
+//like/dislike routers
+app.use('/like', likeRouter);
+app.use('/dislike', dislikeRouter);
+
+//view profile
+app.use('/viewProfile', viewProfile);
+
+//groups
+
 app.use('/groups',groupsRouter);
 app.use('/createGroups',createGroupRouter);
 app.use('/editGroup',editGroupRouter);

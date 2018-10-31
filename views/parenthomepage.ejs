@@ -25,9 +25,9 @@
 
                     <li class="sidebar_menu_item">
                         <!--- change to /teacherProfile-->
-                            <form action="/parentProfile" method="POST">
+                            <form action="/viewProfile" method="POST">
 
-                                <input type="text" name="userID" style="display:none" value = "">
+                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
                     </li>
@@ -107,6 +107,9 @@
              <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
 
             </div>
+            <form action="/" method="POST">
+
+
 
             <tr>
                 <td><span class="editInfoTxt">Upload an image :</span></td>
@@ -137,17 +140,44 @@
 
                             <!--ADD POST Content here-->
 
-                            <span class="postText">
-                                 <%= u.Content %>
 
-                                <img src="<%= u.Image %>" alt="Default">
+                            <span class="postText"> <%= u.Content %> <img src="<%= u.Image %>" alt=""></span>
+                            <p>(<%=u.likes%>)</p>
+                             <td>
+                               <form action ="/like" method="POST">
+                               <input type="text" name="postID" style="display:none" value = "<%= u.postID%>">
+                               <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                               <input type="text" name="WallID" style="display:none" value = "<%= WallID%>">
+                               <input type="text" name="name" style="display:none" value = "<%= name%>">
+                               <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>like</button>
+
+                                   </form>
+                                 </td>
+                                   <td>
+                       <form action="/dislike" method="POST">
+                              <input type="text" name="postID" style="display:none" value = "<%= u.postID%>">
+                           <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                           <input type="text" name="WallID" style="display:none" value = "<%= WallID%>">
+                           <input type="text" name="name" style="display:none" value = "<%= name%>">
+                           <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i> dislike</button>
+                       </form> </td>
+                            <span class="postText">
+
+
+
 
                             </span>
 
 
+
                             <form action="/commentPage" method="POST">
 
-                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.postID%>"> </td>
+
+
+                                 <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.postID%>">
+                                </td>
+
+
 
 
                             <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
