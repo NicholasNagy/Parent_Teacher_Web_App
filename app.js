@@ -23,6 +23,11 @@ var searchFriendsRouter = require('./routes/searchFriends');
 var addFriendsRouter = require('./routes/addFriends');
 var viewProfile = require('./routes/viewProfile');
 
+//like/dislike routers
+
+var likeRouter = require('./routes/like');
+var dislikeRouter = require('./routes/dislike');
+
 var app = express();
 
 // view engine setup
@@ -58,6 +63,10 @@ app.use('/friends', friendsRouter);
 app.use('/searchFriends',searchFriendsRouter);
 app.use('/addFriends', addFriendsRouter);
 app.use('/viewProfile', viewProfile);
+
+//like/dislike routers
+app.use('/like', likeRouter);
+app.use('/dislike', dislikeRouter);
 
 
 // catch 404 and forward to error handler
