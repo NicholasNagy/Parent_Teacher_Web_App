@@ -12,6 +12,7 @@ var pool = new DBconnect();
 
 
 router.post('/', function(req, res, next) {
+  console.log("hello");
     var userID = req.body.userID;
     console.log(userID);
 

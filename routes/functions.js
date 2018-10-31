@@ -40,7 +40,7 @@ var getWallPosts = function(WallID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT Content, postID, likes FROM post where WallID='"+WallID+"';";
+        var posts = "SELECT * FROM post where WallID='"+WallID+"';";
 
         pool.connection.query(posts, function (error, results) {
           if (error)

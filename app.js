@@ -29,6 +29,9 @@ var createGroupRouter = require('./routes/createGroups');
 var editGroupRouter = require('./routes/editGroup');
 var addtoGroupRouter = require('./routes/addToGroup');
 
+//viewing profile
+var viewProfile = require('./routes/viewProfile');
+
 //like/dislike routers
 
 var likeRouter = require('./routes/like');
@@ -76,9 +79,13 @@ app.use('/searchFriends',searchFriendsRouter);
 app.use('/searchUsers',searchUsersRouter);
 app.use('/addFriends', addFriendsRouter);
 app.use('/viewProfile', viewProfile);
+
 //like/dislike routers
 app.use('/like', likeRouter);
 app.use('/dislike', dislikeRouter);
+
+//view profile
+app.use('/viewProfile', viewProfile);
 
 //groups
 

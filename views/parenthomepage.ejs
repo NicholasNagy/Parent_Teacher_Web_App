@@ -25,9 +25,9 @@
 
                     <li class="sidebar_menu_item">
                         <!--- change to /teacherProfile-->
-                            <form action="/parentProfile" method="POST">
+                            <form action="/viewProfile" method="POST">
 
-                                <input type="text" name="userID" style="display:none" value = "">
+                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
                     </li>
@@ -141,7 +141,7 @@
                             <!--ADD POST Content here-->
 
 
-                            <span class="postText"> <%= u.Content %> </span>
+                            <span class="postText"> <%= u.Content %> <img src="<%= u.Image %>" alt=""></span>
                             <p>(<%=u.likes%>)</p>
                              <td>
                                <form action ="/like" method="POST">
@@ -162,9 +162,9 @@
                            <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i> dislike</button>
                        </form> </td>
                             <span class="postText">
-                                 <%= u.Content %>
 
-                                <img src="<%= u.Image %>" alt="Default">
+
+
 
                             </span>
 
