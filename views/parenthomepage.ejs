@@ -48,7 +48,7 @@
                     </li>
 
                     <li class="sidebar_menu_item">
-                    
+
                      <form action="/friends" method="POST">
 
                                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
@@ -56,18 +56,18 @@
                                                    </form>
 
                                                    </li>
-                                                   
+
                         <li class="sidebar_menu_item">
 
                             <form action="/groups" method="POST">
-        
+
                             <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                             <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
                                 </form>
-        
-                                </li> 
 
-                                                
+                                </li>
+
+
 
                     <li class="sidebar_menu_item">
 
@@ -100,7 +100,7 @@
             <form action="/posting" method="POST"  enctype="multipart/form-data">
 
               <input type="text" id="WallID" name = "WallID" style="display:none" value = "<%= WallID%>">
-              <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= PosterID%>">
+              <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= userID%>">
                 <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
 
             <div class="textArea" >
@@ -138,12 +138,12 @@
                             <!--ADD POST Content here-->
 
                             <span class="postText">
-                                 <%= u.Content %>  
-                                
+                                 <%= u.Content %>
+
                                 <img src="<%= u.Image %>" alt="Default">
-                             
+
                             </span>
-                             
+
 
                             <form action="/commentPage" method="POST">
 

@@ -44,7 +44,7 @@ var imageName = '';
     imageName = date + '-' +  fileBaseName + fileExtension;
     }
   });
-  
+
   const upload = multer({
     storage: storage,
     limits: {fileSize: 1024*1024*10},
@@ -52,8 +52,8 @@ var imageName = '';
       checkFileType(file, cb);
     }
   }).single('userImageEdit');
-  
-  
+
+
   //check File Type Function
   function checkFileType(file, cb){
     //Allowed ext
@@ -62,14 +62,14 @@ var imageName = '';
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     // chick mime
     const mimetype = filetypes.test(file.mimetype);
-  
+
     if(mimetype && extname){
       return cb(null, true);
     }else{
       cb('Error: images only!');
     }
   }
-  
+
 
 
 
@@ -103,7 +103,7 @@ var imageName = '';
           if (error)
               throw error;
             //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, PosterID:PosterID});
+          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, userID:PosterID});
       });
     });
 
