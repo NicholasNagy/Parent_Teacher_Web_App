@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 var pool = new DBconnect();
 
 let thesignup = new Promise(function(resolve, reject){
-  resolve(signup.insertdb("nicki", "nacki", "lili@liliii", "nicki", 1));
+  resolve(signup.insertdb("nicki", "nacki", "lili@liliiiii", "nicki", 1));
 });
 
 
@@ -22,19 +22,18 @@ thesignup.then(function(success){
   if(success){
     console.log("signup successful");
     let authentication = new Promise(function(resolve,reject){
-      resolve(user.authenticate("lili@liliii", "nicki"));
+      resolve(user.authenticate("lili@liliiiii", "nicki"));
     });
     authentication.then(function(theuser){
 
-      console.log("the"+theuser[0]);
-      console.log("id:"+ theuser[0].ID);
+      console.log("id of authenticated user:"+ theuser[0].ID);
       let insertNewInfo = new Promise(function(resolve, reject){
         resolve(user.update("nickii","nackii", "nickii", "nacnac@nacnac", theuser[0].ID));
       });
 
       insertNewInfo.then(function(thisuser){
         //test the obtained result
-        console.log("this"+thisuser);
+
         var x = 0;
         if("nickii"==thisuser.Fname){
           console.log("New first name verified");
@@ -57,12 +56,12 @@ thesignup.then(function(success){
           x++;
           console.log("New password failed verification");
         }
+        var deleteprofile = "DELETE FROM Users WHERE ID = '"+thisuser.ID+"' OR Email='lili@liliiiii';";
 
-        var deleteprofile = "DELETE FROM Users WHERE ID = '"+thisuser.ID+"';";
 
-        console.log("Preparing to delete profile");
+        console.log("Preparing to delete profile: "+ thisuser.ID);
 
-        pool.connection.query(deleteprofile, function(err,theresults){
+        pool.connection.query(deleteprofile, function(err, theresults){
 
           if(x>0){
             console.log("Profile Deleted");
@@ -83,5 +82,7 @@ thesignup.then(function(success){
   }
   else{
     console.log("signup failed");
+    console.log("Exiting with exit code: 1");
+    process.exit(1);
   }
 });
