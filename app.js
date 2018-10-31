@@ -19,6 +19,16 @@ var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
 var viewParent = require('./routes/viewParents');
 
+var friendsRouter = require('./routes/friends');
+var searchFriendsRouter = require('./routes/searchFriends');
+var searchUsersRouter = require('./routes/searchUsers');
+var addFriendsRouter = require('./routes/addFriends');
+var viewProfile = require('./routes/viewProfile');
+var groupsRouter = require('./routes/groups');
+var createGroupRouter = require('./routes/createGroups');
+var editGroupRouter = require('./routes/editGroup');
+var addtoGroupRouter = require('./routes/addToGroup');
+
 
 var app = express();
 
@@ -55,6 +65,16 @@ app.use('/parentMessenger',messenger);
 app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
 app.use('/viewParent',viewParent);
+
+app.use('/friends', friendsRouter);
+app.use('/searchFriends',searchFriendsRouter);
+app.use('/searchUsers',searchUsersRouter);
+app.use('/addFriends', addFriendsRouter);
+app.use('/viewProfile', viewProfile);
+app.use('/groups',groupsRouter);
+app.use('/createGroups',createGroupRouter);
+app.use('/editGroup',editGroupRouter);
+app.use('/addToGroup',addtoGroupRouter);
 
 
 // catch 404 and forward to error handler

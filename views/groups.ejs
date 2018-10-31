@@ -1,11 +1,11 @@
-<% include headers/header %>
+<% include headers/headerGroups %>
 
 <div class="nav_bar">
         <a class="title" href="/homepage">School App</a>
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= %></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -28,7 +28,7 @@
                         
                             <form action="/parentProfile" method="POST">
 
-                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
 
@@ -54,7 +54,7 @@
 
                     <form action="/friends" method="POST">
 
-                    <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                    <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                     <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
                         </form>
 
@@ -64,7 +64,7 @@
 
                             <form action="/groups" method="POST">
         
-                            <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                            <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                             <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
                                 </form>
         
@@ -85,65 +85,65 @@
 
     <div class="page_content">
 
-        <form action="/parentMessenger" method="POST">
-            <input type="hidden" name="ffnam" value="<%= name%>">
-            <input type="submit" value="Message Teacher">
-        </form>
 
-        <div id="post" style="display: none">
-            <form action="/posting" method="POST">
+        <div  class="creatGroupHeader">
+
+               <p id="gtitle"><i class="material-icons" style="font-size:25px">create</i> Create A New Group</p>
+                  
+
+                    <form action="/createGroups" method="POST">
+                        <input type="text" name="userID" style="display:none" value = "<%= uID%>">    
+                        <input type="text" name="groupName" class="searchField" placeholder="Group Name" required maxlength="20">
+                     <button name="createGroup" class="createGroupBtn">Create Group </button>
+                    
+                    </form>
+
+        </div>
+        <hr class="divider">
 
 
-            <div class="textArea" >
-             <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
+        <div class="groupListHeader">
 
-            </div>
+                <p id="g1title"><i class="material-icons" style="font-size:22px">group_work</i> Your Groups</p>
 
-            <button name="submitPost" id="submitPost">Post</button>
-          </form>
         </div>
 
-        <div id="tableWrap">
-            <div id="tableScroll">
+        <div class="groupList">
 
 
-        <!-- This table will show all the posts -->
+            
+                <table class="groupsListTable">
 
-                    <p id="tableTitle">Public Posts</p>
-                <table class="postingsTable">
+                        <% if(typeof groupList !== 'undefined'){ %>
+                    
+                                <% groupList.forEach(function(v){ %>
 
+                            
 
+                        <tr class="groupTableRow">
 
-                    <!-- <% posts.forEach(function(u){ %> -->
-                        <tr class="posts">
+                
+                            <form action="/editGroup" method="POST">
 
-                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
-                        <div class="postContent">
+                                <td class="group"><span class="group"style="margin-left:20px;"><%= v.groupName%></span></td>
+                                <td class="group"> <input type="text" name="userID" style="display:none" value = "<%= uID%>"> </td>
+                                    <!-- Group ID -->
+                                <td class="group" ><span style="margin-left:70px;">Group ID: <%= v.groupID%></span><input type="text"name="groupID" style="display:none;" value = "<%=v.groupID%>"></td>
 
-
-                            <!--ADD POST Content here-->
-
-                            <span class="postText"> <%= u.Content %> </span>
-
-                            <form action="/commentPage" method="POST">
-
-                               <td> <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.PostID%>"> </td>
-
-
-                            <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
-                                </form>
-
-                           </tr>
-
-                            <!-- <% }) %> -->
-
-
+                                <td > <button name="editGroup" class="editGroupBtn" >View/Edit</button> </td>
+                            </form>              
+                        </tr>
+                                <% }) %>
+                        <% } %>
                 </table>
 
-    </div>
+
+
+
+
         </div>
 
-
+     
 
     </div>
 
