@@ -1,0 +1,219 @@
+body{
+    background-image: url(res/marble2.jpg);
+    height: 100%;
+
+}
+
+.creatGroupHeader{
+
+    text-align: center;
+    height: 20%;
+    width: 100%;
+}
+
+#gtitle{
+
+    font-size: 30px;
+    font-family: 'Courier New';
+    font-weight: bold;
+
+}
+
+#g1title{
+
+    font-size: 30px;
+    font-family: 'Courier New';
+    font-weight: bold;
+    
+
+}
+
+.createGroupBtn{
+
+    background-color: gold;
+    border: 0px;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.createGroupBtn:hover{
+
+    background-color: rgb(226, 192, 0);
+}
+
+.divider{
+
+    margin-top: 30px;
+    width: 100%;
+}
+
+.groupListHeader{
+
+    text-align: center;
+}
+
+.searchField{
+
+    width: 350px;
+    height: 38px;
+    font-size: 17px;
+    padding-left: 5px;
+    
+}
+
+
+.groupsListTable{
+
+    margin-top: 10px;
+	width: 55%;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+    margin-left:32vh;
+    padding: 10px;
+   
+
+}
+.memberListTable{
+
+    margin-top: 10px;
+	width: 45%;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+    text-align: left;
+    margin-left:25vh;
+    padding: 10px;
+
+
+
+}
+.editGroupBtn{
+
+    float: right;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+
+.leader{
+    color: rgb(0, 0, 0);
+    padding-left: 5px;
+    }
+
+
+.groups_List{
+
+  
+    margin-top: -100vh;
+    margin-left:400px;
+    width:100%;
+     text-align: center;
+}
+    
+.list_Header{
+    
+    text-align: center;
+     
+}
+    
+#fListTitle{
+    
+    font-size: 25px;
+        
+}
+        
+.editGroupPage_content{
+
+    width: 100vh;
+	border-right-color: black;
+    margin-left: 285px;
+    margin-top: 70px;
+    height: 100%;
+    z-index: -1;
+    
+
+
+}
+
+.search{
+border-right: solid;
+width: 60%;
+height: 100vh;
+
+
+
+}
+
+.searchBar{
+
+    text-align: center;
+    height: 100px;
+    margin-right: 10px; 
+  
+}
+
+#searchTitle{
+
+    font-size: 25px;
+
+    
+}
+
+.searchField1{
+
+    width: 250px;
+}
+
+.groupNAME{
+   
+    margin: 50vh;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    display: inline;
+}
+
+.searchUsersBtn{
+
+    cursor: pointer;
+
+}
+
+
+.searchUsersBtn:hover{
+
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+}
+
+.searchResultsTable{
+
+    margin-top: 30px;
+	width: 100%;
+	font-size: 20px;
+	border-spacing: 0px;
+	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
+    text-align: left;
+
+
+}
+
+.groupInviteBtn{
+
+
+    float: right;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: rgb(127, 255, 0);
+    margin-right:20px;
+}
+
+.groupInviteBtn:hover{
+
+     cursor: pointer;
+    background-color: rgb(114, 226, 2);
+
+}
