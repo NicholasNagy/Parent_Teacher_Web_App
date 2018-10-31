@@ -25,7 +25,7 @@
                 <ul class="sidebar_menu">
 
                     <li class="sidebar_menu_item">
-                        
+
                             <form action="/parentProfile" method="POST">
 
                                 <input type="text" name="userID" style="display:none" value = "">
@@ -69,11 +69,11 @@
 
             <div class="searchBar">
                 <p id="searchTitle">Search for Friends</p>
-                
+
                 <form action="/searchFriends" method="POST">
 
-                  
-                <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>  
+
+                <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>
                 <input type="text" name="searchField" class="searchField" placeholder="Search">
                 <button name="searchFriendsBtn" class="searchFriendsBtn">Search</button>
                     </form>
@@ -82,41 +82,41 @@
 
                     <table class="searchResultsTable">
 
-                              
+
 
             <% if(typeof queryResults !== 'undefined'){ %>
                 <% var n = 0; %>
-                    <% queryResults.forEach(function(u){ %> 
-                        
-              
+                    <% queryResults.forEach(function(u){ %>
+
+
                         <tr class="results">
-        
-                        
+
+
                             <% if(u == "No Results Found"){%>
                                 <td class="person" style="text-align:center;"><span><%= u %></span></td>
-                               
-                     
+
+
                              <% }else{ %>
 
                              <td class="person"><span><%= u %></span></td>
                                       <form action="/addFriends" method="POST">
 
-                                
+
                                         <% var key = idKeys[n];%>
-                                      
-                                
-                                    <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>     
+
+
+                                    <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>
                                       <td class="person" style="text-align:center;"><input type="text"name ="idToAdd" style="display:none;" value = "<%=key %>"></td>
                                           <td> <button name="friendRequestBtn" class="friendRequestBtn" >Friend Request</button> </td>
                                      </form>
-        
+
                                  <% } %>
                                    </tr>
-                        <% n++; %>   
+                        <% n++; %>
                     <% }) %>
              <% } %>
                         </table>
-            
+
 
             </div>
 
@@ -132,22 +132,24 @@
                         <table class="friendsListTable">
 
                                 <% if(typeof friendsList !== 'undefined'){ %>
-                            
+
                                         <% friendsList.forEach(function(v){ %>
 
-                                    
+
 
                                 <tr class="friendTableRow">
 
-                        
+
                                     <form action="/goToWall" method="POST">
 
-                                        <td class="person"><span class="friendName"><%= v.friendName%></td>
+                                        <td class="person"><span class="friendNam" name = "friendNam"><%= v.friendName%></span></td>
+                                          <input type="text"name="userID" style="display:none" value = "<%=uID%>">
                                             <!-- ID to go to wall -->
+                                            <input type="text"name="friendName" style="display:none" value = "<%=v.friendName%>">
                                         <td class="person" style="display:none;"><input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>"></td>
 
                                         <td> <button name="viewFriendWall" class="viewFriendWall">View Wall</button> </td>
-                                    </form>              
+                                    </form>
                                 </tr>
                                         <% }) %>
                                 <% } %>
