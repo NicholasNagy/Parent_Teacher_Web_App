@@ -20,6 +20,9 @@ jobs:
         - node ./functiontests/functiontestingcleanup.js
     - script:
         - node ./functiontests/checkEmailDuplicates.js
-
+    - script:
+        - node ./functiontests/profileEditTesting.js
+    - script:
+        - node ./functiontests/profileViewTesting.js
 
 
