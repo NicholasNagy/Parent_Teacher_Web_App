@@ -18,6 +18,7 @@ var teacherProfileRouter=require('./routes/teacherProfile');
 var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
 var viewParent = require('./routes/viewParents');
+
 var friendsRouter = require('./routes/friends');
 var searchFriendsRouter = require('./routes/searchFriends');
 var searchUsersRouter = require('./routes/searchUsers');
@@ -27,6 +28,7 @@ var groupsRouter = require('./routes/groups');
 var createGroupRouter = require('./routes/createGroups');
 var editGroupRouter = require('./routes/editGroup');
 var addtoGroupRouter = require('./routes/addToGroup');
+
 
 var app = express();
 
@@ -43,6 +45,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use( express.static( "public" ) );
+app.use( express.static( "public/uploads" ) );
+
+
 
 app.use('/', indexRouter);
 //app.use('/login',indexRouter);
@@ -59,6 +65,7 @@ app.use('/parentMessenger',messenger);
 app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
 app.use('/viewParent',viewParent);
+
 app.use('/friends', friendsRouter);
 app.use('/searchFriends',searchFriendsRouter);
 app.use('/searchUsers',searchUsersRouter);
@@ -68,6 +75,7 @@ app.use('/groups',groupsRouter);
 app.use('/createGroups',createGroupRouter);
 app.use('/editGroup',editGroupRouter);
 app.use('/addToGroup',addtoGroupRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
