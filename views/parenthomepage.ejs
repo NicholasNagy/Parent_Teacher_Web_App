@@ -25,9 +25,9 @@
 
                     <li class="sidebar_menu_item">
                         <!--- change to /teacherProfile-->
-                            <form action="/viewProfile" method="POST">
+                            <form action="/parentProfile" method="POST">
 
-                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                <input type="text" name="userID" style="display:none" value = "">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
                     </li>
@@ -46,15 +46,6 @@
                         </ul>
 
                     </li>
-
-                    <li class="sidebar_menu_item">
-                                               <form action="/friends" method="POST">
-
-                                               <input type="text" name="userID" style="display:none" value = "<%= userID%>">
-                                               <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
-                                                   </form>
-
-                                                   </li>
 
                     <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
@@ -83,16 +74,21 @@
       </div>
 
         <div id="post" style="display: none">
-            <form action="/posting" method="POST">
+            <form action="/posting" method="POST"  enctype="multipart/form-data">
 
               <input type="text" id="WallID" name = "WallID" style="display:none" value = "<%= WallID%>">
-              <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= userID%>">
+              <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= PosterID%>">
                 <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
 
             <div class="textArea" >
              <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
 
             </div>
+
+            <tr>
+                <td><span class="editInfoTxt">Upload an image :</span></td>
+                <td><input type="file" name="userImageEdit" ></td>
+            </tr>
 
             <button name="submitPost" id="submitPost">Post</button>
           </form>
@@ -118,7 +114,13 @@
 
                             <!--ADD POST Content here-->
 
-                            <span class="postText"> <%= u.Content %> </span>
+                            <span class="postText">
+                                 <%= u.Content %>  
+                                
+                                <img src="<%= u.Image %>" alt="Default">
+                             
+                            </span>
+                             
 
                             <form action="/commentPage" method="POST">
 
