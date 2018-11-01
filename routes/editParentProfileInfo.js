@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
 var DBconnect = require ('./dbConfig');
+var profile = require('./functions');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,17 +23,16 @@ var userType = req.body.accountTpEdit;
 
 console.log(userFName+userLName+password+email+userID+userType);
 
-var ParentSQL = "UPDATE Parents SET Fname = '"+userFName+"', Lname = '"+ userLName +"', Pass='"+password+"' WHERE ParentID='"+userID+"';";
-
-
-pool.connection.query(ParentSQL, function(err, result){
-  if(err) throw err;
-  console.log("hello");
+let editedProfile = new Promise(function(resolve, reject){
+  resolve(profile.update(userFName, userLName, password, email, userID));
 });
-res.render('profile', {userType:userType, userID:userID, userFname:userFName, userLname:userLName, userEmail:email, userPass:password});
 
+editedProfile.then(function(user){
+  res.render('profile', {userType:userType, userID:user.ID, userFname:user.Fname, userLname:user.Lname, userEmail:user.Email, userPass:user.Pass});
+});
 
 });
+
 
 
 module.exports = router;

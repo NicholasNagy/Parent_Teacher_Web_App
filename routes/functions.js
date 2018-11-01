@@ -2,10 +2,12 @@ var mysql = require('mysql');
 var DBconnect = require('./dbConfig');
 var pool = new DBconnect();
 
-var posting = function (post, WallID, PosterID){
+var posting = function (post, WallID, PosterID, imageName){
   console.log("Preparing to add post to DB");
+  console.log(imageName);
   //CREATING SQL METHOD
-  var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW());";
+    var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
+
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, result) {
@@ -31,18 +33,19 @@ var commenting = function(comment, postID){
         resolve("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
     });
   });
+
 };
 
 var getWallPosts = function(WallID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT Content, postID FROM post where WallID='"+WallID+"';";
+        var posts = "SELECT * FROM post where WallID='"+WallID+"';";
 
         pool.connection.query(posts, function (error, results) {
           if (error)
               throw error;
-          resolve(results);  
+          resolve(results);
         });
 
 
@@ -63,11 +66,39 @@ var authenticate = function(email, pass){
         resolve(result);
       });
   });
+
+};
+
+
+var editProfile = function(userFName, userLName, password, email, userID){
+  var updateUser = "UPDATE Users SET Fname = '"+userFName+"', Lname = '"+ userLName +"', Pass='"+password+"' WHERE ID='"+userID+"';";
+
+  return new Promise(function(resolve, reject){
+    pool.connection.query(updateUser, function(err, result){
+      if(err) throw err;
+      console.log("hello");
+
+      resolve(viewProfile(userID));
+    });
+  });
+};
+
+var viewProfile = function(userID){
+  return new Promise(function(resolve, reject){
+    var getUser = "Select * FROM Users where ID='"+userID+"';";
+    pool.connection.query(getUser, function(error, user){
+      if(error) throw error;
+      resolve(user[0]);
+    });
+  });
 }
+
 
 module.exports= {
   post: posting,
   comment: commenting,
   authenticate: authenticate,
-  getWallPosts: getWallPosts
+  getWallPosts: getWallPosts,
+  update: editProfile,
+  viewProfile: viewProfile
 };
