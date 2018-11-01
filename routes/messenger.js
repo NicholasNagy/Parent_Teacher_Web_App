@@ -20,11 +20,17 @@ var socket = io.connect('http://localhost:3001');
 message.addEventListener('keypress', function(){
     socket.emit('typing', handle.value);
 })
+socket.on('oldChat', function(data2){
+    feedback.innerHTML = '';
+    for (let i=0; i< data2.length; i++){
+    output.innerHTML += '<p><strong>' + data2[i].fromName + ': </strong>' + data2[i].content + '</p>';}
+});
  // Listen for events
  socket.on('chat', function(data){
      feedback.innerHTML = '';
      output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
  });
+
 
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data.handle + ' is typing a message...</em></p>';
