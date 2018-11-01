@@ -8,7 +8,7 @@ var pool = new DBconnect();
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-    var sql= "SELECT Fname,Lname FROM parents";
+    var sql= "SELECT * FROM Users WHERE isTeacher='0'";
 
     //sending the teacher's name from the teacher homepage
     var teachername = req.body.ffnam;
@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
         if (err) {
             throw err;
         }
-        res.render('viewParent', { parents: result, teacher: teachername });
+        res.render('viewParent', { parents: result, teacher: teachername});
     });
 
 });
