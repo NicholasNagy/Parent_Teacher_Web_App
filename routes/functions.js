@@ -20,11 +20,11 @@ var posting = function (post, WallID, PosterID, imageName){
 
 };
 
-var commenting = function(comment, postID){
+var commenting = function(comment, postID, commenterID){
 
   console.log("Preparing to add comment to DB");
 
-  var postSQL = "INSERT INTO comments (Content, PostID) VALUES ('"+comment+"', '"+postID +"');";// !Should add fields for unique IDs !
+  var postSQL = "INSERT INTO comments (Content, PostID, commenterID) VALUES ('"+comment+"', '"+postID +"', '"+commenterID+"');";// !Should add fields for unique IDs !
 
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, result) {
@@ -36,11 +36,34 @@ var commenting = function(comment, postID){
 
 };
 
+var generateComments = function(postID, userName, userID){
+  console.log(postID);
+//CREATING SQL STATEMENTS
+  var post = "SELECT * FROM post join Users ON post.PostID='"+postID+"' AND post.posterID=Users.ID;";
+  var comments = "SELECT * FROM comments join Users ON comments.commenterID=Users.ID AND comments.PostID='"+postID+"';";
+
+  //SQL QUERY HERE
+  return new Promise(function(resolve, reject){
+  pool.connection.query(post, function (err, resultP){
+      if (err) throw err;
+      pool.connection.query(comments, function (err, result){
+        if (err) throw err;
+
+          resolve({comments : result, postID, post: resultP[0].Content, posterName:resultP[0].Fname, name: userName, userID: userID});
+
+    });
+
+  });
+  });
+};
+
+
+
 var getWallPosts = function(WallID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT * FROM post where WallID='"+WallID+"';";
+        var posts = "SELECT Fname, Content, postID, posterID, WallID, likes, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
 
         pool.connection.query(posts, function (error, results) {
           if (error)
@@ -100,5 +123,6 @@ module.exports= {
   authenticate: authenticate,
   getWallPosts: getWallPosts,
   update: editProfile,
-  viewProfile: viewProfile
+  viewProfile: viewProfile,
+  generateComments: generateComments,
 };

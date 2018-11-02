@@ -98,15 +98,14 @@ var imageName = '';
       console.log(successMessage);
       //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
 
-      var posts = "SELECT * FROM post where WallID='"+WallID+"';";
-
-      //EXECUTION OF QUERY
-      pool.connection.query(posts, function (error, results) {
-          if (error)
-              throw error;
-            //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-          res.render('parenthomepage', {posts: results, name:theName, WallID:WallID, userID:PosterID});
+      let getWallPosts = new Promise(function(resolve, reject){
+        resolve(functions.getWallPosts(WallID));
       });
+
+      getWallPosts.then(function(posts){
+        res.render('parenthomepage', {posts: posts, name:theName, WallID:WallID, userID:PosterID});
+      });
+
     });
 
   });
