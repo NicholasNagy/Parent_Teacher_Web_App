@@ -33,6 +33,14 @@
                                             </form>
                             </li>
 
+                            <li class="sidebar_menu_item">
+                              <form action="/goToWall" method="POST">
+                                <input type="text" name = "userID" style="display:none" value="<%=userID%>">
+                                <input type="text" name = "friendID" style="display:none" value="<%=userID%>">
+                                <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
+                              </form>
+                            </li>
+
                             <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
                                 <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
                                     <li class="sidebar_menu_item">
