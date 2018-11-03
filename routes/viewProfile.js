@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
             var teacherEmail = result[0].Email;
             var teacherPass = result[0].Pass;
 
-            res.render('profile', {userType:userType, userID:teacherID, userFname:teacherFname, userLname:teacherLname, userEmail:teacherEmail, userPass:teacherPass});
+            res.render('profile', {userType:userType, userID:teacherID, name:teacherFname, userLname:teacherLname, userEmail:teacherEmail, userPass:teacherPass});
 
         }
         else{

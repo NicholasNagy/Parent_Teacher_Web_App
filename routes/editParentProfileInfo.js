@@ -28,7 +28,7 @@ let editedProfile = new Promise(function(resolve, reject){
 });
 
 editedProfile.then(function(user){
-  res.render('profile', {userType:userType, userID:user.ID, userFname:user.Fname, userLname:user.Lname, userEmail:user.Email, userPass:user.Pass});
+  res.render('profile', {userType:userType, userID:user.ID, name:user.Fname, userLname:user.Lname, userEmail:user.Email, userPass:user.Pass});
 });
 
 });

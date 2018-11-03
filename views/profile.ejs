@@ -7,7 +7,7 @@
 
                 <div class="quickAccess">
 
-                    <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= userFname%></span><em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+                    <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= name%></span><em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -26,7 +26,7 @@
                         <ul class="sidebar_menu">
 
                             <li class="sidebar_menu_item">
-                                    <form action="/parentProfile" method="POST">
+                                    <form action="/viewProfile" method="POST">
 
                                         <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                         <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
@@ -47,6 +47,26 @@
                                 </ul>
 
                             </li>
+
+                            <li class="sidebar_menu_item">
+                            <form action="/friends" method="POST">
+
+                                                      <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                                      <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                                      <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                                          </form>
+
+                                                          </li>
+
+                               <li class="sidebar_menu_item">
+
+                                   <form action="/groups" method="POST">
+
+                                   <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                   <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                                       </form>
+
+                                       </li>
 
                             <li class="sidebar_menu_item">
                                 <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
@@ -72,7 +92,7 @@
                          <img name="profilePicture" class="profilePicture" src="stylesheets/res/placeholderProfilePicture.png" style="width: 300px; height:300px;">
 
                          <div class="headerName">
-                                <span name="userName" class="userName"><%= userFname%> <%= userLname%></span>
+                                <span name="userName" class="userName"><%= name%> <%= userLname%></span>
 
                              </div>
 
@@ -128,13 +148,13 @@
 
                       <tr>
                             <td><span class="editInfoTxt">First Name:  </span></td>
-                            <td> <input type="text" id = "userFNameEdit" name="userFNameEdit" class="editUserInfo" value="<%= userFname%>"></td>
+                            <td> <input type="text" id = "userFNameEdit" name="userFNameEdit" class="editUserInfo" value="<%= name%>"></td>
 
 
                     </tr>
 
                     <tr>
-                        
+
                             <td><span class="editInfoTxt">Family Name: </span></td>
                             <td> <input type="text" name="userLNameEdit" class="editUserInfo"  value="<%= userLname%>"></td>
 
@@ -156,7 +176,7 @@
 
                     </tr>
 
-                  
+
                     <tr>
 
                             <td><span class="editInfoTxt">Change User ID :</span></td>
@@ -172,7 +192,7 @@
                     </tr>
 
                     <tr style="display:none">
-                         
+
                             <td> <input type="text" name="accountTpEdit" class="editUserInfo" id="accountType" value="<%= userType%>" ></td>
                             <td><input type="text" name="userIDEdit" class="editUserInfo" value="<%= userID%>"></td>
                             <td><input type="email" name="userEmailEdit" class="editUserInfo"  value=" <%= userEmail%>"></td>
