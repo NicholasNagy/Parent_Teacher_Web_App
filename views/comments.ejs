@@ -48,6 +48,27 @@
                 </li>
 
                 <li class="sidebar_menu_item">
+
+                 <form action="/friends" method="POST">
+
+                                           <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                           <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                           <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                               </form>
+
+                                               </li>
+
+                    <li class="sidebar_menu_item">
+
+                        <form action="/groups" method="POST">
+
+                        <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                        <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                            </form>
+
+                            </li>
+
+                <li class="sidebar_menu_item">
                     <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
                 </li>
 
