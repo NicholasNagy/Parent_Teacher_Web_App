@@ -17,6 +17,7 @@ router.post('/', function (req,res) {
   //GET User query
     var queryName = req.body.searchField;
     var loggedInID = req.body.logID;
+    var userName = req.body.userName;
 
     var query = "SELECT Fname,Lname,ID FROM users";
 
@@ -29,24 +30,24 @@ pool.connection.query(friendsList, function (error, result){
 
           var users=[];
           var ids=[];
-      
+
 
           for(var i =0; i < results.length; i++){
 
             var fullName = results[i].Fname + " " + (results[i].Lname);
-            
-            
-            
-            
+
+
+
+
             if( (results[i].Fname == queryName) || (results[i].Lname == queryName) || (fullName == queryName)  ){
 
 
-            
+
              users.push(fullName);
              console.log(results[i].ID);
              ids.push(results[i].ID)
-           
-    
+
+
             }
           }
 
@@ -54,13 +55,13 @@ pool.connection.query(friendsList, function (error, result){
             users.push("No Results Found");
 
           }
-          
-          
-        res.render('friends', {queryResults: users, idKeys: ids, uID : loggedInID, friendsList: result});
+
+
+        res.render('friends', {queryResults: users, idKeys: ids, userID : loggedInID, friendsList: result, name:userName});
 
     });
 
-}); 
+});
 });
 
 module.exports=router;

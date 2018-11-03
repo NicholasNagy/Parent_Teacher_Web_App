@@ -5,7 +5,7 @@
 
     <div class="quickAccess">
 
-        <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span>Khaled</span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+        <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%=name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -25,11 +25,19 @@
 
                 <li class="sidebar_menu_item">
                     <!-- button doesn't work for now-->
-                        <form action="/parentProfile" method="POST">
+                        <form action="/viewProfile" method="POST">
 
-                            <input type="text" name="userID" style="display:none" value = "">
+                            <input type="text" name="userID" style="display:none" value = "<%=userID%>">
                             <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                 </form>
+                </li>
+
+                <li class="sidebar_menu_item">
+                  <form action="/goToWall" method="POST">
+                    <input type="text" name = "userID" style="display:none" value="<%=userID%>">
+                    <input type="text" name = "friendID" style="display:none" value="<%=userID%>">
+                    <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
+                  </form>
                 </li>
 
                 <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
@@ -48,6 +56,27 @@
                 </li>
 
                 <li class="sidebar_menu_item">
+
+                 <form action="/friends" method="POST">
+
+                                           <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                           <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                           <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                               </form>
+
+                                               </li>
+
+                    <li class="sidebar_menu_item">
+
+                        <form action="/groups" method="POST">
+
+                        <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                        <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                            </form>
+
+                            </li>
+
+                <li class="sidebar_menu_item">
                     <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
                 </li>
 
@@ -62,17 +91,17 @@
 
 <div class="page_content">
 
-                  
+
                 <form action="/reply" method="POST">
                     <div class="linkedPost">
 
-                       <span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
+                       <span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em><%=posterName%></span>
                     <div class="postContent">
 
-                    
-                        <input type="text"name = "postContent" style="display:none" value = "<%= post%>">
-                        <input type="text" name = "postID" style="display:none" value = "<%= postID%>"> 
 
+                        <input type="text"name = "postContent" style="display:none" value = "<%= post%>">
+                        <input type="text" name = "postID" style="display:none" value = "<%= postID%>">
+                        <input type="text" name = "userID" style="display:none" value = "<%= userID%>">
                         <span class="Text"><%= post %></span>
 
                     </div>
@@ -80,12 +109,12 @@
 
                 <div name="replyBox" id="replyBox">
 
-                
+
 
                     <textarea id="replayArea" name="replayArea"  rows="4" cols="120"  placeholder="Post a reply."></textarea>
+                    <input type="text" name = "userName" style="display:none" value = "<%= name%>">
 
 
-                    
                     <button name="submitComment" id="submitComment">Reply</button>
 
                 </form>
@@ -102,10 +131,10 @@
                 <table class="commentsTable">
 
         <% if(typeof comments !== 'undefined'){ %>
-       <% comments.forEach(function(u){ %> 
+       <% comments.forEach(function(u){ %>
                     <tr class="posts">
 
-                        <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:20px;padding-right: 2px; padding-top:3px ">account_circle</em>Poster_Name</span>
+                        <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:20px;padding-right: 2px; padding-top:3px ">account_circle</em><%=u.Fname%></span>
                     <div class="commentContent">
 
                         <!--COmment Content here-->
@@ -114,7 +143,7 @@
 
                     </div>
                        </tr>
-      <% }) %> 
+      <% }) %>
       <% } %>
 
             </table>

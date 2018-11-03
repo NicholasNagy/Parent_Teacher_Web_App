@@ -33,6 +33,14 @@
                                     </form>
                     </li>
 
+                    <li class="sidebar_menu_item">
+                      <form action="/goToWall" method="POST">
+                        <input type="text" name = "userID" style="display:none" value="<%=userID%>">
+                        <input type="text" name = "friendID" style="display:none" value="<%=userID%>">
+                        <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
+                      </form>
+                    </li>
+
                     <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
                         <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
                             <li class="sidebar_menu_item">
@@ -53,6 +61,7 @@
                      <form action="/friends" method="POST">
 
                                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                               <input type="text" name="userName" style="display:none" value = "<%= name%>">
                                                <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
                                                    </form>
 
@@ -135,7 +144,7 @@
                     <!-- <% posts.forEach(function(u){ %> -->
                         <tr class="posts">
 
-                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em><%= name%></span>
+                            <td><span class="postAuthor"><em class="material-icons" style="float:left;font-size:27px;padding-right: 2px; padding-top:3px ">account_circle</em><%= u.Fname%></span>
                         <div class="postContent">
 
 
@@ -176,6 +185,8 @@
 
 
                                  <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.postID%>">
+<input type="text" id="userName" name = "userName" style="display:none" value = "<%= name%>">
+                                <input type="text" id="userID" name = "userID" style="display:none" value = "<%= userID%>">
                                 </td>
 
 

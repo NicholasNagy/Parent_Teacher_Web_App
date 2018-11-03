@@ -24,10 +24,10 @@ router.post('/', function(req,res, next){
   pool.connection.query(like,function(err, result){
     if(err) throw err;
       let newposts = new Promise(function(resolve, reject){
-        resolve(update.getWallPosts(wallID));
+        resolve(update.getWall(wallID, userID));
       });
-      newposts.then(function(posts){
-        res.render('parenthomepage', {posts: posts, name:Fname, WallID:wallID, userID:userID});
+      newposts.then(function(wall){
+        res.render('parenthomepage', wall);
       });
   });
 

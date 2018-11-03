@@ -5,7 +5,7 @@
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= %></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -25,13 +25,20 @@
                 <ul class="sidebar_menu">
 
                     <li class="sidebar_menu_item">
-                        
-                            <form action="/parentProfile" method="POST">
+
+                            <form action="/viewProfile" method="POST">
 
                                 <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
 
+                                    </li>
+                                    <li class="sidebar_menu_item">
+                                      <form action="/goToWall" method="POST">
+                                        <input type="text" name = "userID" style="display:none" value="<%=uID%>">
+                                        <input type="text" name = "friendID" style="display:none" value="<%=uID%>">
+                                        <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
+                                      </form>
                                     </li>
 
                     <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
@@ -49,26 +56,27 @@
 
                     </li>
 
-            
+
             <li class="sidebar_menu_item">
 
                     <form action="/friends" method="POST">
 
                     <input type="text" name="userID" style="display:none" value = "<%= uID%>">
+                    <input type="text" name = "userName" style="display:none" value="<%=name%>">
                     <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
                         </form>
 
-                        </li> 
+                        </li>
 
                         <li class="sidebar_menu_item">
 
                             <form action="/groups" method="POST">
-        
+
                             <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                             <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
                                 </form>
-        
-                                </li> 
+
+                                </li>
 
                     <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
@@ -89,13 +97,13 @@
         <div  class="creatGroupHeader">
 
                <p id="gtitle"><i class="material-icons" style="font-size:25px">create</i> Create A New Group</p>
-                  
+
 
                     <form action="/createGroups" method="POST">
-                        <input type="text" name="userID" style="display:none" value = "<%= uID%>">    
+                        <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                         <input type="text" name="groupName" class="searchField" placeholder="Group Name" required maxlength="20">
                      <button name="createGroup" class="createGroupBtn">Create Group </button>
-                    
+
                     </form>
 
         </div>
@@ -111,18 +119,18 @@
         <div class="groupList">
 
 
-            
+
                 <table class="groupsListTable">
 
                         <% if(typeof groupList !== 'undefined'){ %>
-                    
+
                                 <% groupList.forEach(function(v){ %>
 
-                            
+
 
                         <tr class="groupTableRow">
 
-                
+
                             <form action="/editGroup" method="POST">
 
                                 <td class="group"><span class="group"style="margin-left:20px;"><%= v.groupName%></span></td>
@@ -131,7 +139,7 @@
                                 <td class="group" ><span style="margin-left:70px;">Group ID: <%= v.groupID%></span><input type="text"name="groupID" style="display:none;" value = "<%=v.groupID%>"></td>
 
                                 <td > <button name="editGroup" class="editGroupBtn" >View/Edit</button> </td>
-                            </form>              
+                            </form>
                         </tr>
                                 <% }) %>
                         <% } %>
@@ -143,7 +151,7 @@
 
         </div>
 
-     
+
 
     </div>
 
