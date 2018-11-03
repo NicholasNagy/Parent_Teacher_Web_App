@@ -26,9 +26,9 @@
 
                     <li class="sidebar_menu_item">
 
-                            <form action="/parentProfile" method="POST">
+                            <form action="/viewProfile" method="POST">
 
-                                <input type="text" name="userID" style="display:none" value = "">
+                                <input type="text" name="userID" style="display:none" value = "<%=userID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
                                     </form>
 
@@ -48,6 +48,27 @@
                         </ul>
 
                     </li>
+
+                    <li class="sidebar_menu_item">
+
+                     <form action="/friends" method="POST">
+
+                                               <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                               <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                               <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                                   </form>
+
+                                                   </li>
+
+                        <li class="sidebar_menu_item">
+
+                            <form action="/groups" method="POST">
+
+                            <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                            <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                                </form>
+
+                                </li>
 
                     <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
@@ -73,7 +94,7 @@
                 <form action="/searchFriends" method="POST">
 
                   <input type="text" name ="userName" style="display:none" value = "<%= name%>">
-                <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>
+                <input type="text" name ="logID" style="display:none" value = "<%= userID%>"></td>
                 <input type="text" name="searchField" class="searchField" placeholder="Search">
                 <button name="searchFriendsBtn" class="searchFriendsBtn">Search</button>
                     </form>
@@ -105,7 +126,7 @@
                                         <% var key = idKeys[n];%>
                                         <input type="text" name="userName" style="display:none" value="<%=name%>">
 
-                                    <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>
+                                    <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=userID%>"></td>
                                       <td class="person" style="text-align:center;"><input type="text"name ="idToAdd" style="display:none;" value = "<%=key %>"></td>
                                           <td> <button name="friendRequestBtn" class="friendRequestBtn" >Friend Request</button> </td>
                                      </form>
@@ -143,7 +164,7 @@
                                     <form action="/goToWall" method="POST">
 
                                         <td class="person"><span class="friendNam" name = "friendNam"><%= v.friendName%></span></td>
-                                          <input type="text"name="userID" style="display:none" value = "<%=uID%>">
+                                          <input type="text"name="userID" style="display:none" value = "<%=userID%>">
                                           <input type="text"name="userName" style="display:none" value = "<%=name%>">
                                             <!-- ID to go to wall -->
                                             <input type="text"name="friendName" style="display:none" value = "<%=v.friendName%>">

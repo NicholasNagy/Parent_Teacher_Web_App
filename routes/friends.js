@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
             throw error;
 
 
-          res.render('friends', {friendsList: results, uID : userID, name:userName});
+          res.render('friends', {friendsList: results, userID : userID, name:userName});
 
     });
 
