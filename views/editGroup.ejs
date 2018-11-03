@@ -5,7 +5,7 @@
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= %></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -25,8 +25,8 @@
                 <ul class="sidebar_menu">
 
                     <li class="sidebar_menu_item">
-                        
-                            <form action="/parentProfile" method="POST">
+
+                            <form action="/viewProfile" method="POST">
 
                                 <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                                 <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
@@ -49,26 +49,27 @@
 
                     </li>
 
-            
+
             <li class="sidebar_menu_item">
 
                     <form action="/friends" method="POST">
 
                     <input type="text" name="userID" style="display:none" value = "<%= uID%>">
+                    <input type="text" name = "userName" style="display:none" value="<%=name%>">
                     <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
                         </form>
 
-                        </li> 
+                        </li>
 
                         <li class="sidebar_menu_item">
 
                             <form action="/groups" method="POST">
-        
+
                             <input type="text" name="userID" style="display:none" value = "<%= uID%>">
                             <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
                                 </form>
-        
-                                </li> 
+
+                                </li>
 
                     <li class="sidebar_menu_item">
                         <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
@@ -85,111 +86,111 @@
 
     <div class="editGroupPage_content">
 
-    
-        
+
+
         <% if(typeof groupName !== 'undefined'){ %>
        <p class="groupNAME"><%=groupName%></p>
             <% } %>
         <hr>
-  
+
             <div class="search">
-    
+
                 <div class="searchBar">
                     <p id="searchTitle">Search Users</p>
-                    
+
                     <form action="/searchUsers" method="POST">
-                       
+
                     <% if(typeof groupName !== 'undefined'){ %>
                         <input type="text" name ="groupName" style="display:none" value = "<%= groupName%>">
                         <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>">
                         <% } %>
-                    <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>  
+                    <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>
                     <input type="text" name="searchField" class="searchField1" placeholder="Search">
                     <button name="searchUsersBtn" class="searchUsersBtn">Search</button>
                         </form>
-    
-    
-    
+
+
+
                        <table class="searchResultsTable">
-    
-                                  
-    
+
+
+
                 <% if(typeof queryResults !== 'undefined'){ %>
                     <% var n = 0; %>
-                        <% queryResults.forEach(function(u){ %> 
-                            
-                  
+                        <% queryResults.forEach(function(u){ %>
+
+
                             <tr class="results">
-            
-                            
+
+
                                 <% if(u == "No Results Found"){%>
                                     <td class="person" style="text-align:center;"><span><%= u %></span></td>
-                                   
-                         
+
+
                                  <% }else{ %>
-    
+
                                  <td class="person" style="padding-left:20px;"><span><%= u %></span></td>
                                           <form action="/addToGroup" method="POST">
-    
-                                    
+
+
                                             <% var key = idKeys[n];%>
                                             <% if(typeof groupName !== 'undefined'){ %>
                                         <td class="person" style="text-align:center;"> <input type="text" name ="groupName" style="display:none" value = "<%= groupName%>"> </td>
                                         <td class="person" style="text-align:center;">  <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>"></td>
                                         <% } %>
-                                        <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>     
+                                        <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>
                                         <td class="person" style="text-align:center;"><input type="text"name ="idToAdd" style="display:none;" value = "<%=key %>"></td>
                                               <td> <button name="groupInviteBtn" class="groupInviteBtn" >Send Invite</button> </td>
                                          </form>
-            
+
                                      <% } %>
                                        </tr>
-                            <% n++; %>   
+                            <% n++; %>
                         <% }) %>
                  <% } %>
-                            </table> 
-                
-    
+                            </table>
+
+
                 </div>
-    
-    
+
+
             </div>
-    
-    
+
+
                 <div class="groups_List">
-    
+
                 <p id="fListTitle"> Group Members</p>
                     <div class="list_Header">
-    
+
                             <table class="memberListTable">
-    
+
                                     <% if(typeof groupMembers !== 'undefined'){ %>
                                         <% var n = 0; %>
                                             <% groupMembers.forEach(function(v){ %>
-    
-                                        
-    
+
+
+
                                     <tr class="memberTableRow">
-    
-                            
+
+
                                             <% if(n == 0){%>
                                             <td class="member" style="text-align: center;"><span class="leader"><span style="color:rgb(148, 10, 0);font-weight: bold;padding-right: 35px;">Group Leader:  </span> <%= v.Fname%> <%= v.Lname%></span></td>
                                             <% }else{ %>
                                              <td class="member"  style="text-align: center; padding: 10px;";><span class="memberName"><%=n +"."%> <%= v.Fname%> <%= v.Lname%></span></td>
                                              <% } %>
-                                             <% n++; %>   
+                                             <% n++; %>
                                     </tr>
                                             <% }) %>
                                     <% } %>
                             </table>
                     </div>
-    
+
                 </div>
-    
-    
-    
+
+
+
         </div>
-    
+
 
 
     <!-- Show/hide drop down menu -->

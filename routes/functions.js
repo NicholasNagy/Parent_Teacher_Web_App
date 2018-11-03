@@ -142,4 +142,5 @@ module.exports= {
   update: editProfile,
   viewProfile: viewProfile,
   generateComments: generateComments,
+  getUser: getUser
 };

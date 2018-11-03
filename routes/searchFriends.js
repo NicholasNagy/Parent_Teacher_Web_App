@@ -57,7 +57,7 @@ pool.connection.query(friendsList, function (error, result){
           }
 
 
-        res.render('friends', {queryResults: users, idKeys: ids, uID : loggedInID, friendsList: result, name:userName});
+        res.render('friends', {queryResults: users, idKeys: ids, userID : loggedInID, friendsList: result, name:userName});
 
     });
 

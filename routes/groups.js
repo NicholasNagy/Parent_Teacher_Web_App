@@ -4,6 +4,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
 var DBconnect = require ('./dbConfig');
+var functions = require('./functions');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,13 +23,16 @@ router.post('/', function(req, res, next) {
     pool.connection.query(displayGroups, function (error, results) {
         if (error)
             throw error;
-    
-         
-          res.render('groups', {groupList : results, uID : userID});
-    
+
+        let getName = new Promise(function(resolve, reject){
+          resolve(functions.getUser(userID));
+        });
+        getName.then(function(user){
+          res.render('groups', {groupList : results, uID : userID, name: user.Fname});
+        });
     });
 
-            
+
 
 
 });

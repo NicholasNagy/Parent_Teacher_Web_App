@@ -26,7 +26,7 @@ router.post('/', function (req,res) {
 
    var selectGroup = "SELECT Fname,Lname,groupName,memberID FROM groups where groupID='"+gID+"';";
 
-pool.connection.query(selectGroup, function (error, result1) {   
+pool.connection.query(selectGroup, function (error, result1) {
 pool.connection.query(memberList, function (error, result){
     pool.connection.query(query, function (error, results) {
       if (error)
@@ -34,24 +34,24 @@ pool.connection.query(memberList, function (error, result){
 
           var users=[];
           var ids=[];
-      
+
 
           for(var i =0; i < results.length; i++){
 
             var fullName = results[i].Fname + " " + (results[i].Lname);
-            
-            
-            
-            
+
+
+
+
             if( (results[i].Fname == queryName) || (results[i].Lname == queryName) || (fullName == queryName)  ){
 
 
-            
+
              users.push(fullName);
              console.log(results[i].ID);
              ids.push(results[i].ID)
-           
-    
+
+
             }
           }
 
@@ -59,13 +59,16 @@ pool.connection.query(memberList, function (error, result){
             users.push("No Results Found");
 
           }
-          
-          
-        res.render('editGroup', {groupMembers : result1, queryResults: users, idKeys: ids, uID : loggedInID, userList: result, groupName: nameG, groupID : gID});
 
+          let getUser = new Promise(function(resolve, reject){
+            resolve(functions.getUser(loggedInID));
+          });
+          getUser.then(function(user){
+            res.render('editGroup', {groupMembers : result1, queryResults: users, idKeys: ids, uID : loggedInID, userList: result, groupName: nameG, groupID : gID, name:user.Fname});
+          });
     });
 
-}); 
+});
 });
 });
 module.exports=router;

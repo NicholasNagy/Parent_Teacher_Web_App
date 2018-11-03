@@ -44,7 +44,7 @@ var friendList = "SELECT friendName,f2 FROM friends where f1='"+loggedInID+"';";
                  throw error;
 
 
-               res.render('friends', {friendsList: results, uID : loggedInID, name:userName});
+               res.render('friends', {friendsList: results, userID : loggedInID, name:userName});
 
               });
 

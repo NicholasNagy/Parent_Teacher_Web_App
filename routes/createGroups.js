@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
     pool.connection.query(userName, function (error, result) {
         if (error)
             throw error;
-    
+
 
     //Creating the group
 
@@ -32,9 +32,9 @@ router.post('/', function(req, res, next) {
             pool.connection.query(createGroup, function (error, result0) {
              if (error)
                   throw error;
-    
-         
-    
+
+
+
     //Getting the users groups to display
 
     var displayGroups = "SELECT groupName,groupID FROM groups where memberID='"+userID+"';";
@@ -43,13 +43,13 @@ router.post('/', function(req, res, next) {
                      if (error)
                            throw error;
 
-         
-                         res.render('groups', {groupList : results, uID : userID});
-    
+
+                         res.render('groups', {groupList : results, uID : userID, name:result[0].Fname});
+
                   });
 
-  
-            
+
+
         });
 
 });
