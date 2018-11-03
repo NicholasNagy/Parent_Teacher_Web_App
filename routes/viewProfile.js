@@ -20,15 +20,19 @@ router.post('/', function(req, res, next) {
     //var ParentSQL = "SELECT ParentID, Fname, Lname, Email, Pass from parents where ParentID='"+userID+"';";
     //var TeacherSQL = "SELECT TeacherID, Fname, Lname, Email, Pass from teachers where TeacherID='"+userID+"';";
      //var test1= "SELECT TeacherID,Fname,Lname,Email,Pass,ClassID from teachers where Lname='"+last+"' and Fname='"+first+"';";
-    var TeacherSQL = "SELECT ID, Email, Pass, Fname, Lname, isTeacher from Users where  isTeacher='"+1+"' and ID='"+userID+"';";
+    var TeacherSQL = "SELECT ID, Email, Pass, Fname, Lname, isTeacher from Users where ID='"+userID+"';";
     //looking into the teachers table and return the results. If the result is there, then its length would be > 0.
     pool.connection.query(TeacherSQL, function (err, result){
         if (err) throw err;
-
+        var userType;
         //if searching in the parent table is succesful.
         if(result.length>0){
             console.log('entering the if condition');
-            var userType = 'teacher';
+            if(result[0].isTeacher==1)
+              userType = 'teacher';
+            else {
+              userType = 'parent';
+            }
             var teacherID = result[0].ID;
             var teacherFname = result[0].Fname;
             var teacherLname = result[0].Lname;

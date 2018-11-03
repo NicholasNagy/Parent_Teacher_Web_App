@@ -22,24 +22,18 @@ router.post('/', function(req,res,next){
   //GETTING POSTID HERE
   var comment = req.body.replayArea;
   var postID = req.body.postID;
+  var userID = req.body.userID;
+  var userName = req.body.userName
   console.log(postID);
   let theComment = new Promise(function(resolve, reject){
-    resolve(functions.comment(comment, postID));
+    resolve(functions.comment(comment, postID, userID));
   });
   theComment.then(function(successMessage){
-    console.log(successMessage);
-    //NEW SELECT STATEMENT TO DISPLAY THE PROPER POSTS FOR THE INDIVIDUAL
-    // ! Should select from unique ID !
-    var comments = "SELECT Content FROM comments where PostID='"+postID+"';";
-    var post = "SELECT Content FROM post where PostID='"+postID+"';";
-    //EXECUTION OF QUERY
-    pool.connection.query(post, function (error, resultP) {
-      pool.connection.query(comments, function (error, results) {
-        if (error)
-            throw error;
-          //RENDERING HOMEPAGE AFTER POSTING HAS BEEN DONE
-        res.render('comments', {post: resultP[0].Content, comments: results, postID});
-      });
+    let getComments = new Promise(function(resolve, reject){
+      resolve(functions.generateComments(postID, userName, userID));
+    });
+    getComments.then(function(stuff){
+      res.render('comments', stuff);
     });
   });
 

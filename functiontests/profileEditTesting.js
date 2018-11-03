@@ -81,8 +81,18 @@ thesignup.then(function(success){
     });
   }
   else{
-    console.log("signup failed");
-    console.log("Exiting with exit code: 1");
-    process.exit(1);
+    console.log("signup failed, email is already in use");
+
+    var deleteprofile = "DELETE FROM Users WHERE Email='lili@liliiiii';";
+    pool.connection.query(deleteprofile, function(err, results){
+      if(err) throw err;
+
+      console.log("Email is deleted");
+      console.log("please restart the test");
+      console.log("Exiting with exit code: 1");
+      
+      process.exit(1);
+    });
+
   }
 });

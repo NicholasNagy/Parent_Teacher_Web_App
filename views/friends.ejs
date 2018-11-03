@@ -5,7 +5,7 @@
 
         <div class="quickAccess">
 
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name">NAME</span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
+            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%=name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
 
 
 
@@ -72,7 +72,7 @@
 
                 <form action="/searchFriends" method="POST">
 
-
+                  <input type="text" name ="userName" style="display:none" value = "<%= name%>">
                 <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>
                 <input type="text" name="searchField" class="searchField" placeholder="Search">
                 <button name="searchFriendsBtn" class="searchFriendsBtn">Search</button>
@@ -103,7 +103,7 @@
 
 
                                         <% var key = idKeys[n];%>
-
+                                        <input type="text" name="userName" style="display:none" value="<%=name%>">
 
                                     <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>
                                       <td class="person" style="text-align:center;"><input type="text"name ="idToAdd" style="display:none;" value = "<%=key %>"></td>
@@ -144,6 +144,7 @@
 
                                         <td class="person"><span class="friendNam" name = "friendNam"><%= v.friendName%></span></td>
                                           <input type="text"name="userID" style="display:none" value = "<%=uID%>">
+                                          <input type="text"name="userName" style="display:none" value = "<%=name%>">
                                             <!-- ID to go to wall -->
                                             <input type="text"name="friendName" style="display:none" value = "<%=v.friendName%>">
                                         <td class="person" style="display:none;"><input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>"></td>
