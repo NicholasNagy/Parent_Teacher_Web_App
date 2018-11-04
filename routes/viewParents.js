@@ -12,12 +12,13 @@ router.post('/', function(req, res, next) {
 
     //sending the teacher's name from the teacher homepage
     var teachername = req.body.ffnam;
+    var userID = req.body.userID;
 
     pool.connection.query(sql,(err,result)=> {
         if (err) {
             throw err;
         }
-        res.render('viewParent', { parents: result, teacher: teachername});
+        res.render('viewParent', { parents: result, teacher: teachername, userID:userID});
     });
 
 });
