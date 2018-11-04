@@ -33,7 +33,7 @@
                                     </form>
 
                     </li>
-                    
+
                     <li class="sidebar_menu_item">
                       <form action="/goToWall" method="POST">
                         <input type="text" name = "userID" style="display:none" value="<%=userID%>">
@@ -167,11 +167,15 @@
 
 
                                 <tr class="friendTableRow">
-
+                                            <form action="/viewFriendProfile" method="POST">
+                                              <input type="text" name="userID" style="display:none" value="<%=userID%>">
+                                              <input type="text" name="friendID" style="display:none" value="<%=v.f2%>">
+                                            <td class="person"><span class="friendNam" name = "friendNam"><button name="theFriendName" class="theFriendName" style="background-color:inherit; color:inherit; border:none; cursor:pointer;"><%= v.friendName%></button></span></td>
+                                          </form>
 
                                     <form action="/goToWall" method="POST">
 
-                                        <td class="person"><span class="friendNam" name = "friendNam"><%= v.friendName%></span></td>
+
                                           <input type="text"name="userID" style="display:none" value = "<%=userID%>">
                                           <input type="text"name="userName" style="display:none" value = "<%=name%>">
                                             <!-- ID to go to wall -->
@@ -179,6 +183,13 @@
                                         <td class="person" style="display:none;"><input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>"></td>
 
                                         <td> <button name="viewFriendWall" class="viewFriendWall">View Wall</button> </td>
+                                    </form>
+                                    <form action="/parentMessenger" method="POST">
+
+                                      <input type="text"name="userID" style="display:none" value = "<%=userID%>">
+                                      <input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>">
+                                      <td> <button name="messageFriend" class="messageFriend">Message</button></td>
+
                                     </form>
                                 </tr>
                                         <% }) %>
