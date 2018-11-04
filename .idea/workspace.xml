@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="baa3789f-ebb7-4e49-bdca-f030e15bc3b9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/Messengerindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/Messengerindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/messenger.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/messenger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/viewParents.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/viewParents.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/homepage.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/homepage.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/messenger.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/messenger.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/viewParent.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/viewParent.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,11 +17,11 @@
     <session id="813740942">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.6" value="3" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -142,7 +134,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/messenger.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
+                <state relative-caret-position="450">
                   <caret line="30" column="93" selection-start-line="30" selection-start-column="93" selection-end-line="30" selection-end-column="93" />
                 </state>
               </provider>
@@ -151,7 +143,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/Messengerindex.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="203">
+                <state relative-caret-position="483">
                   <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
                 </state>
               </provider>
@@ -160,11 +152,11 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/messenger.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="431">
+                <state relative-caret-position="450">
                   <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
                 </state>
               </provider>
@@ -173,7 +165,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/messenger.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="421">
+                <state relative-caret-position="738">
                   <caret line="89" column="80" selection-start-line="89" selection-start-column="80" selection-end-line="89" selection-end-column="80" />
                 </state>
               </provider>
@@ -344,23 +336,25 @@
       <workItem from="1539730019724" duration="3714000" />
       <workItem from="1540919949621" duration="3060000" />
       <workItem from="1541027963726" duration="7176000" />
+      <workItem from="1541198156081" duration="111000" />
+      <workItem from="1541300802445" duration="173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23089000" />
+    <option name="totallyTimeSpent" value="23373000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.068716094" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.068716094" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -552,21 +546,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/Messengerindex.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
+        <state relative-caret-position="483">
           <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/messenger.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
+        <state relative-caret-position="450">
           <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/messenger.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
+        <state relative-caret-position="738">
           <caret line="89" column="80" selection-start-line="89" selection-start-column="80" selection-end-line="89" selection-end-column="80" />
         </state>
       </provider>
