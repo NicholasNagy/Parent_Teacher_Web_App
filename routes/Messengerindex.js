@@ -23,6 +23,7 @@ router.post('/', function(req, res) {
     var userID = req.body.userID;
     var friendID = req.body.friendID;
 
+  
     let getUser = new Promise(function(resolve, reject){
       resolve(functions.getUser(userID));
     });

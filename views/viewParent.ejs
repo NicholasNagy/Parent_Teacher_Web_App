@@ -10,6 +10,7 @@
         <tr>
             <form action="/parentMessenger"  method="post">
                 <input type="hidden" name="teacher_name" value="<%= teacher %>">
+                <input type="hidden" name="teacher_ID" value="<%= userID%>">
 
                 <td><input name="parent_name" type="text" value="<%= u.Fname %>" readonly></td>
                 <td><input name="lname" type="text" value="<%= u.Lname %>" readonly></td>
