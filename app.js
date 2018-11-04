@@ -15,6 +15,7 @@ var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
 var parentProfileRouter=require('./routes/parentProfile');
 var teacherProfileRouter=require('./routes/teacherProfile');
+var friendProfileRouter = require('./routes/viewFriendProfile');
 var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
 var viewParent = require('./routes/viewParents');
@@ -75,6 +76,8 @@ app.use('/parentMessenger',messenger);
 app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
 app.use('/viewParent',viewParent);
+
+app.use('/viewFriendProfile', friendProfileRouter);
 
 //friends
 
