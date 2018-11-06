@@ -7,18 +7,17 @@ var mysql = require('mysql');
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var parentRouter = require('./routes/parenthomepage');
+
+
 var toCommentPageRouter = require('./routes/toCommentPage');
 var replyRouter = require('./routes/reply')
 var loginRouter=require('./routes/login');
 var postRouter=require('./routes/posting');
-var parentProfileRouter=require('./routes/parentProfile');
-var teacherProfileRouter=require('./routes/teacherProfile');
+
 var friendProfileRouter = require('./routes/viewFriendProfile');
 var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
-var viewParent = require('./routes/viewParents');
+
 
 var friendsRouter = require('./routes/friends');
 var searchFriendsRouter = require('./routes/searchFriends');
@@ -63,19 +62,17 @@ app.use( express.static( "public/uploads" ) );
 
 app.use('/', indexRouter);
 //app.use('/login',indexRouter);
-app.use('/users', usersRouter);
-app.use('/parenthomepage',parentRouter);
+
+
 app.use('/commentPage', toCommentPageRouter);
 app.use('/reply', replyRouter);
 app.use('/login', loginRouter);
 app.use('/posting',postRouter);
-app.use('/parentProfile',parentProfileRouter);
-app.use('/teacherProfile',teacherProfileRouter);
+
 app.use('/editParentProfileInfo', editParentProfileInfoRouter);
 app.use('/parentMessenger',messenger);
 app.use('/logout',indexRouter);
 app.use('/homepage',indexRouter);
-app.use('/viewParent',viewParent);
 
 app.use('/viewFriendProfile', friendProfileRouter);
 
