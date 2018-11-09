@@ -331,7 +331,7 @@ a.title {
 
 
 
- td, tr{
+.posts{
 
 
 
@@ -424,4 +424,57 @@ textarea{
    text-align: left;
    border-color: #000000;
 	border-style: solid;
+}
+
+.likeBtn{
+    
+    width: wrap;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(114, 226, 2);
+    padding: 5px;
+  
+    
+
+}
+
+.likeBtn:hover{
+    cursor: pointer;
+    background-color: rgb(127, 255, 0);
+
+}
+
+.dislikeBtn{
+
+    
+    width: wrap;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(202, 0, 0);
+    padding: 5px;
+}
+
+
+.dislikeBtn:hover{
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    
+
+}
+
+.toCommentPageBtn{
+ 
+    font-weight: bold;
+    cursor: pointer;
+    padding: 7px;
+    width: wrap;
+    margin-left: 5px;
+}
+
+.toCommentPageBtn:hover{
+ 
+    width: wrap;
+    cursor: pointer;
+    
+    background-color: rgb(218, 218, 218);
 }
