@@ -21,7 +21,9 @@ var insertdb = function(fName, lName, Email, pass, isTeacher){
 
   //creating queries, first one checks to see if there are any emails that
   //are the same the second inserts the data into the database
-  var query = "SELECT Email FROM Users where Email='"+ Email+"';";
+    var query1= "SELECT Pass FROM Users where Email='"+ Email+"';";
+
+    var query = "SELECT Email FROM Users where Email='"+ Email+"';";
   var sql = "INSERT INTO  Users (Fname, Lname, Email, Pass, isTeacher) VALUES ('"+fName+"','"+lName+"', '"+Email+"', '"+pass+"','"+isTeacher+"')";
 
   //connecting to sql database to use the query

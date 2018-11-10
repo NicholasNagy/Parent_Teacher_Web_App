@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
       resolve(functions.getUser(userID));
     });
     getUser.then(function(user){
-      res.render('messenger', {name: user.Fname, userID: user.ID});
+      res.render('messenger', {nm: user.Fname});
     });
 
     app.use(express.static('public'));
