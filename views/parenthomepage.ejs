@@ -160,7 +160,7 @@
                                <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                <input type="text" name="WallID" style="display:none" value = "<%= WallID%>">
                                <input type="text" name="name" style="display:none" value = "<%= name%>">
-                               <button name="toProfile" class="likeBtn"><i class="material-icons" >thumb_up_alt</i>Like</button>
+                               <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>like</button>
 
                                    </form>
                                  </td>
@@ -170,7 +170,7 @@
                            <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                            <input type="text" name="WallID" style="display:none" value = "<%= WallID%>">
                            <input type="text" name="name" style="display:none" value = "<%= name%>">
-                           <button name="toProfile" class="dislikeBtn"><i class="material-icons">thumb_down_alt</i>Dislike</button>
+                           <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i> dislike</button>
                        </form> </td>
                             <span class="postText">
 
@@ -193,7 +193,7 @@
 
 
 
-                            <td> <button name="toCommentPage" class="toCommentPageBtn" >Comments </button> </td>
+                            <td> <button name="toCommentPage" id="toCommentPage" >View Comments for this Post</button> </td>
                                 </form>
 
                         </tr>
