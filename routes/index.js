@@ -6,6 +6,7 @@ var mysql = require('mysql');
 var DBconnect = require('./dbConfig');
 var signup = require('./signup');
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -47,6 +48,8 @@ router.get('/', function(req, res, next) {
 
 
 
+
+
 router.post('/signup', function(req,res){
   var isTeacher;
     if(req.body.account==="parent"){
@@ -77,11 +80,6 @@ router.post('/signup', function(req,res){
 
 
 });
-
-
-
-
-
 
 
 
