@@ -5,9 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 
+/* this done to route the js file*/
+var forgotPasswordRouter= require('./routes/forgotPassword');
 
 var indexRouter = require('./routes/index');
-
 
 var toCommentPageRouter = require('./routes/toCommentPage');
 var replyRouter = require('./routes/reply')
@@ -17,7 +18,6 @@ var postRouter=require('./routes/posting');
 var friendProfileRouter = require('./routes/viewFriendProfile');
 var editParentProfileInfoRouter = require('./routes/editParentProfileInfo');
 var messenger = require('./routes/Messengerindex');
-
 
 var friendsRouter = require('./routes/friends');
 var searchFriendsRouter = require('./routes/searchFriends');
@@ -77,8 +77,6 @@ app.use('/homepage',indexRouter);
 app.use('/viewFriendProfile', friendProfileRouter);
 
 //friends
-
-
 app.use('/friends', friendsRouter);
 app.use('/searchFriends',searchFriendsRouter);
 app.use('/searchUsers',searchUsersRouter);
@@ -94,11 +92,19 @@ app.use('/dislike', dislikeRouter);
 app.use('/viewProfile', viewProfile);
 
 //groups
-
 app.use('/groups',groupsRouter);
 app.use('/createGroups',createGroupRouter);
 app.use('/editGroup',editGroupRouter);
 app.use('/addToGroup',addtoGroupRouter);
+
+
+
+
+/* to link the js*/
+app.use('/forgotPassword',forgotPasswordRouter);
+
+
+
 
 
 // catch 404 and forward to error handler
@@ -107,14 +113,14 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
- res.render('error');
+  res.render('error');
 });
 
 //hosting the webpage on port 3000 of the local host
