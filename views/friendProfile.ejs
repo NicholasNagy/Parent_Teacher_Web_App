@@ -114,20 +114,20 @@
                 <table class="profileInfoTable">
 
 
-                        <tr>
+                        <tr class="tableInfoRow">
                                 <td><span class="info">Account Type: </span></td>
                                 <td> <span name="accountTp" class="userInfo"><%= userType%></span></td>
 
 
                         </tr>
 
-                    <tr>
+                        <tr class="tableInfoRow">
                             <td><span class="info">Email :</span></td>
                             <td><span name="userEmail" class="userInfo"> <%= userEmail%> </span></td>
                     </tr>
 
 
-                    <tr>
+                    <tr class="tableInfoRow">
 
                             <td><span class="info">User ID :</span></td>
                             <td><span name="childID" class="userInfo"><%= friendID%> </span></td>
@@ -138,8 +138,81 @@
                 </table>
 
 
+               
                </div>
 
+
+             <div class= "groupsNFriends" >
+              
+                    <hr>
+
+            
+                <div class="groupList">
+
+
+
+                        <table class="groupsListTable">
+
+                            <tr >
+                                <td class="group"> <span id="groupsT">Groups</span></td>
+
+                            </tr>
+        
+                                <% if(typeof groupList !== 'undefined'){ %>
+        
+                                        <% groupList.forEach(function(v){ %>
+        
+        
+        
+                                <tr class="groupTableRow">
+        
+        
+                                    <form action="/editGroup" method="POST">
+                                        
+                                        <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                        <input type="text"name="groupID" style="display:none;" value = "<%=v.groupID%>">
+                                        
+                                        <td class="group"><button name="editGroup" class="viewGroupBtn" ><%= v.groupName%></button> </td>
+    
+                                    </form>
+                                </tr>
+                                        <% }) %>
+                                <% } %>
+                        </table>
+        
+                </div>
+        
+
+                  
+                <div class="friendsList">
+
+
+
+                        <table class="friendsListTable">
+
+                            <tr >
+                                <td class="friend"> <span id="groupsT">Friends</span></td>
+
+                            </tr>
+        
+                                <% if(typeof friendsList !== 'undefined'){ %>
+        
+                                        <% friendsList.forEach(function(v){ %>
+        
+                                <tr >
+    
+                                    <input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>">
+                                        <td class="friend"><button class="friendName" ><%= v.friendName%></button> </td>
+    
+                             </tr>
+                                        <% }) %>
+                                <% } %>
+                        </table>
+        
+                </div>
+
+
+            </div>
 
 
 

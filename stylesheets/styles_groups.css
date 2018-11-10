@@ -69,7 +69,7 @@ body{
     margin-top: 10px;
 	width: 55%;
 	font-size: 20px;
-	border-spacing: 0px;
+    border-spacing: 0px; 
 	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
     margin-left:32vh;
     padding: 10px;
@@ -81,7 +81,7 @@ body{
     margin-top: 10px;
 	width: 45%;
 	font-size: 20px;
-	border-spacing: 0px;
+    border-spacing: 0px;
 	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
     text-align: left;
     margin-left:25vh;
@@ -194,7 +194,8 @@ height: 100vh;
     margin-top: 30px;
 	width: 100%;
 	font-size: 20px;
-	border-spacing: 0px;
+    border-spacing: 0px;
+    border-top: 1px solid rgba(192, 192, 192, 0.993);
 	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
     text-align: left;
 
@@ -216,4 +217,9 @@ height: 100vh;
      cursor: pointer;
     background-color: rgb(114, 226, 2);
 
+}
+
+tr td{
+    border-top: 1px solid rgba(192, 192, 192, 0.993);
+    padding: 5px;
 }
