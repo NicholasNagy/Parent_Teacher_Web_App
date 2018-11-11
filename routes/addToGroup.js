@@ -39,21 +39,29 @@ pool.connection.query(groupADD, function (err, result){
 //Getting the members list
 var selectMembers = "SELECT Fname,Lname,groupName,memberID FROM groups where groupID='"+gID+"';";
 
-            pool.connection.query(selectMembers, function (error, results) {
-              if (error)
-                 throw error;
+//Handling requests 
+var groupStatus = "SELECT Fname,Lname,groupName,memberID,groupID FROM groups where memberID='"+loggedInID+"' AND groupID='"+gID+"';";
+var selectRequests = "SELECT requesterID,Fname,Lname,groupID,leaderID FROM grouprequests where groupID='"+gID+"';";
+var removeRequest = "DELETE FROM grouprequests where requesterID='"+memberID+"';";
+
+  pool.connection.query(removeRequest, function (error, del) {
+      pool.connection.query(selectRequests, function (error, requests) {
+          pool.connection.query(groupStatus, function (error, results1) {
+              if (error) throw error;
+              pool.connection.query(selectMembers, function (error, results) {
+                if (error) throw error;
 
               let getUser = new Promise(function(resolve, reject){
                 resolve(functions.getUser(loggedInID));
               });
               getUser.then(function(user){
-                res.render('editGroup', {groupMembers: results,uID : loggedInID, groupID : gID, groupName : results[0].groupName, name:user.Fname});
-              });
-              });
-
-
+                res.render('editGroup', {groupMembers : results, groupID : gID, uID : loggedInID, groupName : results[0].groupName, name: user.Fname , leader: results[0], memberStatus: results1[0], groupRequests : requests});
+                  });
+                });
+            });
+          });
       });
-
+    });
 });
 });
 

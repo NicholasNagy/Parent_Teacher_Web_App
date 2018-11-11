@@ -170,7 +170,7 @@
                                             <form action="/viewFriendProfile" method="POST">
                                               <input type="text" name="userID" style="display:none" value="<%=userID%>">
                                               <input type="text" name="friendID" style="display:none" value="<%=v.f2%>">
-                                            <td class="person"><span class="friendNam" name = "friendNam"><button name="theFriendName" class="theFriendName" style="background-color:inherit; color:inherit; border:none; cursor:pointer;"><%= v.friendName%></button></span></td>
+                                            <td class="person"><span class="friendNam" name = "friendNam"><button name="theFriendName" class="theFriendName" ><%= v.friendName%></button></span></td>
                                           </form>
 
                                     <form action="/goToWall" method="POST">
