@@ -114,21 +114,20 @@
                 <table class="profileInfoTable">
 
 
-                        <tr>
+                        <tr class="tableInfoRow">
                                 <td><span class="info">Account Type: </span></td>
                                 <td> <span name="accountTp" class="userInfo"><%= userType%></span></td>
 
 
                         </tr>
 
-                    <tr>
+                        <tr class="tableInfoRow">
                             <td><span class="info">Email :</span></td>
                             <td><span name="userEmail" class="userInfo"> <%= userEmail%> </span></td>
                     </tr>
 
 
-                    <tr>
-
+                    <tr class="tableInfoRow">
                             <td><span class="info">User ID :</span></td>
                             <td><span name="childID" class="userInfo"><%= userID%> </span></td>
 
@@ -136,7 +135,7 @@
 
 
 
-                    <tr>
+                        <tr class="tableInfoRow">
                             <td><span class="info">Password :</span></td>
                             <td><span name="userPass" class="userInfo"> <%= userPass%>   </span></td>
 
@@ -154,14 +153,14 @@
 
                     <table class="editProfileInfoTable">
 
-                      <tr>
+                            <tr class="tableInfoRow">
                             <td><span class="editInfoTxt">First Name:  </span></td>
                             <td> <input type="text" id = "userFNameEdit" name="userFNameEdit" class="editUserInfo" value="<%= name%>"></td>
 
 
                     </tr>
 
-                    <tr>
+                    <tr class="tableInfoRow">
 
                             <td><span class="editInfoTxt">Family Name: </span></td>
                             <td> <input type="text" name="userLNameEdit" class="editUserInfo"  value="<%= userLname%>"></td>
@@ -169,15 +168,14 @@
 
                      </tr>
 
-
-                     <tr>
+                     <tr class="tableInfoRow">
                             <td><span class="editInfoTxt">Account Type: </span></td>
                             <td> <input type="text" name="accountTpEdit" class="editUserInfo" id="accountType" disabled value="<%= userType%>" ></td>
 
 
                     </tr>
 
-                    <tr>
+                    <tr class="tableInfoRow">
 
                             <td><span class="editInfoTxt">Change Email :</span></td>
                             <td><input type="email" name="userEmailEdit" class="editUserInfo" disabled value=" <%= userEmail%>"></td>
@@ -185,14 +183,14 @@
                     </tr>
 
 
-                    <tr>
+                    <tr class="tableInfoRow">
 
                             <td><span class="editInfoTxt">Change User ID :</span></td>
                             <td><input type="text" name="userIDEdit" class="editUserInfo" disabled value="<%= userID%>"></td>
 
                     </tr>
 
-                    <tr>
+                    <tr class="tableInfoRow">
                             <td><span class="editInfoTxt">Change Password :</span></td>
                             <td><input type="password" name="userPassEdit" class="editUserInfo"  value="<%= userPass%>"></td>
 

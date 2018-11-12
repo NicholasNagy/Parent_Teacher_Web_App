@@ -28,6 +28,8 @@ var groupsRouter = require('./routes/groups');
 var createGroupRouter = require('./routes/createGroups');
 var editGroupRouter = require('./routes/editGroup');
 var addtoGroupRouter = require('./routes/addToGroup');
+var groupRequestRouter = require('./routes/groupRequest');
+var declineGroupRequestRouter = require('./routes/declineGroupRequest');
 
 var wallRouter = require('./routes/goToWall');
 
@@ -96,7 +98,8 @@ app.use('/groups',groupsRouter);
 app.use('/createGroups',createGroupRouter);
 app.use('/editGroup',editGroupRouter);
 app.use('/addToGroup',addtoGroupRouter);
-
+app.use('/groupRequest', groupRequestRouter);
+app.use('/declineGroupRequest', declineGroupRequestRouter);
 
 
 

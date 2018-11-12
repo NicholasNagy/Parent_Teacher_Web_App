@@ -98,9 +98,32 @@
 
         <% if(typeof groupName !== 'undefined'){ %>
        <p class="groupNAME"><%=groupName%></p>
+            
             <% } %>
         <hr>
 
+
+        <form action="/groupRequest" method="POST" onsubmit="return alert('Request Sent to Group Admin')">
+            <!-- Not a member -->
+            <% if(typeof memberStatus == 'undefined'){ %>
+                <input type="text" name ="leaderID" style="display:none" value = "<%= leader.memberID%>">
+                <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>">
+                <input type="text" name ="logID" style="display:none" value = "<%= uID%>">
+        <span id="memberStatus">You are not a member of this group. Would you like to send a request to the group leader to join?</span>     
+            <button name="groupRequest" type="submit" class="requestBtn">Send Request</button>
+            <% } %>
+            <!-- Member -->
+            <% if(typeof memberStatus !== 'undefined' && leader.memberID != uID ){ %>
+                <span id="memberStatus">You are a member of this group.</span>
+                <% } %>
+            <!-- Leader  -->
+            <% if(leader.memberID == uID){ %>
+                <span id="memberStatus">You are the leader of this group.</span>
+                <% } %>
+            </form>
+
+
+            <hr>
             <div class="search">
 
                 <div class="searchBar">
@@ -112,7 +135,7 @@
                         <input type="text" name ="groupName" style="display:none" value = "<%= groupName%>">
                         <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>">
                         <% } %>
-                    <input type="text" name ="logID" style="display:none" value = "<%= uID%>"></td>
+                    <input type="text" name ="logID" style="display:none" value = "<%= uID%>">
                     <input type="text" name="searchField" class="searchField1" placeholder="Search">
                     <button name="searchUsersBtn" class="searchUsersBtn">Search</button>
                         </form>
@@ -138,6 +161,8 @@
                                  <% }else{ %>
 
                                  <td class="person" style="padding-left:20px;"><span><%= u %></span></td>
+
+                                 <% if(leader.memberID == uID || typeof memberStatus !== 'undefined' ){ %>
                                           <form action="/addToGroup" method="POST">
 
 
@@ -148,9 +173,12 @@
                                         <% } %>
                                         <td class="person" style="text-align:center;"><input type="text"name="logID" style="display:none" value = "<%=uID%>"></td>
                                         <td class="person" style="text-align:center;"><input type="text"name ="idToAdd" style="display:none;" value = "<%=key %>"></td>
-                                              <td> <button name="groupInviteBtn" class="groupInviteBtn" >Send Invite</button> </td>
+                                        
+                                              <td> <button name="groupInviteBtn" class="groupInviteBtn" >Add to Group</button> </td>
+                                              
                                          </form>
-
+                                         <% } %>
+                                        
                                      <% } %>
                                        </tr>
                             <% n++; %>
@@ -191,13 +219,73 @@
                                             <% }) %>
                                     <% } %>
                             </table>
+                            
                     </div>
 
                 </div>
 
+                <div class="requests_List">
+      
+                        <% if(leader.memberID == uID){ %>  
+                        <p id="rListTitle"> Pending Requests</p>
+                       
+                            <div class="list_Header">
+                                    
+                                    <table class="requestListTable">
+                
+                                        
+                                            <% if(typeof groupRequests !== 'undefined'){ %>
+                                            
+                                                    <% groupRequests.forEach(function(v){ %>
+              
+                                                      
+                                            <tr class="memberTableRow">
+            
+                                         <td class="member" style="text-align: center; padding: 10px;";><span class="memberName"> <%= v.Fname%> <%= v.Lname%></span></td>
+                
 
+                                         <form action="/addToGroup" method="POST">
+                                            <input type="text" name ="logID" style="display:none" value = "<%= uID%>">
+                                            <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>">
+                                            <input type="text" name ="groupName" style="display:none" value = "<%= groupName%>">
+                                            <input type="text"name ="idToAdd" style="display:none;" value = "<%=v.requesterID %>">
+                                         <td class="member"><button name="accept" class="acceptBtn" >Accept</button>
+                                        </form>
 
-        </div>
+                                       
+                                        <form action="/declineGroupRequest" method="POST">
+                                            <input type="text" name ="logID" style="display:none" value = "<%= uID%>">
+                                            <input type="text" name ="groupID" style="display:none" value = "<%= groupID%>">
+                                            <input type="text" name ="groupName" style="display:none" value = "<%= groupName%>">
+                                            <input type="text"name ="idToAdd" style="display:none;" value = "<%=v.requesterID %>">
+                                        
+                                            <td class="member"><button name="decline" class="declineBtn" >Decline</button></td>
+                                        </form>
+
+                                            </tr>
+                                          
+                                          
+
+                                                    <% }) %>
+                                            
+                                            <% if(groupRequests.length == 0){ %>
+                                                <tr class="memberTableRow">
+                                                     <td class="member"><span id="noRequests">No Pending Requests</span></td>
+                                                </tr>
+     
+                                                <% } %>
+                                            <% } %>
+                                    </table>
+
+                            </div>
+                            <% } %>
+
+                        </div>
+
+    </div>
+   
+    
+</div>
 
 
 
