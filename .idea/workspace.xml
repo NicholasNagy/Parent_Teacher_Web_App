@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="baa3789f-ebb7-4e49-bdca-f030e15bc3b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/Jakefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/ejs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/ejs.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/lib/ejs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/lib/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ejs/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/parenthomepage.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/parenthomepage.ejs" afterDir="false" />
-    </list>
+    <list default="true" id="baa3789f-ebb7-4e49-bdca-f030e15bc3b9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -350,12 +336,12 @@
       <workItem from="1541300802445" duration="173000" />
       <workItem from="1541459639199" duration="2661000" />
       <workItem from="1541706588753" duration="221000" />
-      <workItem from="1542068414918" duration="4041000" />
+      <workItem from="1542068414918" duration="4312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30296000" />
+    <option name="totallyTimeSpent" value="30567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
