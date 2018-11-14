@@ -478,3 +478,85 @@ textarea{
     
     background-color: rgb(218, 218, 218);
 }
+
+.notDropDown{
+
+    
+    display: inline;
+    margin-left: 1250px;
+    position: relative;
+    
+   
+}
+
+.notifcation_list{
+
+    width:350px;
+    height: wrap;
+    min-height: 100px;
+    margin-left: 1320px;
+    color: black;
+    z-index: 1;
+    position: fixed;
+    
+
+}
+
+.notification{
+
+    border:none;
+    width: inherit;
+    height: 40px;
+}
+
+.notification{
+
+    float: left;
+    cursor: pointer;
+    background-color: rgb(252, 252, 252);
+    text-align: left;
+    padding:5px;
+    
+}
+
+.notification:hover{
+
+    border:none;
+    background-color: rgb(218, 218, 218);
+}
+
+
+.forgotPassword{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -250px;
+    background-color: white;
+    padding:30px;
+    display: block;
+    background-color: rgb(252, 252, 252);
+}
+
+#forgotTitle{
+  text-align: center;
+  font-size: 30px;
+    
+}
+
+.email_reset{
+
+    padding-left: 3px;
+    font-size: 20px;
+    margin-left:50px;
+    margin-top: 20px;
+    
+}
+
+#titleForgot{
+    margin-top:-75px;
+    text-align: center;
+    font-size: 30px;
+    color: rgb(79, 137, 192);
+  
+}
