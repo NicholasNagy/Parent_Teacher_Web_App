@@ -479,11 +479,17 @@ textarea{
     background-color: rgb(218, 218, 218);
 }
 
+.wrapper{
+    width:300vh;
+    
+}
+
+
 .notDropDown{
 
     
-    display: inline;
-    margin-left: 1250px;
+   
+    float: right;
     position: relative;
     
    
@@ -494,10 +500,11 @@ textarea{
     width:350px;
     height: wrap;
     min-height: 100px;
-    margin-left: 1320px;
+    float: right;
     color: black;
     z-index: 1;
     position: fixed;
+   
     
 
 }

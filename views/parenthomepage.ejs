@@ -2,18 +2,7 @@
 
 <div class="nav_bar" xmlns="http://www.w3.org/1999/html">
         <a class="title" href="/homepage">School App</a>
-        <div class ="notDropDown">
-            <a class ="notification-style" href="#" onClick="NotificationDropDownTop();return false;"><em id="notificationIcon" class="material-icons" style="font-size:55px;">notification_important</em></a>
-            <div class="notifcation_list" id="notifcation_list" style="display: none;">
-                <% if (userID== WallID){ %>
-                    <% if(typeof notification !== 'undefined'){ %>
-                        <% notification.forEach(function (u) { %>
-                            <button class="notification"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</button>
-                        <% })%>
-                    <% }%>
-                <% }%>
-            </div>
-        </div>
+
         <div class="quickAccess">
 
             <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
@@ -27,6 +16,22 @@
             </div>
 
         </div>
+
+        <div class="wrapper">
+            <div class ="notDropDown">
+                <a class ="notification-style" href="#" onClick="NotificationDropDownTop();return false;"><em id="notificationIcon" class="material-icons" style="font-size:55px;">notification_important</em></a>
+                <div class="notifcation_list" id="notifcation_list" style="display: none;">
+                    <% if (userID== WallID){ %>
+                        <% if(typeof notification !== 'undefined'){ %>
+                            <% notification.forEach(function (u) { %>
+                                <button class="notification"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</button>
+                            <% })%>
+                        <% }%>
+                    <% }%>
+                </div>
+            </div>
+         </div>
+       
     </div>
 
     <div class="sidebar">
@@ -230,25 +235,34 @@
 
 
         function dropDownTop() {
-            console.log("Ya bro I am running correctly");
+           
             var dropDownList = document.getElementById("quickAccess_list");
-
+            var NotificationDrop = document.getElementById("notifcation_list");
 
             if(dropDownList.style.display === "block")
                 dropDownList.style.display = "none";
+                
             else
                 dropDownList.style.display = "block";
+
+            if(NotificationDrop.style.display === "block")
+                NotificationDrop.style.display = "none";
         }
 
         function NotificationDropDownTop() {
-            console.log("Ya bro I am running correctly");
+           
 
             var dropDownList = document.getElementById("notifcation_list");
+            var dropDownTop = document.getElementById("quickAccess_list");
 
             if(dropDownList.style.display === "block")
                 dropDownList.style.display = "none";
             else
                 dropDownList.style.display = "block";
+            
+            if(dropDownTop.style.display === "block")
+                dropDownTop.style.display = "none";
+           
         }
 
 
