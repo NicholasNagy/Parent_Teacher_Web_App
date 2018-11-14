@@ -22,14 +22,10 @@ router.post('/', function (req,res) {
 
     var query = "SELECT Fname,Lname,ID FROM users";
 
-   var memberList = "SELECT Fname,Lname FROM users where ID='"+loggedInID+"';";
-
    var selectGroup = "SELECT Fname,Lname,groupName,memberID FROM groups where groupID='"+gID+"';";
 
       pool.connection.query(selectGroup, function (error, result1) {
         if (error)throw error;
-          pool.connection.query(memberList, function (error, result){
-            if (error)throw error;
               pool.connection.query(query, function (error, results) {
                  if (error)throw error;
 
@@ -51,7 +47,7 @@ router.post('/', function (req,res) {
 
              users.push(fullName);
              console.log(results[i].ID);
-             ids.push(results[i].ID)
+             ids.push(results[i].ID);
 
 
             }
@@ -74,12 +70,11 @@ var selectRequests = "SELECT requesterID,Fname,Lname,groupID,leaderID FROM group
 
         getUser.then(function(user){
 
-           res.render('editGroup', {groupMembers : result1, queryResults: users, idKeys: ids, uID : loggedInID, userList: result, groupName: nameG, groupID : gID, name:user.Fname, leader: result1[0], memberStatus: result2[0], groupRequests : requests});
+           res.render('editGroup', {groupMembers : result1, queryResults: users, idKeys: ids, uID : loggedInID, groupName: nameG, groupID : gID, name:user.Fname, leader: result1[0], memberStatus: result2[0], groupRequests : requests});
         });
               });
             });
           });
-        });
       });
 });
 module.exports=router;
