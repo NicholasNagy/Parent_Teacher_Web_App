@@ -32,5 +32,7 @@ jobs:
         - node ./functiontests/createGroupTestCleanUp.js
     - script:
         - node ./functiontests/searchTest.js
+    - script:
+        - node ./functiontests/checkIDDubplicates.js
 
 
