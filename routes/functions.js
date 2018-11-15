@@ -65,6 +65,29 @@ var getWall = function(WallID, userID){
 
         var posts = "SELECT Fname, Content, postID, posterID, WallID, likes, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
 
+          var messenger = "SELECT Fname, senderID, receiverID  FROM thechats join Users ON thechats.receiverID='"+WallID+"' AND thechats.senderID=Users.ID ORDER BY thechats.chatID DESC;";
+
+          pool.connection.query(messenger, function (error, results) {
+              if (error)
+                  throw error;
+
+              var notificationMessenger = [];
+
+              let user = new Promise(function(resolve, reject){
+                  for (let i=0; i<results.length; i++){
+
+                          notificationMessenger.push(results[i]);
+                          console.log("testing messenger: "+results[i].Fname);
+                      }
+
+              });
+
+              user.then(function(theuser){
+                  resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: notification});
+              });
+
+          });
+
 
         pool.connection.query(posts, function (error, results) {
           if (error)
@@ -84,7 +107,7 @@ var getWall = function(WallID, userID){
           });
 
           user.then(function(theuser){
-            resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: notification});
+            resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: notification, notificationMessenger: notificationMessenger});
           });
 
         });
