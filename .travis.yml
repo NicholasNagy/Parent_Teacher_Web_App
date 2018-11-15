@@ -24,5 +24,13 @@ jobs:
         - node ./functiontests/profileEditTesting.js
     - script:
         - node ./functiontests/profileViewTesting.js
+    - script:
+        - node ./functiontests/ImagePostingTest.js
+        - node ./functiontests/ImagePostingTestCleanUp.js
+    - script:
+        - node ./functiontests/createGroupTest.js
+        - node ./functiontests/createGroupTestCleanUp.js
+    - script:
+        - node ./functiontests/searchTest.js
 
 
