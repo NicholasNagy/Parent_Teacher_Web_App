@@ -31,8 +31,21 @@
                 </div>
             </div>
          </div>
-       
+    <div class="wrapper">
+        <div class ="notDropDown">
+            <a class ="notification-style" href="#" onClick="MessengerNotificationDropDownTop();return false;"><em id="notificationIcon" class="material-icons" style="font-size:55px;">message</em></a>
+            <div class="notifcation_list" id="notifcation_list" style="display: none;">
+                <% if (userID== WallID){ %>
+                    <% if(typeof notificationMessenger !== 'undefined'){ %>
+                        <% notificationMessenger.forEach(function (u) { %>
+                            <button class="notification"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has sent you a message</button>
+                        <% })%>
+                    <% }%>
+                <% }%>
+            </div>
+        </div>
     </div>
+</div>
 
     <div class="sidebar">
         <div class="sidebar_body">
@@ -110,6 +123,7 @@
     </div>
 
     <div class="page_content">
+
 
         <form action="/viewParent" method="POST">
             <input type="hidden" name="ffnam" value="<%= name%>">
@@ -263,6 +277,22 @@
             if(dropDownTop.style.display === "block")
                 dropDownTop.style.display = "none";
            
+        }
+
+        function MessengerNotificationDropDownTop() {
+
+
+            var dropDownList = document.getElementById("notifcation_list");
+            var dropDownTop = document.getElementById("quickAccess_list");
+
+            if(dropDownList.style.display === "block")
+                dropDownList.style.display = "none";
+            else
+                dropDownList.style.display = "block";
+
+            if(dropDownTop.style.display === "block")
+                dropDownTop.style.display = "none";
+
         }
 
 
