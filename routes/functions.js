@@ -67,16 +67,27 @@ var getWall = function(WallID, userID){
 
           var messenger = "SELECT Fname, senderID, receiverID  FROM thechats join Users ON thechats.receiverID='"+WallID+"' AND thechats.senderID=Users.ID ORDER BY thechats.chatID DESC;";
 
-          var notificationMessenger = [];
           pool.connection.query(messenger, function (error, results) {
               if (error)
                   throw error;
+
+              var notificationMessenger = [];
+
+              let user = new Promise(function(resolve, reject){
                   for (let i=0; i<results.length; i++){
 
                           notificationMessenger.push(results[i]);
                           console.log("testing messenger: "+results[i].Fname);
                       }
+
+              });
+
+              user.then(function(theuser){
+                  resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: notification});
+              });
+
           });
+
 
         pool.connection.query(posts, function (error, results) {
           if (error)
@@ -91,6 +102,7 @@ var getWall = function(WallID, userID){
                   console.log("testing notification: "+results[i].Fname);
               }
             }
+            console.log("Testing the notification string: "+notification[0]);
             resolve(getUser(userID));
           });
 
