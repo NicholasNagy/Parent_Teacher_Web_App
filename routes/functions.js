@@ -2,13 +2,54 @@ var mysql = require('mysql');
 var DBconnect = require('./dbConfig');
 var pool = new DBconnect();
 
+var tag = function(tag1, tag2, tag3, tag4, tag5, postID){
+  return new Promise(function(resolve, reject){
+
+    sqltag1 = ""; sqltag2 = ""; sqltag3 = ""; sqltag4 = ""; sqltag5 = "";
+
+    if(tag1!=undefined){
+      sqltag1="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag1+"','"+postID+"', NOW());";
+      pool.connection.query(sqltag1,function(error, noth){
+        if(error) throw error;
+      });
+    }
+    if(tag2!=undefined){
+      sqltag2="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag2+"','"+postID+"', NOW());";
+      pool.connection.query(sqltag2,function(error, noth){
+        if(error) throw error;
+      });
+    }
+    if(tag3!=undefined){
+      sqltag3="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag3+"','"+postID+"', NOW());";
+      pool.connection.query(sqltag3,function(error, noth){
+        if(error) throw error;
+      });
+    }
+    if(tag4!=undefined){
+      sqltag4="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag4+"','"+postID+"', NOW());";
+      pool.connection.query(sqltag4,function(error, noth){
+        if(error) throw error;
+      });
+    }
+    if(tag5!=undefined){
+      sqltag5="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag5+"','"+postID+"', NOW());";
+      pool.connection.query(sqltag5,function(error, noth){
+        if(error) throw error;
+      });
+    }
+
+    resolve("done");
+
+  });
+};
+
 
 var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
   console.log("Preparing to add post to DB");
   console.log(imageName);
   //CREATING SQL METHOD
     var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
-    
+
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
     pool.connection.query(postSQL, function (err, r) {
@@ -20,40 +61,13 @@ var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag
 
 
             var postID = r.insertId;
-            sqltag1 = ""; sqltag2 = ""; sqltag3 = ""; sqltag4 = ""; sqltag5 = "";
 
-            if(tag1!=undefined){
-              sqltag1="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag1+"','"+postID+"', NOW());";
-              pool.connection.query(sqltag1,function(error, noth){
-                if(error) throw error;
-              });
-            }
-            if(tag2!=undefined){
-              sqltag2="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag2+"','"+postID+"', NOW());";
-              pool.connection.query(sqltag2,function(error, noth){
-                if(error) throw error;
-              });
-            }
-            if(tag3!=undefined){
-              sqltag3="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag3+"','"+postID+"', NOW());";
-              pool.connection.query(sqltag3,function(error, noth){
-                if(error) throw error;
-              });
-            }
-            if(tag4!=undefined){
-              sqltag4="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag4+"','"+postID+"', NOW());";
-              pool.connection.query(sqltag4,function(error, noth){
-                if(error) throw error;
-              });
-            }
-            if(tag5!=undefined){
-              sqltag5="INSERT INTO postTagNotifications (taggedFriend, postID, postDate) VALUES ('"+tag5+"','"+postID+"', NOW());";
-              pool.connection.query(sqltag5,function(error, noth){
-                if(error) throw error;
-              });
-            }
-
-            resolve("post has been added to db");
+            let tagging=new Promise(function(resolve, reject){
+              resolve(tag(tag1,tag2,tag3,tag4,tag5, postID));
+            });
+            tagging.then(function(answer){
+              resolve("post has been added to db");
+            });
 
 
 
@@ -65,7 +79,9 @@ var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag
 
 
 
-var commenting = function(comment, postID, commenterID){
+
+
+var commenting = function(comment, postID, commenterID, tag1, tag2, tag3, tag4, tag5){
 
   console.log("Preparing to add comment to DB");
 
@@ -75,7 +91,13 @@ var commenting = function(comment, postID, commenterID){
     pool.connection.query(postSQL, function (err, result) {
       if (err)
           throw err;
-        resolve("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
+
+        let tagging= new Promise(function(resolve, reject){
+          resolve(tag(tag1,tag2,tag3,tag4,tag5, postID));
+        });
+        tagging.then(function(stuff){
+          resolve("Comment is added to DB");//NOTIFYING OF ADDITION ON CONSOLE
+        });
     });
   });
 
@@ -94,8 +116,12 @@ var generateComments = function(postID, userName, userID){
       pool.connection.query(comments, function (err, result){
         if (err) throw err;
 
-          resolve({comments : result, postID, post: resultP[0].Content, posterName:resultP[0].Fname, name: userName, userID: userID});
-
+        let theFriends= new Promise(function(resolve,reject){
+          resolve(getFriends(userID));
+        });
+        theFriends.then(function(friends){
+          resolve({comments : result, postID, post: resultP[0].Content, posterName:resultP[0].Fname, name: userName, userID: userID, friends:friends});
+        });
     });
 
   });

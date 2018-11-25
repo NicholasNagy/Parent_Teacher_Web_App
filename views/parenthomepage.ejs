@@ -111,12 +111,6 @@
 
     <div class="page_content">
 
-        <form action="/viewParent" method="POST">
-            <input type="hidden" name="ffnam" value="<%= name%>">
-            <input type="hidden" name="userID" value="<%=userID%>">
-
-            <input type="submit" value="message" >
-        </form>
 
       <div name="teacherPost" id="teacherPost">
           <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
@@ -371,7 +365,7 @@
           function tagFriend(friendID){
             var friendName = document.getElementById(friendID).value;
             var taggedFriends = document.getElementsByClassName("taggedFriends");
-            
+
 
             autocomplete(friendName);
 
