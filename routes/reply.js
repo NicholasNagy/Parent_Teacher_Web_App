@@ -23,10 +23,16 @@ router.post('/', function(req,res,next){
   var comment = req.body.replayArea;
   var postID = req.body.postID;
   var userID = req.body.userID;
-  var userName = req.body.userName
-  console.log(postID);
+  var userName = req.body.userName;
+
+  var tagged1 = req.body.taggedFriend0;
+  var tagged2 = req.body.taggedFriend1;
+  var tagged3 = req.body.taggedFriend2;
+  var tagged4 = req.body.taggedFriend3;
+  var tagged5 = req.body.taggedFriend4;
+
   let theComment = new Promise(function(resolve, reject){
-    resolve(functions.comment(comment, postID, userID));
+    resolve(functions.comment(comment, postID, userID, tagged1, tagged2, tagged3, tagged4, tagged5));
   });
   theComment.then(function(successMessage){
     let getComments = new Promise(function(resolve, reject){

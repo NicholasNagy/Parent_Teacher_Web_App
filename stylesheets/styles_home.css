@@ -42,7 +42,7 @@ a.title {
 .quickAccess{
     position: relative;
     float: right;
-  
+
 }
 
 .quickAccess_title:hover{
@@ -204,11 +204,12 @@ a.title {
 
 .page_content{
 
-	width: 1300px;
+	width: 82.5%;
 	border-right-color: black;
-    margin-left: 285px;
-    margin-top: 75px;
+    margin-left: 17%;
+    margin-top: 4.4%;
     height: 100%;
+
 
 
 
@@ -239,8 +240,22 @@ a.title {
 .textArea{
 
 	padding: 10px;
+  width:80%;
+  height:80%;
 
 }
+
+.tagFriendsTable{
+  position:absolute;
+  top:20%;
+  right:4%;
+}
+
+.taggableFriends{
+
+}
+
+
 
 #textPost{
 
@@ -254,6 +269,7 @@ a.title {
 	border-color: #F3F3F3;
 	text-align: left;
 	background: #F3F3F3;
+
 
 
 
@@ -317,11 +333,11 @@ a.title {
 
 }
 
-/* #tableWrap {
+#tableWrap {
   position:relative;
   padding-top: 10px;
   z-index: 0;
-}
+}/*
 #tableScroll {
   height:800px;
   overflow:auto;
@@ -397,6 +413,8 @@ textarea{
 
     resize: none;
 
+
+
 }
 
 #replyBox{
@@ -417,7 +435,7 @@ textarea{
 }
 
 #replayArea{
- 
+
     text-align: left;
 
 }#replayArea:focus{
@@ -427,14 +445,14 @@ textarea{
 }
 
 .likeBtn{
-    
+
     width: wrap;
     cursor: pointer;
     font-weight: bold;
     background-color: rgb(114, 226, 2);
     padding: 5px;
-  
-    
+
+
 
 }
 
@@ -446,7 +464,7 @@ textarea{
 
 .dislikeBtn{
 
-    
+
     width: wrap;
     cursor: pointer;
     font-weight: bold;
@@ -458,12 +476,12 @@ textarea{
 .dislikeBtn:hover{
     cursor: pointer;
     background-color: rgb(255, 0, 0);
-    
+
 
 }
 
 .toCommentPageBtn{
- 
+
     font-weight: bold;
     cursor: pointer;
     padding: 7px;
@@ -472,27 +490,27 @@ textarea{
 }
 
 .toCommentPageBtn:hover{
- 
+
     width: wrap;
     cursor: pointer;
-    
+
     background-color: rgb(218, 218, 218);
 }
 
 .wrapper{
     width:300vh;
-    
+
 }
 
 
 .notDropDown{
 
-    
-   
+
+
     float: right;
     position: relative;
-    
-   
+
+
 }
 
 .notifcation_list{
@@ -504,8 +522,8 @@ textarea{
     color: black;
     z-index: 1;
     position: fixed;
-   
-    
+
+
 
 }
 
@@ -523,7 +541,7 @@ textarea{
     background-color: rgb(252, 252, 252);
     text-align: left;
     padding:5px;
-    
+
 }
 
 .notification:hover{
@@ -548,7 +566,7 @@ textarea{
 #forgotTitle{
   text-align: center;
   font-size: 30px;
-    
+
 }
 
 .email_reset{
@@ -557,7 +575,7 @@ textarea{
     font-size: 20px;
     margin-left:50px;
     margin-top: 20px;
-    
+
 }
 
 #titleForgot{
@@ -565,5 +583,5 @@ textarea{
     text-align: center;
     font-size: 30px;
     color: rgb(79, 137, 192);
-  
+
 }

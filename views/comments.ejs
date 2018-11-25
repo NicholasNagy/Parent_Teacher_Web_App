@@ -111,11 +111,18 @@
 
 
 
-                    <textarea id="replayArea" name="replayArea"  rows="4" cols="120"  placeholder="Post a reply."></textarea>
+                    <textarea id="replayArea" name="replayArea"  rows="4" cols="100" oninput="tagFriends()"  placeholder="Post a reply."></textarea>
+                    <table class="tagFriendsTable" id="matchedFriends">
+                      <!-- matched friends will go here-->
+                      <tr><td>hello</td></tr>
+                    </table>
                     <input type="text" name = "userName" style="display:none" value = "<%= name%>">
 
 
                     <button name="submitComment" id="submitComment">Reply</button>
+                    <td><span class="taggedFriendsLabel">Tagged Friends: <span id="allTaggedFriends" style="position:absolute"></span></span></td>
+                    <p id="taggedFriendsIDs"></p>
+                  </tr></table>
 
                 </form>
 
@@ -151,6 +158,13 @@
     </div>
 </div>
 
+<!--<%friends.forEach(function(u){%>-->
+     <p class="taggableFriendName" style="display:none"><%=u.Fname%> <%=u.Lname%></p>
+     <p class="taggableFriendID" style="display:none"><%=u.ID%></p>
+
+
+ <!--  <% }); %>-->
+
 
 <!-- Show/hide drop down menu -->
 <script>
@@ -168,6 +182,145 @@
         else
             dropDownList.style.display = "block";
     }
+
+    function tagFriends(){
+      var textinput = document.getElementById("replayArea").value;
+
+
+      checkTags(textinput);
+
+      closeUnusedTagSuggestions();
+
+
+
+      for(i=0;i<textinput.length;i++){
+
+
+        if(textinput.charAt(i)=="@"){
+
+
+          var taggableFriends =document.getElementsByClassName("taggableFriendName");
+          var taggableFriendsID=document.getElementsByClassName("taggableFriendID");
+          var nameLength=textinput.length-i-1;
+          var matchedFriends = new Array();
+          var matchedFriendID = new Array();
+
+
+
+
+          for(z=0;z<taggableFriends.length;z++){
+
+            if(textinput.substring(i+1,textinput.length).toUpperCase()==taggableFriends[z].innerHTML.substring(0,nameLength).toUpperCase()){
+
+              matchedFriends.push(taggableFriends[z].innerHTML);
+              matchedFriendID.push(taggableFriendsID[z].innerHTML);
+
+            };
+
+          };
+
+          var showMatchedFriends;
+
+          for(x=0;x<5;x++){
+            if(typeof matchedFriends[x]!=='undefined'){
+            if(typeof showMatchedFriends!=='undefined')
+              showMatchedFriends= showMatchedFriends+"<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+
+            else
+              showMatchedFriends= "<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+
+            };
+
+
+            if(typeof showMatchedFriends!=='undefined')
+              document.getElementById("matchedFriends").innerHTML = showMatchedFriends;
+
+            };
+
+
+        };
+      };
+    };
+
+    function tagFriend(friendID){
+      var friendName = document.getElementById(friendID).value;
+      var taggedFriends = document.getElementsByClassName("taggedFriends");
+
+      autocomplete(friendName);
+
+      checkTags(document.getElementById("replayArea").value);
+
+    };
+
+    function autocomplete(friendName){
+      var textinput = document.getElementById("replayArea").value;
+      var lastChar=0;
+      for(i=0;i<textinput.length;i++){
+        if(textinput.charAt(i)=="@")
+          lastChar = i;
+      };
+      document.getElementById("replayArea").value = textinput.substring(0,lastChar)+"@"+friendName;
+    };
+
+    function checkTags(text){
+      var taggedFriends = document.getElementsByClassName("taggableFriendName");
+
+      var taggedFriendsIDs = document.getElementsByClassName("taggableFriendID");
+      var checkedFriends = new Array();
+      var checkedFriendIDs = new Array();
+
+      var z = 0;
+      for(i=0;i<taggedFriends.length;i++){
+        for(start=0;start<text.length;start++){
+          for(end=start;end<text.length;end++){
+            if(text.substring(start,end)==taggedFriends[i].innerHTML){
+              checkedFriends.push("<p class=\"taggedFriends\" style=\"display:inline-block;width:100px\">"+taggedFriends[i].innerHTML+ "</p>");
+              checkedFriendIDs.push("<input type=\"text\" id=\"taggedFriend"+z+"\" name = \"taggedFriend"+z+"\" style = \"display:none\" value = "+taggedFriendsIDs[i].innerHTML+">");
+              z++;
+            }
+          }
+        }
+      }
+
+      var showCheckedFriends = checkedFriends[0];
+      var showCheckedFriendIDs = checkedFriendIDs[0];
+
+      for(allTags=1;allTags<checkedFriends.length;allTags++){
+        showCheckedFriends = showCheckedFriends+checkedFriends[allTags];
+        showCheckedFriendIDs = showCheckedFriendIDs+checkedFriendIDs[allTags];
+      }
+
+      if(checkedFriends.length!=0){
+
+        document.getElementById("allTaggedFriends").innerHTML = showCheckedFriends;
+        document.getElementById("taggedFriendsIDs").innerHTML = showCheckedFriendIDs;
+      }
+
+      else{
+
+        document.getElementById("allTaggedFriends").innerHTML = "";
+
+        document.getElementById("taggedFriendsIDs").innerHTML = "";
+
+      }
+
+
+    };
+
+    function closeUnusedTagSuggestions(){
+      var taggedFriends = document.getElementsByClassName("taggedFriends");
+      var textinput = document.getElementById("replayArea").value;
+      var tags = 0;
+
+      for(i=0;i<textinput.length;i++){
+        if(textinput.charAt(i)=="@")
+          tags++;
+      }
+      if(tags==taggedFriends.length)
+        document.getElementById("matchedFriends").innerHTML = "";
+    }
+
+
 </script>
 
 

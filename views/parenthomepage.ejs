@@ -31,7 +31,7 @@
                 </div>
             </div>
          </div>
-       
+
     </div>
 
     <div class="sidebar">
@@ -111,12 +111,6 @@
 
     <div class="page_content">
 
-        <form action="/viewParent" method="POST">
-            <input type="hidden" name="ffnam" value="<%= name%>">
-            <input type="hidden" name="userID" value="<%=userID%>">
-
-            <input type="submit" value="message" >
-        </form>
 
       <div name="teacherPost" id="teacherPost">
           <button id="button_newPost" onClick="showNewPostFromBox();return false;">New Post</button>
@@ -129,22 +123,42 @@
               <input type="text" id="WallID" name = "WallID" style="display:none" value = "<%= WallID%>">
               <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= userID%>">
                 <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
+                <p id="taggedFriendsIDs"></p>
 
             <div class="textArea" >
-             <textarea id="textPost" name="textPost" rows="6" cols="100" placeholder="Say Something."></textarea>
+
+             <textarea id="textPost" name="textPost" rows="6" cols="100" oninput="tagFriends()" placeholder="Say Something."></textarea>
+
+             <table class="tagFriendsTable" id="matchedFriends">
+               <!-- matched friends will go here-->
+             </table>
+
+
 
             </div>
+
             <form action="/" method="POST">
 
 
-
+              <table style="display:inline-block">
             <tr>
                 <td><span class="editInfoTxt">Upload an image :</span></td>
+
                 <td><input type="file" name="userImageEdit" ></td>
-            </tr>
+                <td><span class="taggedFriendsLabel">Tagged Friends: <span id="allTaggedFriends" style="position:absolute"></span></span></td>
+              </tr></table>
+
+
+
+
+
 
             <button name="submitPost" id="submitPost">Post</button>
           </form>
+
+
+
+
         </div>
 
         <div id="tableWrap">
@@ -225,7 +239,12 @@
 
     </div>
 
+    <!--<%friends.forEach(function(u){%>-->
+         <p class="taggableFriendName" style="display:none"><%=u.Fname%> <%=u.Lname%></p>
+         <p class="taggableFriendID" style="display:none"><%=u.ID%></p>
 
+
+     <!--  <% }); %>-->
 
 
 
@@ -235,13 +254,13 @@
 
 
         function dropDownTop() {
-           
+
             var dropDownList = document.getElementById("quickAccess_list");
             var NotificationDrop = document.getElementById("notifcation_list");
 
             if(dropDownList.style.display === "block")
                 dropDownList.style.display = "none";
-                
+
             else
                 dropDownList.style.display = "block";
 
@@ -250,7 +269,7 @@
         }
 
         function NotificationDropDownTop() {
-           
+
 
             var dropDownList = document.getElementById("notifcation_list");
             var dropDownTop = document.getElementById("quickAccess_list");
@@ -259,10 +278,10 @@
                 dropDownList.style.display = "none";
             else
                 dropDownList.style.display = "block";
-            
+
             if(dropDownTop.style.display === "block")
                 dropDownTop.style.display = "none";
-           
+
         }
 
 
@@ -288,6 +307,152 @@
             else
                 newPostTextForm.style.display = "block";
         }
+
+
+
+          function tagFriends(){
+            var textinput = document.getElementById("textPost").value;
+
+            checkTags(textinput);
+            closeUnusedTagSuggestions();
+
+            for(i=0;i<textinput.length;i++){
+
+
+              if(textinput.charAt(i)=="@"){
+                var taggableFriends =document.getElementsByClassName("taggableFriendName");
+                var taggableFriendsID=document.getElementsByClassName("taggableFriendID");
+                var nameLength=textinput.length-i-1;
+                var matchedFriends = new Array();
+                var matchedFriendID = new Array();
+
+
+
+                for(z=0;z<taggableFriends.length;z++){
+
+                  if(textinput.substring(i+1,textinput.length).toUpperCase()==taggableFriends[z].innerHTML.substring(0,nameLength).toUpperCase()){
+
+                    matchedFriends.push(taggableFriends[z].innerHTML);
+                    matchedFriendID.push(taggableFriendsID[z].innerHTML);
+
+                  };
+
+                };
+
+                var showMatchedFriends;
+
+                for(x=0;x<5;x++){
+                  if(typeof matchedFriends[x]!=='undefined'){
+                  if(typeof showMatchedFriends!=='undefined')
+                    showMatchedFriends= showMatchedFriends+"<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+
+                  else
+                    showMatchedFriends= "<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+
+                  };
+
+
+                  if(typeof showMatchedFriends!=='undefined')
+                    document.getElementById("matchedFriends").innerHTML = showMatchedFriends;
+
+                  };
+
+
+              };
+            };
+          };
+
+          function tagFriend(friendID){
+            var friendName = document.getElementById(friendID).value;
+            var taggedFriends = document.getElementsByClassName("taggedFriends");
+
+
+            autocomplete(friendName);
+
+              var htmlFriends = new Array();
+
+              for(i=0;i<taggedFriends.length;i++){
+
+                htmlFriends.push("<p class=\"taggedFriends\">"+taggedFriends[i].innerHTML+ "</p>");
+
+              }
+
+              var showTaggedFriends="<p class=\"taggedFriends\">"+friendName+"</p>"
+
+              for(z=0;z<htmlFriends.length;z++){
+
+                showTaggedFriends = showTaggedFriends+ htmlFriends[z];
+
+              }
+
+              document.getElementById("allTaggedFriends").innerHTML = showTaggedFriends;
+
+          };
+
+          function autocomplete(friendName){
+            var textinput = document.getElementById("textPost").value;
+            var lastChar=0;
+            for(i=0;i<textinput.length;i++){
+              if(textinput.charAt(i)=="@")
+                lastChar = i;
+            };
+            document.getElementById("textPost").value = textinput.substring(0,lastChar)+"@"+friendName;
+          };
+
+          function checkTags(text){
+            var taggedFriends = document.getElementsByClassName("taggableFriendName");
+            var taggedFriendsIDs = document.getElementsByClassName("taggableFriendID");
+            var checkedFriends = new Array();
+            var checkedFriendIDs = new Array();
+
+            var z = 0;
+            for(i=0;i<taggedFriends.length;i++){
+              for(start=0;start<text.length;start++){
+                for(end=start;end<text.length;end++){
+                  if(text.substring(start,end)==taggedFriends[i].innerHTML){
+                    checkedFriends.push("<p class=\"taggedFriends\">"+taggedFriends[i].innerHTML+ "</p>");
+                    checkedFriendIDs.push("<input type=\"text\" id=\"taggedFriend"+z+"\" name = \"taggedFriend"+z+"\" style = \"display:none\" value = "+taggedFriendsIDs[i].innerHTML+">");
+                    z++;
+                  }
+                }
+              }
+            }
+
+            var showCheckedFriends = checkedFriends[0];
+            var showCheckedFriendIDs = checkedFriendIDs[0];
+
+            for(allTags=1;allTags<checkedFriends.length;allTags++){
+              showCheckedFriends = showCheckedFriends+checkedFriends[allTags];
+              showCheckedFriendIDs = showCheckedFriendIDs+checkedFriendIDs[allTags];
+            }
+
+            if(checkedFriends.length!=0){
+              document.getElementById("allTaggedFriends").innerHTML = showCheckedFriends;
+              document.getElementById("taggedFriendsIDs").innerHTML = showCheckedFriendIDs;
+            }
+            else{
+              document.getElementById("allTaggedFriends").innerHTML = "";
+              document.getElementById("taggedFriendsIDs").innerHTML = "";
+            }
+
+          };
+
+          function closeUnusedTagSuggestions(){
+            var taggedFriends = document.getElementsByClassName("taggedFriends");
+            var textinput = document.getElementById("textPost").value;
+            var tags = 0;
+
+            for(i=0;i<textinput.length;i++){
+              if(textinput.charAt(i)=="@")
+                tags++;
+            }
+            if(tags==taggedFriends.length)
+              document.getElementById("matchedFriends").innerHTML = "";
+          }
+
+
+
+
 
     </script>
 
