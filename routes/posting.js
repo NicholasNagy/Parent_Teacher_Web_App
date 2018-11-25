@@ -81,6 +81,16 @@ var imageName = '';
     var PosterID= req.body.PosterID;
     var theName= req.body.name;
     var file = req.file;
+
+    var tagged1 = req.body.taggedFriend0;
+    var tagged2 = req.body.taggedFriend1;
+    var tagged3 = req.body.taggedFriend2;
+    var tagged4 = req.body.taggedFriend3;
+    var tagged5 = req.body.taggedFriend4;
+
+    console.log("tagged:"+tagged1);
+    console.log("tagged2:"+tagged2);
+    console.log("tagged5:"+ tagged5);
     console.log(file);
 
    if(file == undefined){
@@ -90,8 +100,13 @@ var imageName = '';
    console.log(imageName);
 
 
+
+
     let thepost = new Promise(function(resolve, reject){
-      resolve(functions.post(post, WallID, PosterID, imageName));
+
+        resolve(functions.post(post,WallID,PosterID,imageName,tagged1,tagged2,tagged3,tagged4,tagged5));
+      
+
     });
 
     thepost.then(function(successMessage){
