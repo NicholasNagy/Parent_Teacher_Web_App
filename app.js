@@ -127,7 +127,7 @@ app.use(function(req, res, next) {
 });
 
 //hosting the webpage on port 3000 of the local host
-var server = app.listen(3001, function(){
+var server = app.listen(3000, function(){
 console.log("Started on port 3001");
 });
 

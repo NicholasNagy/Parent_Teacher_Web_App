@@ -34,7 +34,7 @@ router.get('/', function(req,res) {
                 service: 'gmail',
                 auth: {
                     user: 'baraka.khalid4@gmail.com',
-                    pass: 'kb5145783905kb'
+                    pass: 'kb5145783905kb*'
                 }
             });
             var forgotton =JSON.stringify(result[0].Pass)
