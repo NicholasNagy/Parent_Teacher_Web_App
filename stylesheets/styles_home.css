@@ -1,5 +1,6 @@
-body {
-    margin: 0;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .nav_bar {
@@ -95,18 +96,6 @@ a.title {
 }
 
 
-
-.sidebar {
-    position: fixed;
-	margin-top: -15px;
-    height: 100%;
-    width: 270px;
-    background: #0D1730;
-
-
-
-}
-
 .sidebar_body {
 
     margin-top: 20px;
@@ -125,7 +114,7 @@ a.title {
 .sidebar_menu_item a:hover{
 
     background-color: #172443;
-
+    text-decoration: none;
 
 
 }
@@ -145,7 +134,7 @@ a.title {
 
 .sidebar_menu_item button{
 
-    background-color:#0D1730;
+    background: rgb(16, 26, 49);
     text-decoration: none;
     color: aliceblue;
     display: block;
@@ -202,39 +191,8 @@ a.title {
 
 }
 
-.page_content{
-
-	width: 82.5%;
-	border-right-color: black;
-    margin-left: 17%;
-    margin-top: 4.4%;
-    height: 100%;
 
 
-
-
-}
-
-
-#button_newPost{
-    width: 100px;
-    height: 40px;
-	text-align: center;
-	cursor: pointer;
-	background-color: #3A4E81;
-	color: #FFF;
-	border-radius: 5px;
-	font-size: 15px;
-
-
-}
-
-#button_newPost:hover{
-
-	background-color: #172443;
-
-
-}
 
 
 .textArea{
@@ -256,52 +214,6 @@ a.title {
 }
 
 
-
-#textPost{
-
-	padding: 5px 5px;
-	resize: none;
-	border-radius: 4px;
-	font-size: 20px;
-	color: #7C7C7C;
-	border-width: thin;
-	border-style: hidden;
-	border-color: #F3F3F3;
-	text-align: left;
-	background: #F3F3F3;
-
-
-
-
-}
-#textPost:focus {
-    background: #FFF;
-   border-color: #000000;
-	border-style: solid;
-}
-
-#submitPost{
-
-	width: 120px;
-    height: 40px;
-	font-size: 20px;
-	color: #FFF;
-	margin-left: 1000px;
-	cursor: pointer;
-	background-color: gold;
-
-	border-radius: 5px;
-	border: none;
-
-
-}
-
-#submitPost:hover{
-
-	background-color: #DCB900;
-
-
-}
 
 #tableTitle{
 
@@ -332,18 +244,6 @@ a.title {
 	border-bottom: 1px solid rgba(192, 192, 192, 0.993);
 
 }
-
-#tableWrap {
-  position:relative;
-  padding-top: 10px;
-  z-index: 0;
-}/*
-#tableScroll {
-  height:800px;
-  overflow:auto;
-
-
-} */
 
 
 
@@ -497,10 +397,7 @@ textarea{
     background-color: rgb(218, 218, 218);
 }
 
-.wrapper{
-    width:300vh;
 
-}
 
 
 .notDropDown{
@@ -585,3 +482,48 @@ textarea{
     color: rgb(79, 137, 192);
 
 }
+
+
+
+
+/* BOOTSTRAP*/
+
+
+.navbar {
+    background-image: url(res/header-blueBurst.jpg);
+
+}
+
+.navbar-brand{
+
+    color: rgb(255, 255, 255) !important;
+    font-size: 25px !important;
+}
+
+.main_sidebar {
+    min-height:100vh;
+    position:fixed;
+    top:63px;
+    left:0;
+    width:350px;
+    float: left;
+    background-color: rgb(16, 26, 49);
+}
+
+.wrapper{
+    width:400px;
+    overflow:hidden;
+    padding:10px;
+ 
+
+}
+
+.page_content{
+
+    margin-top: 70px;
+    margin-left: 400px;
+    float: left;
+
+   
+}
+
