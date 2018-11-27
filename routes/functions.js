@@ -141,6 +141,8 @@ var getWall = function(WallID, userID){
           if (error)
               throw error;
 
+            console.log(posts);
+
          var notification = [];
          let theFriends= new Promise(function(resolve,reject){
            resolve(getFriends(userID));
