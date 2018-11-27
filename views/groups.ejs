@@ -1,96 +1,103 @@
 <% include headers/headerGroups %>
 
-<div class="nav_bar">
-        <a class="title" href="/homepage">School App</a>
+<nav class="navbar navbar-expand-lg fixed-top">
 
-        <div class="quickAccess">
-
-            <a class="quickAccess_title" href="#" onClick="dropDownTop();return false;"><em class="material-icons" style="float:left;font-size:30px;padding-right: 10px;">account_box</em><span name="user_name"><%= name%></span>  <em class="material-icons" style="float: right;font-size:30px">keyboard_arrow_down</em></a>
-
-
-
-            <div class="quickAccess_list" id="quickAccess_list" style="display: none;">
-
-                <a href="#"><i class="material-icons" style="font-size:20px;padding-right: 10px;">inbox</i>Inbox</a>
-    <a href="/logout"><i class="material-icons" style="font-size:20px;padding-right: 10px; color: red">exit_to_app</i><span style="color: red">Log Out</span></a>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="sidebar">
-        <div class="sidebar_body">
-            <div>
-                <ul class="sidebar_menu">
-
-                    <li class="sidebar_menu_item">
-
-                            <form action="/viewProfile" method="POST">
-
-                                <input type="text" name="userID" style="display:none" value = "<%= uID%>">
-                                <button name="toProfile" class="toProfile"><i class="material-icons" style="float: left;padding-right:10px;">account_circle</i>My Account</button>
-                                    </form>
-
-                                    </li>
-                                    <li class="sidebar_menu_item">
-                                      <form action="/goToWall" method="POST">
-                                        <input type="text" name = "userID" style="display:none" value="<%=uID%>">
-                                        <input type="text" name = "friendID" style="display:none" value="<%=uID%>">
-                                        <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
-                                      </form>
-                                    </li>
-
-                    <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
-                        <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: block" >
-                            <li class="sidebar_menu_item">
-                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">stars</i>Grades</a>
-                            </li>
-                            <li class="sidebar_menu_item">
-                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">date_range</i>Schedule</a>
-                            </li>
-                            <li class="sidebar_menu_item">
-                                <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
-                            </li>
-                        </ul>
-
-                    </li>
-
-
-            <li class="sidebar_menu_item">
-
-                    <form action="/friends" method="POST">
-
-                    <input type="text" name="userID" style="display:none" value = "<%= uID%>">
-                    <input type="text" name = "userName" style="display:none" value="<%=name%>">
-                    <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
-                        </form>
-
-                        </li>
-
-                        <li class="sidebar_menu_item">
-
-                            <form action="/groups" method="POST">
-
-                            <input type="text" name="userID" style="display:none" value = "<%= uID%>">
-                            <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
-                                </form>
-
+        <a class="navbar-brand" href="#">
+                <div class="navbar-header">
+                        <a class="navbar-brand" href="/homepage">School App</a>
+                      </div>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
+   
+                <a class="btn btn-outline-danger my-2 my-sm-0 ml-3 mr-3" role="button" href="/homepage"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
+        
+          </nav>
+        
+          <div class="wrapper">
+                <aside class="main_sidebar">
+                        <ul class="sidebar_menu">
+        
+        
+                                <div class="card text-center"  style="padding-top:10px; background-color: rgb(16, 26, 49);">
+                                        <img class="rounded-circle"  style="margin-left: 110px;" src="stylesheets/res/placeholderProfilePicture.png" alt="User Profile Picture" height="128px" width="128px">
+                                        <div class="card-body">
+                                          <h5 class="card-title text-white"><%= name%></h5>
+            
+                                          <form action="/viewProfile" method="POST">
+            
+            
+                                            <input type="text" name="userID" style="display:none" value = "<%= uID%>">
+                                            <button name="toProfile" class="btn btn-danger"><i class="fa fa-user-circle m-1"></i>View Profile</button>
+                                                </form>
+                                        
+                                        </div>
+                                      </div>
+        
+                                <li class="sidebar_menu_item">
+                                
+                                        
                                 </li>
-
-                    <li class="sidebar_menu_item">
-                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
-                    </li>
-
-                    <li class="sidebar_menu_item">
-                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">help</i>Help</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-
+            
+                                <li class="sidebar_menu_item">
+                                  <form action="/goToWall" method="POST">
+                                    <input type="text" name = "userID" style="display:none" value="<%=uID%>">
+                                    <input type="text" name = "friendID" style="display:none" value="<%=uID%>">
+                                    <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
+                                  </form>
+                                </li>
+            
+                                <li class="sidebar_menu_item">
+            
+                                 <form action="/friends" method="POST">
+            
+                                    <input type="text" name="userID" style="display:none" value = "<%= uID%>">
+                                    <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                                           <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                                               </form>
+            
+                                                               </li>
+            
+                                    <li class="sidebar_menu_item">
+            
+                                        <form action="/groups" method="POST">
+            
+                                        <input type="text" name="userID" style="display:none" value = "<%= uID%>">
+                                        <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                                            </form>
+            
+                                            </li>
+            
+                                            <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
+                                                <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: none" >
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">stars</i>Grades</a>
+                                                    </li>
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">date_range</i>Schedule</a>
+                                                    </li>
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
+                                                    </li>
+                                                </ul>
+                        
+                                            </li>
+                        
+            
+            
+                                <li class="sidebar_menu_item">
+            
+                                    <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
+                                </li>
+            
+                                <li class="sidebar_menu_item">
+                                    <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">help</i>Help</a>
+                                </li>
+            
+                            </ul>
+                         </aside>
+                
+                        </div> 
+<div class="container-fluid">
     <div class="page_content">
 
 
@@ -154,7 +161,7 @@
 
 
     </div>
-
+</div>
 
 
 
