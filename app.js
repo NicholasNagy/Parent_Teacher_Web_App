@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 
+
 /* this done to route the js file*/
 var forgotPasswordRouter= require('./routes/forgotPassword');
 

@@ -4,7 +4,6 @@ var app = express();
 var bodyParser = require("body-parser");
 var mysql = require('mysql');
 var DBconnect = require ('./dbConfig');
-var functions = require('./functions');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -38,6 +37,7 @@ router.post('/', function(req, res, next) {
             });
         });
     });
+
 
 
 
