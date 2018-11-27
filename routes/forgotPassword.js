@@ -15,7 +15,7 @@ var pool = new DBconnect();
 
 router.get('/', function(req,res) {
     //initializing the variables
-    res.render('forgotPassword');
+    res.render('forgotPassword',{ messageee: ""});
 });
 
 
@@ -52,11 +52,10 @@ router.get('/', function(req,res) {
                     console.log('Email sent: ' + info.response);
                 }
             });
-
+            res.render('forgotPassword',{ messageee: "An email has been sent to you"});
         }else{
-
-
            console.log('not found!');
+            res.render('forgotPassword',{ messageee: "You entered an incorrect email"});
 
         }
 
@@ -65,7 +64,7 @@ router.get('/', function(req,res) {
 
 
 
-     res.render('forgotPassword');
+
  });
 
 
