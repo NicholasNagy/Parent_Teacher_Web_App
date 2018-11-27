@@ -15,18 +15,18 @@ var pool = new DBconnect();
 
 router.get('/', function(req,res) {
     //initializing the variables
-    res.render('forgotPassword');
+    res.render('forgotPassword',{ messageee: ""});
 });
 
 
- router.post('/', function(req,res) {
-     //initializing the variables
-     var e= req.body.email_reset;
-     console.log(e);
-     var query1= "SELECT Pass FROM users where Email='"+ e+"';";
-     pool.connection.query(query1, function(err, result){
-         if(err) throw err;
-            console.log(result);
+router.post('/', function(req,res) {
+    //initializing the variables
+    var e= req.body.email_reset;
+    console.log(e);
+    var query1= "SELECT Pass FROM users where Email='"+ e+"';";
+    pool.connection.query(query1, function(err, result){
+        if(err) throw err;
+        console.log(result);
 
         if(result.length>0){
 
@@ -52,29 +52,29 @@ router.get('/', function(req,res) {
                     console.log('Email sent: ' + info.response);
                 }
             });
-
+            res.render('forgotPassword',{ messageee: "An email has been sent to you"});
         }else{
-
-           console.log('not found!');
+            console.log('not found!');
+            res.render('forgotPassword',{ messageee: "You entered an incorrect email"});
 
         }
 
-     });
-
-
-
-
-     res.render('forgotPassword');
- });
+    });
 
 
 
 
 
+});
 
 
 
-// });
+
+
+
+
+
+
 
 
 
