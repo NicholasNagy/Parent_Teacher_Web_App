@@ -24,11 +24,33 @@ router.post('/', function(req, res, next) {
         if (error)
             throw error;
 
+        // let getPostNotific= new Promise(function (resolve,reject) {
+        //     resolve(functions.getPostNotifications(userID));
+        // });
+        // getPostNotific.then(function(postnotific){
+        //     console.log("show me what you got "+postnotific);
+        // });
+
         let getName = new Promise(function(resolve, reject){
           resolve(functions.getUser(userID));
         });
-        getName.then(function(user){
-          res.render('groups', {groupList : results, uID : userID, name: user.Fname});
+        getName.then(function(user) {
+            var friendsList = "SELECT friendName,f2 FROM friends where f1='" + userID + "';";
+
+            pool.connection.query(friendsList, function (error, results) {
+                if (error)
+                    throw error;
+                var getPosts = "SELECT * FROM post join Users ON post.WallID='" + userID + "' AND post.WallID!=post.posterID AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+                pool.connection.query(getPosts, function (err, notifications) {
+                    if (err) throw err;
+
+                    var getMessenger = "SELECT * FROM thechats join Users ON thechats.receiverID='" + userID + "' AND thechats.senderID=Users.ID GROUP By senderID ORDER BY thechats.chatID DESC;";
+                    pool.connection.query(getMessenger, function (err, MessNotifications) {
+                        if (err) throw err;
+                        res.render('groups', {groupList: results, uID: userID, name: user.Fname, notification: notifications, messengerNotific: MessNotifications});
+                    });
+                });
+            });
         });
     });
 

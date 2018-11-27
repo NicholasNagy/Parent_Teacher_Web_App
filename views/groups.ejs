@@ -17,6 +17,30 @@
             </div>
 
         </div>
+    <div class="wrapper">
+        <div class ="notDropDown">
+            <a class ="notification-style" href="#" onClick="NotificationDropDownTop();return false;"><em id="notificationIcon" class="material-icons" style="font-size:55px;">notification_important</em></a>
+            <div class="notifcation_list" id="notifcation_list" style="display: none;">
+                <% if(typeof notification !== 'undefined'){ %>
+                    <% notification.forEach(function (u) { %>
+                        <button class="notification"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</button>
+                    <% })%>
+                <% }%>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class ="notDropDown">
+            <a class ="notification-style" href="#" onClick="MessNotificationDropDownTop();return false;"><em id="notificationIcon" class="material-icons" style="font-size:55px;">message</em></a>
+            <div class="notifcation_list" id="Messnotifcation_list" style="display: none;">
+                <% if(typeof notification !== 'undefined'){ %>
+                    <% messengerNotific.forEach(function (u) { %>
+                        <button class="notification"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has sent you a message</button>
+                    <% })%>
+                <% }%>
+            </div>
+        </div>
+    </div>
     </div>
 
     <div class="sidebar">
@@ -185,6 +209,38 @@
                 dropDownList.style.display = "none";
             else
                 dropDownList.style.display = "block";
+        }
+
+        function NotificationDropDownTop() {
+
+
+            var dropDownList = document.getElementById("notifcation_list");
+            var dropDownTop = document.getElementById("quickAccess_list");
+
+            if(dropDownList.style.display === "block")
+                dropDownList.style.display = "none";
+            else
+                dropDownList.style.display = "block";
+
+            if(dropDownTop.style.display === "block")
+                dropDownTop.style.display = "none";
+
+        }
+
+        function MessNotificationDropDownTop() {
+
+
+            var dropDownList = document.getElementById("Messnotifcation_list");
+            var dropDownTop = document.getElementById("MessquickAccess_list");
+
+            if(dropDownList.style.display === "block")
+                dropDownList.style.display = "none";
+            else
+                dropDownList.style.display = "block";
+
+            if(dropDownTop.style.display === "block")
+                dropDownTop.style.display = "none";
+
         }
 
 

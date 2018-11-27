@@ -278,8 +278,6 @@ var creatingGroups = function (groupName, userID){
 
     console.log("Getting user table.");
 
-    //Query
-
     var userTable = "SELECT ID, Fname, Lname, Email from users";
     return new Promise(function(resolve, reject){
     pool.connection.query(userTable, function (error, result){
