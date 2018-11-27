@@ -9,6 +9,24 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
 
+
+    <li class="nav-item dropdown list-unstyled ">
+        <% if (userID== WallID){ %>
+        <% if(typeof notification !== 'undefined'){ %>
+      <button class="btn btn-primary m-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="fab fa-facebook-messenger p-1" style="font-size:20px;"></i></button>
+        <% }%>
+        <% }%>
+      <div class=""></div>
+      <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
+            <% if (userID== WallID){ %>
+                <% if(typeof notification !== 'undefined'){ %>
+                  <% messengerNotific.forEach(function (u) { %>
+        <a class="dropdown-item " href="#"><i class="fab fa-rocketchat p-1"></i><span class="text-info"><%= u.Fname%></span> has sent you a message</a>
+        <% })%>
+        <% }%>
+    <% }%>
+ 
+
  <li class="nav-item dropdown list-unstyled">
         <% if (userID== WallID){ %>
         <% if(typeof notification !== 'undefined'){ %>

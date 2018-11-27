@@ -6,13 +6,16 @@ var socket = io.connect('http://localhost:3001');
      handle = document.getElementById('handle'),
      btn = document.getElementById('send'),
      output = document.getElementById('output'),
+     realUserID = document.getElementById('realUserID'),
+     realFriendID = document.getElementById('realFriendID'),
     feedback = document.getElementById('feedback');
-
  // Emit events
  btn.addEventListener('click', function(){
      socket.emit('chat', {
          message: message.value,
-         handle: handle.value
+         handle: handle.value,
+         realUserID: realUserID.value,
+         realFriendID: realFriendID.value
      });
      message.value = "";
  });

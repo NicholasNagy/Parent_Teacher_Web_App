@@ -57,8 +57,10 @@
             padding: 10px 20px;
         }
 
-        input{
-            padding: 10px 20px;
+
+
+       #message, #handle{
+            padding: 15px 20px;
             box-sizing: border-box;
             background: #eee;
             border: 0;
@@ -97,6 +99,40 @@
                       </div>
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
+
+
+            <li class="nav-item dropdown list-unstyled ">
+              
+                    <% if(typeof notification !== 'undefined'){ %>
+                  <button class="btn btn-primary m-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="fab fa-facebook-messenger p-1" style="font-size:20px;"></i></button>
+                    <% }%>
+            
+                  <div class=""></div>
+                  <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                       
+                            <% if(typeof notification !== 'undefined'){ %>
+                              <% messengerNotific.forEach(function (u) { %>
+                    <a class="dropdown-item " href="#"><i class="fab fa-rocketchat p-1"></i><span class="text-info"><%= u.Fname%></span> has sent you a message</a>
+                    <% })%>
+                    <% }%>
+              
+             
+             <li class="nav-item dropdown list-unstyled">
+             
+                    <% if(typeof notification !== 'undefined'){ %>
+                  <button class="btn btn-warning nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="fas fa-bell m-1"></i>Notifications <span class="badge badge-danger"><%= notification.length%> </span></button>
+                    <% }%>
+               
+                  <div class=""></div>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      
+                            <% if(typeof notification !== 'undefined'){ %>
+                                <% notification.forEach(function (u) { %>
+                    <a class="dropdown-item" href="#"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</a>
+                    <% })%>
+                    <% }%>
+             
+                </li>
    
                 <a class="btn btn-outline-danger my-2 my-sm-0 ml-3 mr-3" role="button" href="/homepage"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
         
@@ -106,7 +142,17 @@
                 <aside class="main_sidebar">
                         <ul class="sidebar_menu">
         
+
+   
+                <a class="btn btn-outline-danger my-2 my-sm-0 ml-3 mr-3" role="button" href="/homepage"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
         
+          </nav>
+        
+          <div class="wrapper">
+                <aside class="main_sidebar">
+                        <ul class="sidebar_menu">
+        
+       
                                 <div class="card text-center"  style="padding-top:10px; background-color: rgb(16, 26, 49);">
                                         <img class="rounded-circle"  style="margin-left: 110px;" src="stylesheets/res/placeholderProfilePicture.png" alt="User Profile Picture" height="128px" width="128px">
                                         <div class="card-body">
@@ -134,7 +180,7 @@
                                     <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
                                   </form>
                                 </li>
-            
+
                                 <li class="sidebar_menu_item">
             
                                  <form action="/friends" method="POST">
@@ -175,6 +221,47 @@
             
                                 <li class="sidebar_menu_item">
             
+
+                                <li class="sidebar_menu_item">
+            
+                                 <form action="/friends" method="POST">
+            
+                                                           <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                                           <input type="text" name="userName" style="display:none" value = "<%= name%>">
+                                                           <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
+                                                               </form>
+            
+                                                               </li>
+            
+                                    <li class="sidebar_menu_item">
+            
+                                        <form action="/groups" method="POST">
+            
+                                        <input type="text" name="userID" style="display:none" value = "<%= userID%>">
+                                        <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
+                                            </form>
+            
+                                            </li>
+            
+                                            <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
+                                                <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: none" >
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">stars</i>Grades</a>
+                                                    </li>
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">date_range</i>Schedule</a>
+                                                    </li>
+                                                    <li class="sidebar_menu_item">
+                                                        <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
+                                                    </li>
+                                                </ul>
+                        
+                                            </li>
+                        
+            
+            
+                                <li class="sidebar_menu_item">
+
                                     <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
                                 </li>
             
@@ -190,22 +277,23 @@
     <%# Page Content %>
     <div class="page_content">
 
-        <div id="341chat">
-            <h2>Parent-Teacher Web App Messenger</h2>
-
-            <div id="chat-window">
-                <div id="output"></div>
-                <div id="feedback"></div>
+            <div id="341chat">
+                <h2>Parent-Teacher Web App Messenger</h2>
+    
+                <div id="chat-window">
+                    <div id="output"></div>
+                    <div id="feedback"></div>
+                </div>
+                <input id="realUserID" name="realUserID" type="hidden"value="<%=userID%>">
+                <input id="realFriendID" name="realFriendID" type="hidden" value="<%=friendID%>">
+                <input id="handle" type="text" placeholder="Handle" value="<%=name%>" readonly>
+                <input id="message" type="text" placeholder="Message" />
+                <button id="send">Send</button>
             </div>
-
-            <input id="handle" type="text" placeholder="Handle" value="<%=name%>" readonly>
-            <input id="message" type="text" placeholder="Message" />
-            <button id="send">Send</button>
+    
         </div>
-
-    </div>
-
-    <script src="../routes/messenger.js"></script>
+    
+        <script src="../routes/messenger.js"></script>
 
 </body>
 </html>

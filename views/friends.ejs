@@ -8,7 +8,40 @@
                       </div>
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent"> </div>
-   
+
+            <li class="nav-item dropdown list-unstyled ">
+                  
+                    <% if(typeof notification !== 'undefined'){ %>
+                  <button class="btn btn-primary m-1" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="fab fa-facebook-messenger p-1" style="font-size:20px;"></i></button>
+                    <% }%>
+                 
+                  <div class=""></div>
+                  <div class="dropdown-menu  " aria-labelledby="navbarDropdown">
+                     
+                            <% if(typeof notification !== 'undefined'){ %>
+                              <% messengerNotific.forEach(function (u) { %>
+                    <a class="dropdown-item " href="#"><i class="fab fa-rocketchat p-1"></i><span class="text-info"><%= u.Fname%></span> has sent you a message</a>
+                    <% })%>
+                    <% }%>
+             
+             
+             <li class="nav-item dropdown list-unstyled">
+                  
+                    <% if(typeof notification !== 'undefined'){ %>
+                  <button class="btn btn-warning nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"><i class="fas fa-bell m-1"></i>Notifications <span class="badge badge-danger"><%= notification.length%> </span></button>
+                    <% }%>
+                 
+                  <div class=""></div>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   
+                            <% if(typeof notification !== 'undefined'){ %>
+                                <% notification.forEach(function (u) { %>
+                    <a class="dropdown-item" href="#"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</a>
+                    <% })%>
+                    <% }%>
+          
+                </li>
+
                 <a class="btn btn-outline-danger my-2 my-sm-0 ml-3 mr-3" role="button" href="/homepage"> <i class="fas fa-sign-out-alt"></i>Log Out</a>
         
           </nav>

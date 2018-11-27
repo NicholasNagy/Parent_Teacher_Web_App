@@ -57,9 +57,6 @@ var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag
             throw err;
 
 
-
-
-
             var postID = r.insertId;
 
             let tagging=new Promise(function(resolve, reject){
@@ -69,17 +66,11 @@ var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag
               resolve("post has been added to db");
             });
 
-
-
     });
 
   });
 
 };
-
-
-
-
 
 var commenting = function(comment, postID, commenterID, tag1, tag2, tag3, tag4, tag5){
 
@@ -141,31 +132,52 @@ var getWall = function(WallID, userID){
           if (error)
               throw error;
 
-         var notification = [];
          let theFriends= new Promise(function(resolve,reject){
            resolve(getFriends(userID));
          });
 
           let user = new Promise(function(resolve, reject){
-            for (let i=0; i<results.length; i++){
-              if (results[i].WallID != results[i].posterID) {
-                  notification.push(results[i]);
-                  console.log("testing notification: "+results[i].Fname);
-              }
-            }
-            console.log("Testing the notification string: "+notification[0]);
             resolve(getUser(userID));
           });
 
           user.then(function(theuser){
-
+            let getPostNotific= new Promise(function (resolve,reject) {
+                resolve(getPostNotifications(userID));
+            });
+            let getMessengerNotific = new Promise(function (resolve,reject) {
+                resolve(getMessengerNotification(userID))
+            });
+            getMessengerNotific.then(function (MessNotific) {
+            getPostNotific.then(function (PostNotification) {
             theFriends.then(function(friends){
-              resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: notification, friends: friends});
+              resolve({posts:results, name:theuser.Fname, WallID:WallID, userID:userID, notification: PostNotification, messengerNotific:MessNotific , friends: friends});
+            });
+            });
             });
           });
+        });
+    });
+};
 
+var getPostNotifications = function(userID){
+    //group by
+    return new Promise(function(resolve, reject){
+        var getPosts = "SELECT * FROM post join Users ON post.WallID='"+userID+"' AND post.WallID!=post.posterID AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+        pool.connection.query(getPosts,function(err, notifications){
+            if(err) throw err;
+            resolve(notifications);
         });
 
+    });
+};
+var getMessengerNotification = function(userID){
+    //group by
+    return new Promise(function(resolve, reject){
+        var getMessenger = "SELECT * FROM thechats join Users ON thechats.receiverID='"+userID+"' AND thechats.senderID=Users.ID GROUP By senderID ORDER BY thechats.chatID DESC;";
+        pool.connection.query(getMessenger,function(err, notifications){
+            if(err) throw err;
+            resolve(notifications);
+        });
 
     });
 };
@@ -265,8 +277,6 @@ var creatingGroups = function (groupName, userID){
   var search = function (){
 
     console.log("Getting user table.");
-
-    //Query
 
     var userTable = "SELECT ID, Fname, Lname, Email from users";
     return new Promise(function(resolve, reject){
