@@ -81,6 +81,7 @@ var imageName = '';
     var PosterID= req.body.PosterID;
     var theName= req.body.name;
     var file = req.file;
+    var postTitle = req.body.PostTitle;
 
     var tagged1 = req.body.taggedFriend0;
     var tagged2 = req.body.taggedFriend1;
@@ -104,7 +105,7 @@ var imageName = '';
 
     let thepost = new Promise(function(resolve, reject){
 
-        resolve(functions.post(post,WallID,PosterID,imageName,tagged1,tagged2,tagged3,tagged4,tagged5));
+        resolve(functions.post(post,WallID,postTitle,PosterID,imageName,tagged1,tagged2,tagged3,tagged4,tagged5));
       
 
     });

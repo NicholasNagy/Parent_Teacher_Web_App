@@ -203,10 +203,11 @@ a.title {
 
 }
 
-.tagFriendsTable{
-  position:absolute;
-  top:20%;
-  right:4%;
+.table-bordered {
+    position: absolute !important;
+    top:38%;
+    left:86%;
+  
 }
 
 .taggableFriends{

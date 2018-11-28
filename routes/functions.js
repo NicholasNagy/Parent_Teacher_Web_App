@@ -44,11 +44,11 @@ var tag = function(tag1, tag2, tag3, tag4, tag5, postID){
 };
 
 
-var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
+var posting = function (post, WallID, postTitle, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
   console.log("Preparing to add post to DB");
   console.log(imageName);
   //CREATING SQL METHOD
-    var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
+    var postSQL = "INSERT INTO post (Content, WallID,postTitle, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"','"+postTitle +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
 
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
@@ -125,7 +125,7 @@ var getWall = function(WallID, userID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT Fname, Content, postID, posterID, WallID, likes, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+        var posts = "SELECT Fname, Content, postID, posterID, WallID, postTitle, likes, TheDate, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
 
 
         pool.connection.query(posts, function (error, results) {
