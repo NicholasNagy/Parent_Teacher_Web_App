@@ -162,10 +162,21 @@ var getWall = function(WallID, userID){
 var getPostNotifications = function(userID){
     //group by
     return new Promise(function(resolve, reject){
-        var getPosts = "SELECT * FROM post join Users ON post.WallID='"+userID+"' AND post.WallID!=post.posterID AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+        var getPosts = "SELECT * FROM (post left join postTagNotifications ON postTagNotifications.postID=post.postID) join Users ON ((post.WallID='"+userID+"' AND post.WallID!=post.posterID) OR postTagNotifications.taggedFriend='"+userID+"') AND post.posterID=Users.ID ORDER BY post.postID DESC;";
         pool.connection.query(getPosts,function(err, notifications){
             if(err) throw err;
-            resolve(notifications);
+            var allnotif = new Array();
+            for(i=0;i<notifications.length;i++){
+              if(notifications[i].taggedFriend==null){
+                allnotif.push(notifications[i].Fname + " posted on your wall");
+                console.log(allnotif[i]);
+              }
+              else{
+                allnotif.push(notifications[i].Fname + " tagged you in a post");
+                console.log(allnotif[i]);
+              }
+            }
+            resolve(allnotif);
         });
 
     });
