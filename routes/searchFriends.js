@@ -21,9 +21,19 @@ router.post('/', function (req,res) {
 
     var query = "SELECT Fname,Lname,ID FROM users";
 
-   var friendsList = "SELECT friendName,f2 FROM friends where f1='"+loggedInID+"';";
+    var friendList1 = "SELECT f2,friendName,f1Name FROM friends where f1='"+loggedInID+"';";
+    var friendList2 = "SELECT f1,f1Name,friendName FROM friends where f2='"+loggedInID+"';";
 
-pool.connection.query(friendsList, function (error, result){
+pool.connection.query(friendList1, function (error, results1){
+  if (error) throw error;
+  pool.connection.query(friendList2, function (error, results2){
+    if (error) throw error;
+
+
+    fullList =  results1.concat(results2);
+         
+
+
     pool.connection.query(query, function (error, results) {
       if (error)
           throw error;
@@ -57,11 +67,11 @@ pool.connection.query(friendsList, function (error, result){
           }
 
 
-        res.render('friends', {queryResults: users, idKeys: ids, userID : loggedInID, friendsList: result, name:userName});
+        res.render('friends', {queryResults: users, idKeys: ids, userID : loggedInID, friendsList: fullList, name:userName});
 
     });
 
 });
 });
-
+});
 module.exports=router;

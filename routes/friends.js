@@ -18,11 +18,18 @@ router.post('/', function(req, res, next) {
     var userID = req.body.userID;
     var userName = req.body.userName;
 
-    var friendsList = "SELECT friendName,f2 FROM friends where f1='"+userID+"';";
+    var friendList1 = "SELECT f2,friendName,f1Name FROM friends where f1='"+userID+"';";
+    var friendList2 = "SELECT f1,f1Name,friendName FROM friends where f2='"+userID+"';";
+    
 
-    pool.connection.query(friendsList, function (error, results) {
-        if (error)
-            throw error;
+    pool.connection.query(friendList1, function (error, results1) {
+        if (error) throw error;
+        pool.connection.query(friendList2, function (error, results2) {
+          if (error) throw error;
+
+            
+          fullList =  results1.concat(results2);
+  
         var getPosts = "SELECT * FROM post join Users ON post.WallID='" + userID + "' AND post.WallID!=post.posterID AND post.posterID=Users.ID ORDER BY post.postID DESC;";
         pool.connection.query(getPosts, function (err, notifications) {
             if (err) throw err;
@@ -32,18 +39,12 @@ router.post('/', function(req, res, next) {
                 if (err) throw err;
 
 
-                res.render('friends', {friendsList: results, userID: userID, name: userName, notification: notifications, messengerNotific:MessNotifications});
+                res.render('friends', {friendsList: fullList, userID: userID, name: userName, notification: notifications, messengerNotific:MessNotifications});
 
             });
         });
     });
-
-
-
-
-
-
-
+});
 
 
 });

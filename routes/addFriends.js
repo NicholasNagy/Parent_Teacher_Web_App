@@ -30,24 +30,29 @@ pool.connection.query(friendADD, function (err, result){
 
   //Adding the friend connection in the DB.
   //Trying to replace duplicates but it does not appear to be working.
-  var addToTable = "Replace INTO  friends (f1, f2, friendName) VALUES ('"+loggedInID+"','"+friendID+"','"+result[0].Fname + " " + result[0].Lname+"')";
+  var addToTable = "Replace INTO  friends (f1, f2, friendName, f1Name) VALUES ('"+loggedInID+"','"+friendID+"','"+result[0].Fname + " " + result[0].Lname+"','"+userName+"');";
 
     pool.connection.query(addToTable, function (error, results) {
       if (error)
           throw error;
 
 //Getting the user's entire friends list to display it.
-var friendList = "SELECT friendName,f2 FROM friends where f1='"+loggedInID+"';";
-
-            pool.connection.query(friendList, function (error, results) {
-              if (error)
-                 throw error;
+var friendList1 = "SELECT f2,friendName,f1Name FROM friends where f1='"+loggedInID+"';";
+var friendList2 = "SELECT f1,f1Name,friendName FROM friends where f2='"+loggedInID+"';";
 
 
-               res.render('friends', {friendsList: results, userID : loggedInID, name:userName});
+            pool.connection.query(friendList1, function (error, results1) {
+              if (error) throw error;
+              pool.connection.query(friendList2, function (error, results2) {
+                if (error) throw error;
+
+              fullList =  results1.concat(results2);
+         
+
+               res.render('friends', {friendsList: fullList, userID : loggedInID, name:userName});
 
               });
-
+            });
 
       });
 

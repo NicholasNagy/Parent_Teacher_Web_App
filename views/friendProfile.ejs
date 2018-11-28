@@ -194,33 +194,6 @@
                 </div>
         
 
-                  
-                <div class="friendsList">
-
-
-
-                        <table class="friendsListTable">
-
-                            <tr >
-                                <td class="friend"> <span id="groupsT">Friends</span></td>
-
-                            </tr>
-        
-                                <% if(typeof friendsList !== 'undefined'){ %>
-        
-                                        <% friendsList.forEach(function(v){ %>
-        
-                                <tr >
-    
-                                    <input type="text"name="friendID" style="display:none;" value = "<%=v.f2%>">
-                                        <td class="friend"><button class="friendName" ><%= v.friendName%></button> </td>
-    
-                             </tr>
-                                        <% }) %>
-                                <% } %>
-                        </table>
-        
-                </div>
 
 
             </div>
