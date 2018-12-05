@@ -25,7 +25,7 @@
         <% })%>
         <% }%>
     <% }%>
- 
+
 
  <li class="nav-item dropdown list-unstyled">
         <% if (userID== WallID){ %>
@@ -38,7 +38,7 @@
             <% if (userID== WallID){ %>
                 <% if(typeof notification !== 'undefined'){ %>
                     <% notification.forEach(function (u) { %>
-        <a class="dropdown-item" href="#"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u.Fname%> has posted on your wall</a>
+        <a class="dropdown-item" href="#"><em id="notificationIcon" class="material-icons" style="font-size:20px; padding-right: 10px; color: rgb(126, 2, 2);">feedback</em><%= u%></a>
         <% })%>
         <% }%>
     <% }%>
@@ -57,22 +57,22 @@
                                 <img class="rounded-circle"  style="margin-left: 110px;" src="stylesheets/res/placeholderProfilePicture.png" alt="User Profile Picture" height="128px" width="128px">
                                 <div class="card-body">
                                   <h5 class="card-title text-white"><%= name%></h5>
-    
+
                                   <form action="/viewProfile" method="POST">
-    
-    
+
+
                                     <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                     <button name="toProfile" class="btn btn-danger"><i class="fa fa-user-circle m-1"></i>View Profile</button>
                                         </form>
-                                
+
                                 </div>
                               </div>
 
                         <li class="sidebar_menu_item">
-                        
-                                
+
+
                         </li>
-    
+
                         <li class="sidebar_menu_item">
                           <form action="/goToWall" method="POST">
                             <input type="text" name = "userID" style="display:none" value="<%=userID%>">
@@ -80,28 +80,28 @@
                             <button name="toMyWall" class="toMyWall"><i class="material-icons" style="float: left;padding-right:10px;">description</i>My Wall</button>
                           </form>
                         </li>
-    
+
                         <li class="sidebar_menu_item">
-    
+
                          <form action="/friends" method="POST">
-    
+
                                                    <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                                    <input type="text" name="userName" style="display:none" value = "<%= name%>">
                                                    <button name="toFriends" class="toFriends"><i class="material-icons" style="float: left;padding-right:10px;">tag_faces</i>Friends</button>
                                                        </form>
-    
+
                                                        </li>
-    
+
                             <li class="sidebar_menu_item">
-    
+
                                 <form action="/groups" method="POST">
-    
+
                                 <input type="text" name="userID" style="display:none" value = "<%= userID%>">
                                 <button name="toGroups" class="toGroups"><i class="material-icons" style="float: left;padding-right:10px;">group_work</i>Groups</button>
                                     </form>
-    
+
                                     </li>
-    
+
                                     <li class="sidebar_menu_item"><a href="#" onClick="dropDownSide();return false;"><em class="material-icons" style="float:left;padding-right:10px;">supervisor_account</em>Student Info <em class="material-icons" style="float: right;font-size:20px">keyboard_arrow_down</em></a>
                                         <ul class="sidebar_studentInfo_dropDownMenu" id="dropDownList" style="display: none" >
                                             <li class="sidebar_menu_item">
@@ -114,25 +114,25 @@
                                                 <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">school</i>Classes</a>
                                             </li>
                                         </ul>
-                
+
                                     </li>
-                
-    
-    
+
+
+
                         <li class="sidebar_menu_item">
-    
+
                             <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">contact_phone</i>Teacher Contact Info</a>
                         </li>
-    
+
                         <li class="sidebar_menu_item">
                             <a href="#"><i class="material-icons" style="float:left;padding-right:10px;font-size:20px">help</i>Help</a>
                         </li>
-    
+
                     </ul>
                  </aside>
-        
-                </div> 
-                
+
+                </div>
+
 <div class="page_content">
 
  <div class="container-fluid">
@@ -140,72 +140,74 @@
 
  <div class=" col-lg-7 col-md-6 col-sm-6 col-xs-10">
 
-        <div class="card text-center" style="width: 75rem;">
-            <div class="card-header">
-                  <h2>Make a Post</h2>
+        <div class="card text-center" style="width: 76rem; ">
+            <div class="card-header" style="background-color: rgb(73, 94, 143);">
+                  <h2 class="text-white" style="font-weight: bold;">Make a Post</h2>
                 </div>
         <div class="card-body">
-            <h5 class="card-title"> 
-                    <label for="postTitle" class="col-form-label"> Post Title</label>
-                    <input type="text" class="form-control" name="PostTitle" id="postTitle" style="width: 95%;"></h5> 
+                    <form action="/posting" method="POST"  enctype="multipart/form-data">
+                    <input type="text" class="form-control m-4" name="PostTitle" id="postTitle"  placeholder="Post Title"style="width: 95%; font-weight:bold;">
                 <div id="post" style="display: block;">
 
-                        <form action="/posting" method="POST"  enctype="multipart/form-data">
-            
+                      
+
                           <input type="text" id="WallID" name = "WallID" style="display:none" value = "<%= WallID%>">
                           <input type="text" id="PosterID" name = "PosterID" style="display:none" value = "<%= userID%>">
                             <input type="text" id="name" name = "name" style="display:none" value = "<%= name%>">
                             <p id="taggedFriendsIDs"></p>
-            
+
                         <div class="textArea" >
-            
-                         <textarea id="textPost" class="form-control" name="textPost" rows="6" cols="100" oninput="tagFriends()" placeholder="Say Something." style="resize:none; width: 125%;"></textarea>
-            
-                         <table class="tagFriendsTable" id="matchedFriends">
+
+                         <textarea id="textPost" class="form-control" name="textPost" rows="7" cols="100" oninput="tagFriends()" placeholder="Say Something." style="resize:none; width: 125%;"></textarea>
+
+                         <table class="table-bordered " id="matchedFriends">
                            <!-- matched friends will go here-->
                          </table>
-             
+
 
 
                         </div>
 
-                        
+
                   <form action="/" method="POST">
                     <span class="editInfoTxt  float-left">Upload an image: <input type="file" name="userImageEdit"></span>
                          <button name="submitPost" id="submitPost" class="btn btn-primary btn-lg float-right">Post</button>
                      </form>
-                
+
             </div>
          </div>
              <div class="card-footer">
-                    <p class="taggedFriendsLabel float-left text-primary">Tagged Friends:</p> 
+                    <p class="taggedFriendsLabel float-left text-primary">Tagged Friends:</p>
                     <span id="allTaggedFriends" style="display:inline-block;"></span>
             </div>
-                        
+
                 </div>
               </div>
 
-            
 
 
-       
+
+
 <div class=" col-lg-7 col-md-10 col-sm-12 col-xs-12">
         <h2 style="margin-top:20px;">Wall Posts</h2>
-        <hr class="my-4"> 
+        <hr class="my-3">
 
     <% posts.forEach(function(u){ %>
 
             <div class="card text-left" style="width: 70rem;">
 
+      
                                 <!-- POST HEADER (add user image here if nessacary) -->
 
                                     <div class="card-header"><span style="font-size: 20px;"><i class="fa fa-user-circle m-1"></i><%= u.Fname%></span>
-                                        <span class="text-muted" style="float:right;">3 days ago </span></div>
+                                        <span class="text-muted" style="float:right;"><%=Date.now()%></span></div>
 
                                  <!-- POST BODY (post content with the rating show inside here)  -->
 
                                     <div class="card-body">
-                                      <h5 class="card-title">Post Title</h5>
+                                      
+                                      <h5 class="card-title" style="font-weight: bold;"><%= u.postTitle%></h5>
+                                    
                                       <p class="card-text"> <span> <%= u.Content %> <img src="<%= u.Image %>" alt=""></span></p>
                                       <span style="float:right;">(<%=u.likes%>)</span>
                                     </div>
@@ -232,11 +234,11 @@
                                             <input type="text" name="WallID" style="display:none" value = "<%= WallID%>">
                                             <input type="text" name="name" style="display:none" value = "<%= name%>">
                                             <button class="btn btn-danger" name="toProfile"><i class="fa fa-thumbs-down"></i></button>
-                                 </form> 
+                                 </form>
 
                                     <!--COMMENT  -->
 
-                        <div style="float:right;">                   
+                        <div style="float:right;">
                             <form action="/commentPage" method="POST" style="display:inline-block;">
 
                                 <input type="text" id="postID" name = "postID" style="display:none" value = "<%= u.postID%>">
@@ -244,17 +246,17 @@
                                <input type="text" id="userID" name = "userID" style="display:none" value = "<%= userID%>">
                                <button class="btn" name="toCommentPage" data-toggle="tooltip" data-placement="right" title="Go To Comment Page" ><i class="fas fa-reply m-1"></i>Reply</button>
                              </form>
-                        </div>              
-                                         
+                        </div>
+
                  </div>
             </div>
                                  <div class="my-3"></div>
 
-                        <% }) %> 
+                        <% }) %>
 
-                    </div> 
+                    </div>
                 </div>
-           </div>     
+           </div>
 </div>
 
     <!--<%friends.forEach(function(u){%>-->
@@ -362,10 +364,10 @@
                 for(x=0;x<5;x++){
                   if(typeof matchedFriends[x]!=='undefined'){
                   if(typeof showMatchedFriends!=='undefined')
-                    showMatchedFriends= showMatchedFriends+"<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+                    showMatchedFriends= showMatchedFriends+"<tr class=\"taggableFriends \"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" style=\"width:100%; margin:0;\" class=\"btn btn-outline-dark btn-sm\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
 
                   else
-                    showMatchedFriends= "<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
+                    showMatchedFriends= "<tr class=\"taggableFriends\"><td><button id=\""+matchedFriendID[x]+"\" type=\"button\" style=\"width:100%; margin:0;\" class=\"btn btn-outline-dark btn-sm\" onclick=\"tagFriend("+matchedFriendID[x]+")\" value=\""+matchedFriends[x]+"\">"+matchedFriends[x]+"</button></td></tr>";
 
                   };
 

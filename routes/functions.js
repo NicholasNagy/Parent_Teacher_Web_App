@@ -44,11 +44,11 @@ var tag = function(tag1, tag2, tag3, tag4, tag5, postID){
 };
 
 
-var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
+var posting = function (post, WallID, postTitle, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
   console.log("Preparing to add post to DB");
   console.log(imageName);
   //CREATING SQL METHOD
-    var postSQL = "INSERT INTO post (Content, WallID, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
+    var postSQL = "INSERT INTO post (Content, WallID,postTitle, PosterID, TheDate, likes, Image) VALUES ('"+post+"', '"+WallID +"','"+postTitle +"', '"+PosterID+"', NOW(), 0, '"+imageName+"');";
 
   //INSERTING THE NEW POST
   return new Promise(function(resolve, reject){
@@ -125,7 +125,7 @@ var getWall = function(WallID, userID){
 
       return new Promise(function(resolve, reject){
 
-        var posts = "SELECT Fname, Content, postID, posterID, WallID, likes, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+        var posts = "SELECT Fname, Content, postID, posterID, WallID, postTitle, likes, TheDate, Image FROM post join Users ON post.WallID='"+WallID+"' AND post.posterID=Users.ID ORDER BY post.postID DESC;";
 
 
         pool.connection.query(posts, function (error, results) {
@@ -162,10 +162,21 @@ var getWall = function(WallID, userID){
 var getPostNotifications = function(userID){
     //group by
     return new Promise(function(resolve, reject){
-        var getPosts = "SELECT * FROM post join Users ON post.WallID='"+userID+"' AND post.WallID!=post.posterID AND post.posterID=Users.ID ORDER BY post.postID DESC;";
+        var getPosts = "SELECT * FROM (post left join postTagNotifications ON postTagNotifications.postID=post.postID) join Users ON ((post.WallID='"+userID+"' AND post.WallID!=post.posterID) OR postTagNotifications.taggedFriend='"+userID+"') AND post.posterID=Users.ID ORDER BY post.postID DESC;";
         pool.connection.query(getPosts,function(err, notifications){
             if(err) throw err;
-            resolve(notifications);
+            var allnotif = new Array();
+            for(i=0;i<notifications.length;i++){
+              if(notifications[i].taggedFriend==null){
+                allnotif.push(notifications[i].Fname + " posted on your wall");
+                console.log(allnotif[i]);
+              }
+              else{
+                allnotif.push(notifications[i].Fname + " tagged you in a post");
+                console.log(allnotif[i]);
+              }
+            }
+            resolve(allnotif);
         });
 
     });
