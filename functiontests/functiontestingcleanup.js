@@ -6,7 +6,7 @@ var functions = require('../routes/functions');
 
 var pool = new DBconnect();
 
-var deletePost="DELETE FROM post WHERE WallID='2';";
+var deletePost="DELETE FROM post WHERE PosterID='2';";
 
 pool.connection.query(deletePost, function(err, result){
   if(err) throw err;
