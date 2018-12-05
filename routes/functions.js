@@ -44,7 +44,7 @@ var tag = function(tag1, tag2, tag3, tag4, tag5, postID){
 };
 
 
-var posting = function (post, WallID, postTitle, PosterID, imageName, tag1, tag2, tag3, tag4, tag5){
+var posting = function (post, WallID, PosterID, imageName, tag1, tag2, tag3, tag4, tag5, postTitle){
   console.log("Preparing to add post to DB");
   console.log(imageName);
   //CREATING SQL METHOD
