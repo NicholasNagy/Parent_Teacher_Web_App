@@ -314,6 +314,8 @@ module.exports= {
   getUser: getUser,
   createGroup:creatingGroups,
   search: search,
-  getFriends:getFriends
+  getFriends:getFriends,
+  getPostNotifications:getPostNotifications,
+  getMessengerNotification:getMessengerNotification
 
 };
