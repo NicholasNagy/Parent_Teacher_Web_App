@@ -8,7 +8,7 @@ var pool = new DBconnect();
 
 //TESTING POSTING && COMMENTING
 let myFirstPromise = new Promise((resolve, reject) => {
-  resolve(functions.post("This is a test post", "2", "2"));
+  resolve(functions.post("This is a test post", "2", "2", "2"));
 });
 
 
