@@ -34,5 +34,7 @@ jobs:
         - node ./functiontests/searchTest.js
     - script:
         - node ./functiontests/checkIDDubplicates.js
+    - script:
+        - node ./functiontests/searchEmailTest.js
 
 
