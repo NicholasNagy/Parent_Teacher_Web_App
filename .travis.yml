@@ -38,7 +38,7 @@ jobs:
         - node ./functiontests/searchEmailTest.js
     - script:
         - node ./functiontests/friendPageFriendTester.js
- - script:
+    - script:
         - node ./functiontests/CommentingTest.js
         - node ./functiontests/CommentingTestCleanUp.js
 
